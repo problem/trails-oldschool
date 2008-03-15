@@ -1,0 +1,12 @@
+book:
+  owner: edward
+  title: Write A Book
+  default_currency: USD
+  default_rate: 1200
+
+
+paint:
+  owner: edward
+  title: Paint A Room
+  default_currency: USD
+  default_rate: 800

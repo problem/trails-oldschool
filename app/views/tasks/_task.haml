@@ -1,0 +1,13 @@
+%div[task]
+  .col_status
+    %input{:type=>'checkbox'}
+  .col_start_stop
+    %a.start{:href=>"start"} Start
+  .col_description 
+    = task.description
+  .col_rate
+    = task.rate
+  .col_amount
+    $TOTAL.00
+  .col_duration
+    01:00

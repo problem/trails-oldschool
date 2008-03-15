@@ -1,5 +1,9 @@
-%p This is a list of tasks!
-%ul
-  %li Task 1
-  %li Task 2
-  %li and so forth
+#task_list_commands
+  = link_to "New task list", new_task_list_url
+
+#task_lists
+  = render :partial=>@task_lists
+
+#total
+  Total:
+  #total_amount $1,221.20
