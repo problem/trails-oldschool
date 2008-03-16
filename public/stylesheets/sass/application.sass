@@ -1,20 +1,20 @@
-/* COLORS  */
-  !black = #000
-  !dark_grey = #333
-  !medium_grey = #666
-  !light_grey = #999999
+/*  COLORS  
 
-  !green = #669966
-  !light_green = #99CC99
+!black = #000
+!dark_grey = #333
+!medium_grey = #666
+!light_grey = #999999
 
-  !blue = #006699
-  !torquise = #339999
+!green = #669966
+!light_green = #99CC99
 
-  !magenta = #990000
+!blue = #006699
+!torquise = #339999
 
-  !tan = #F7F7E7
-  !flat_gold = #999966
+!magenta = #990000
 
+!tan = #F7F7E7
+!flat_gold = #999966
 
 /* TYPE	*/
   !main_font = "Verdana, Helvetica, Arial, sans-serif"
@@ -27,25 +27,24 @@
 
 #utility_bar
   :color = !light_grey
-  
 
 #utility_bar a
   :text-decoration none
   :color = !dark_grey
-    &:hover
-      :text-decoration underline
-      :background-color = !black
-	 &:visited
-	   :text-decoration underline
+  &:hover
+    :text-decoration underline
+    :background-color = !black
+  &:visited
+    :text-decoration underline
 
 .new_task_list a
   :color = !blue
   :text-decoration underline
-    &:hover
-	   :text-decoration none
-	   :background-color = !black
-	 &:visited
-	   :text-decoration underline
+  &:hover
+    :text-decoration none
+    :background-color = !black
+  &:visited
+    :text-decoration underline
 
 
 /*	Lists ----- */
@@ -64,9 +63,10 @@
 	:color = !medium_grey
 	
 
-/*	Tasks --------------------*/
-#container li
-:font = !main_font
+
+/*  Tasks --------------------
+#task_container li
+  :font = !main_font
   :size = !main_font_size
 	a
 	  :text-decoration underline
@@ -98,34 +98,32 @@ status //checkbox or green swirly?
       :background-color = !magenta
     &:visited
       :text-decoration underline
- 
-.name
+
+.check_box
+  :float left
+
+.task_start
   :color = !dark_grey
+  
 
-.name_active
-  :font-weight: bold
+task_stop
 
-.rate
-  :color = !medium_grey
+task_name
 
-.rate_inherited
+task_time
 
-.earnings
-  :color = !black
+task_time_zeros
 
-.duration_zeros
-  :color = !light_grey
+task_earnings
 
-.duration
-  :color = !dark_grey
+task_selected
 
-.completed
-  :color = !light_grey
+task_completed
 
-.progress_bar
+task_progress_bar
 
-.active
-  :color = !green
+task_progress_bar_selected
+
 
 /*	Grand Totals --------------------*/
 .grand_total_container
