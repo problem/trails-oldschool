@@ -8,6 +8,6 @@
     = render :partial=>task_list.completed_tasks
   .total
     .earnings
-      $TOTAL.00
+      = task_list.earnings.format(:accurate)
     .duration
-      01:00
+      = duration(task_list.duration)

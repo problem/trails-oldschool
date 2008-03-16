@@ -20,7 +20,12 @@ class Money
   def format(*rules)
     if rules.first == :minimal
       formatted = "#{symbol}#{dollar_part}"
-      formatted << ".#{cent_part}" if cent_part > 0
+      formatted << ".#{cent_part.to_s.ljust(2,'0')}" if cent_part > 0
+      formatted
+    elsif rules.first == :accurate
+      formatted = "#{symbol}"
+      formatted << "#{dollar_part}" if dollar_part > 0
+      formatted << ".#{cent_part.to_s.ljust(2,'0')}"
       formatted
     else
       super(*rules)

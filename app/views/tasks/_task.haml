@@ -8,6 +8,6 @@
   .rate
     = task_rate(task)
   .earnings
-    $
+    = task.earnings.format(:accurate)
   .duration
     = duration(task.duration)

@@ -13,4 +13,12 @@ class TaskList < ActiveRecord::Base
     tasks.select(&:completed?)
   end
   
+  def earnings
+    tasks.to_a.sum(&:earnings)
+  end
+  
+  def duration
+    tasks.to_a.sum(&:duration)
+  end
+  
 end

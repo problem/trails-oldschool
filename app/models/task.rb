@@ -42,6 +42,10 @@ class Task < ActiveRecord::Base
     @duration ||= rand(60*60*4)
   end
   
+  def earnings
+    rate * (duration.to_f/(60*60))
+  end
+  
 
 
   

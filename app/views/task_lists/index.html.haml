@@ -6,4 +6,5 @@
 
 #total
   Total:
-  #grand_total $1,221.20
+  #grand_total 
+    = @task_lists.sum(&:earnings).format(:accurate)
