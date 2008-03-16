@@ -2,8 +2,10 @@
   .header
     = task_list.title
     = link_to "New task", new_task_list_task_url(task_list)
-  .tasks
-    = render :partial=>task_list.tasks
+  .tasks.active
+    = render :partial=>task_list.active_tasks
+  .tasks.completed
+    = render :partial=>task_list.completed_tasks
   .total
     .earnings
       $TOTAL.00

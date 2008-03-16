@@ -1,0 +1,12 @@
+module TaskHelper
+  def task_status(task)
+    case (status = task.status)
+    when :stopped:
+      tag :input, :type=>"checkbox", :value=>status, :id=>dom_id(task, :status)
+    when :complete
+      tag :input, :type=>"checkbox", :value=>status, :id=>dom_id(task, :status), :checked=>true
+    when :active
+      link_to image_tag("task_in_progress.png")
+    end
+  end
+end
