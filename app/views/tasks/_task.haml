@@ -2,7 +2,7 @@
   .status
     = task_status(task)
   .start
-    %a.start{:href=>"start"} Start
+    = task_action_button(task)
   .name 
     = task.description
   .rate
