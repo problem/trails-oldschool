@@ -37,6 +37,12 @@ class Task < ActiveRecord::Base
   def rate
     (specific_rate? && specific_rate) or task_list.default_rate
   end
+  
+  def duration
+    @duration ||= rand(60*60*4)
+  end
+  
+
 
   
 end
