@@ -6,7 +6,7 @@
     = render :partial=>task_list.active_tasks
   .tasks.completed
     = render :partial=>task_list.completed_tasks
-  .total
+  #total
     .earnings
       = task_list.earnings.format(:accurate)
     .duration

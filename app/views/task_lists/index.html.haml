@@ -4,7 +4,7 @@
 #task_lists
   = render :partial=>@task_lists
 
-#total
+#grand_total
   Total:
   #grand_total 
     = @task_lists.sum(&:earnings).format(:accurate)
