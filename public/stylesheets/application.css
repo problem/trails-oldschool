@@ -1,20 +1,22 @@
 /*
 Sass::SyntaxError: Illegal Indentation: Only two space characters are allowed as tabulation.
-on line 3 of /Users/graysonstebbins/Projects/trails/public/stylesheets/sass/application.sass
+on line 38 of /Users/graysonstebbins/Projects/trails/public/stylesheets/sass/application.sass
 
-1: /*	COLORS 
-2: 	
-3: 	!black = #000
-4: 	!dark_grey = #333
-5: 	!medium_grey = #666
-6: 	!light_grey = #999999
-7: 
-8: 	!green = #669966
-9: 	!light_green = #99CC99
+34:   :color = !dark_grey
+35:     &:hover
+36:       :text-decoration underline
+37:       :background-color = !black
+38: 	 &:visited
+39: 	   :text-decoration underline
+40: 
+41: .new_task_list a
+42:   :color = !blue
+43:   :text-decoration underline
+44:     &:hover
 
 
 Backtrace:
-/Users/graysonstebbins/Projects/trails/public/stylesheets/sass/application.sass:3
+/Users/graysonstebbins/Projects/trails/public/stylesheets/sass/application.sass:38
 /Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/engine.rb:160:in `count_tabs'
 /Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/engine.rb:131:in `split_lines'
 /Library/Ruby/Gems/1.8/gems/activesupport-2.0.2/lib/active_support/inflector.rb:257:in `each_with_index'

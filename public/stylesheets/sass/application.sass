@@ -1,40 +1,40 @@
 /* COLORS  */
-	!black = #000
-	!dark_grey = #333
-	!medium_grey = #666
-	!light_grey = #999999
+  !black = #000
+  !dark_grey = #333
+  !medium_grey = #666
+  !light_grey = #999999
 
-	!green = #669966
-	!light_green = #99CC99
+  !green = #669966
+  !light_green = #99CC99
 
-	!blue = #006699
-	!torquise = #339999
+  !blue = #006699
+  !torquise = #339999
 
-	!magenta = #990000
+  !magenta = #990000
 
-	!tan = #F7F7E7
-	!flat_gold = #999966
+  !tan = #F7F7E7
+  !flat_gold = #999966
 
-	
+
 /* TYPE	*/
-	!main_font = "Verdana, Helvetica, Arial, sans-serif"
-	!main_font_size = 2em
+  !main_font = "Verdana, Helvetica, Arial, sans-serif"
+  !main_font_size = 2em
 
-#user_bar_container
+#utility_bar_container
   :position absolute
   :left 750px
   :top 18px
 
-#user_bar
+#utility_bar
   :color = !light_grey
   
 
-#user_bar a
+#utility_bar a
   :text-decoration none
   :color = !dark_grey
     &:hover
-	   :text-decoration underline
-	   :background-color = !black
+      :text-decoration underline
+      :background-color = !black
 	 &:visited
 	   :text-decoration underline
 
@@ -49,18 +49,18 @@
 
 
 /*	Lists ----- */
-list_container
+.list_container
 	:position absolute
 	:left 44px
 	:top 42px
 
-list_name
+.list_name
 	:color = !dark_grey
 
-list_total_duration
+.list_total_duration
 	:color = !black
 
-list_total_earnings
+.list_total_earnings
 	:color = !medium_grey
 	
 
@@ -83,20 +83,20 @@ status //checkbox or green swirly?
 .start a
 	:color = !dark_grey
   	&:hover
-		 :color #FFF
-	    :text-decoration none
-	    :background-color = !dark_green
-	  &:visited
-	    :text-decoration underline
-	
+      :color #FFF
+      :text-decoration none
+      :background-color = !dark_green
+    &:visited
+      :text-decoration underline
+
 .stop a
   :font-weight italic
   :color = !magenta
-		&:hover
-			:color #FFF
+    &:hover
+      :color #FFF
       :text-decoration none
       :background-color = !magenta
-		&:visited
+    &:visited
       :text-decoration underline
  
 .name
@@ -128,8 +128,8 @@ status //checkbox or green swirly?
   :color = !green
 
 /*	Grand Totals --------------------*/
-grand_total_container
+.grand_total_container
 
-grand_total_time
+.grand_total_time
 
-grand_total_earnings
+.grand_total_earnings
