@@ -3,7 +3,7 @@
 @import reset-fonts.css
 // end reqs */
 
-/*  COLORS  */
+// /*  COLORS  */
 
 !black = #000
 !dark_grey = #333
@@ -21,7 +21,7 @@
 !tan = #F7F7E7
 !flat_gold = #999966
 
-/* TYPE	*/
+// /* TYPE	*/
 !main_font = Verdana, Helvetica, Arial, "sans-serif"
 !main_font_size = 2em
 
@@ -30,19 +30,24 @@ body
 
 #utility_menu
   :position absolute
-  :left 750px
+  :width 120px
+  :left 650px
   :top 18px
   :color = !light_grey
   :font = !main_font
+  a
+    :text-decoration none
+    :color = !dark_grey
+    &:hover
+      :color #FFF
+      :text-decoration none
+      :background-color = !dark_grey
+    &:visited
+      :text-decoration underline
 
-#utility_bar a
-  :text-decoration none
-  :color = !dark_grey
-  &:hover
-    :text-decoration underline
-    :background-color = !black
-  &:visited
-    :text-decoration underline
+.task_lists
+  :left 20px
+  :top 200px
 
 .new_task_list a
   :color = !blue
@@ -54,11 +59,20 @@ body
     :text-decoration underline
 
 
-/*	Lists ----- */
-.list_container
-  :position absolute
-  :left 44px
-  :top 42px
+// /*	Lists ----- */
+#task_list_commands
+  :float right
+  :margin-right 5px
+
+.header a
+  :color = !blue
+  :float right
+  &:hover
+    :text-decoration none
+    :background-color = !blue
+    :color #FFF
+  &:visited
+    :text-decoration underline
 
 .list_name
   :color = !dark_grey
@@ -71,8 +85,14 @@ body
 
 
 
-/*  Tasks --------------------*/
-#task_container li
+// /*  Tasks --------------------*/
+.task
+  :display block
+  :left 30px
+  :float left
+  :width 600px
+  :height 30px
+  :border-top 1px solid #CCC
   :font = !main_font
   :size = !main_font_size
   a
@@ -84,9 +104,14 @@ body
     &:visited
       :text-decoration underline
 
-status //checkbox or green swirly?
-  :float left
+//STATUS
+.status
+  :display inline
 
+//START
+.start
+  :display inline
+  
 .start a
   :color = !dark_grey
   &:hover
@@ -106,36 +131,39 @@ status //checkbox or green swirly?
   &:visited
     :text-decoration underline
 
-.check_box
-  :float left
-
-.task_start
-  :color = !dark_grey
-  
-
-.stop
-
+//NAME
 .name
+  :display inline
 
-.time
+.rate
+  :display inline
+  
+.earnings
+  :display inline
 
 .duration_zeros
+  :display inline
 
-.earnings
+.duration
+  :display inline
 
 .active
-
+  :display inline
+  
 .completed
-
-
+  :display inline
+  
 .progress_bar
 
 .task_progress_bar_selected
 
 
-/*	Grand Totals --------------------*/
-.grand_total_container
-
+// /*	Grand Totals --------------------*/
+#total
+  :display block
+  :position relative
+#grand_total
+  :display block
 .grand_total_time
 
 .grand_total_earnings
