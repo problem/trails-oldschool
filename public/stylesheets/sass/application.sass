@@ -1,5 +1,4 @@
-/*	COLORS 
-	
+/* COLORS  */
 	!black = #000
 	!dark_grey = #333
 	!medium_grey = #666
@@ -17,11 +16,10 @@
 	!flat_gold = #999966
 
 	
-/* TYPE
-	
+/* TYPE	*/
 	!main_font = "Verdana, Helvetica, Arial, sans-serif"
 	!main_font_size = 2em
-	
+
 #user_bar_container
   :position absolute
   :left 750px
@@ -50,57 +48,86 @@
 	   :text-decoration underline
 
 
-/*	List -----
+/*	Lists ----- */
 list_container
-
-list_title
+	:position absolute
+	:left 44px
+	:top 42px
 
 list_name
+	:color = !dark_grey
 
-list_total_time
+list_total_duration
+	:color = !black
 
 list_total_earnings
+	:color = !medium_grey
+	
 
-
-/*	Tasks --------------------
-#task_container li
+/*	Tasks --------------------*/
+#container li
 :font = !main_font
   :size = !main_font_size
 	a
 	  :text-decoration underline
      &:hover
+       :color #FFF
 	    :text-decoration none
 	    :background-color = !dark_green
 	  &:visited
 	    :text-decoration underline
 
-check_box
+status //checkbox or green swirly?
 	:float left
 
-task_start
+.start a
 	:color = !dark_grey
+  	&:hover
+		 :color #FFF
+	    :text-decoration none
+	    :background-color = !dark_green
+	  &:visited
+	    :text-decoration underline
 	
+.stop a
+  :font-weight italic
+  :color = !magenta
+		&:hover
+			:color #FFF
+      :text-decoration none
+      :background-color = !magenta
+		&:visited
+      :text-decoration underline
+ 
+.name
+  :color = !dark_grey
 
-task_stop
+.name_active
+  :font-weight: bold
 
-task_name
+.rate
+  :color = !medium_grey
 
-task_time
+.rate_inherited
 
-task_time_zeros
+.earnings
+  :color = !black
 
-task_earnings
+.duration_zeros
+  :color = !light_grey
 
-task_selected
+.duration
+  :color = !dark_grey
 
-task_completed
+.completed
+  :color = !light_grey
 
-task_progress_bar
+.progress_bar
 
-task_progress_bar_selected
+.active
+  :color = !green
 
-
-/*	Grand Totals --------------------
+/*	Grand Totals --------------------*/
 grand_total_container
 
 grand_total_time
