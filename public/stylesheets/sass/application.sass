@@ -14,7 +14,7 @@
 !light_green = #99CC99
 
 !blue = #006699
-!torquise = #339999
+!turquoise = #339999
 
 !magenta = #990000
 
@@ -92,7 +92,7 @@ body
   :float left
   :width 600px
   :height 30px
-  :border-top 1px solid #CCC
+  :border-top 1px solid #EEE
   :font = !main_font
   :size = !main_font_size
   a
@@ -110,36 +110,52 @@ body
 
 //START
 .start
-  :display inline
-  
-.start a
-  :color = !dark_grey
-  &:hover
-    :color #FFF
-    :text-decoration none
-    :background-color = !green
-  &:visited
-    :text-decoration underline
+  :display block
+  :position relative
+  :margin-top 10px
+  :left 20px
+  a
+    :color = !dark_grey
+    &:hover
+      :color #FFF
+      :text-decoration none
+      :background-color = !green
+    &:visited
+      :text-decoration underline
 
-.stop a
-  :font-weight italic
-  :color = !magenta
-  &:hover
-    :color #FFF
-    :text-decoration none
-    :background-color = !magenta
-  &:visited
-    :text-decoration underline
+.stop
+  :display block
+  :position relative
+  :margin-top 10px
+  :left 20px
+  a
+    :font-weight italic
+    :color = !magenta
+    &:hover
+      :color #FFF
+      :text-decoration none
+      :background-color = !magenta
+    &:visited
+      :text-decoration underline
 
 //NAME
 .name
-  :display inline
+  :display block
+  :position relative
+  :margin-top 10px
+  :left 100px
 
 .rate
-  :display inline
+  :display block
+  :position relative
+  :margin-top 10px
+  :left 300px
   
 .earnings
-  :display inline
+  :display block
+  :position relative
+  :margin-top 10px
+  :left 350px
 
 .duration_zeros
   :display inline
@@ -155,15 +171,20 @@ body
   
 .progress_bar
 
-.task_progress_bar_selected
+.progress_bar_selected
 
 
 // /*	Grand Totals --------------------*/
-#total
-  :display block
-  :position relative
 #grand_total
   :display block
+  :position relative
+  :height 16px
+  :width 50px
+  :background-color = !turquoise
+  
+.grand_total
+  :color #FFF
+  
 .grand_total_time
 
 .grand_total_earnings
