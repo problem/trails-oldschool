@@ -25,4 +25,8 @@ module TaskHelper
     content_tag :span, task.rate.format(:minimal) + "/h", :class=>(task.specific_rate? ? "specfic" : "inherited")
   end
   
+  def task_active_class(task)
+    {:class=>if task.active? then "active" else "completed" end}
+  end
+  
 end

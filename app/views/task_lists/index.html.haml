@@ -1,10 +1,14 @@
-#task_list_commands
-  = link_to "New task list", new_task_list_url
-
-#task_lists
-  = render :partial=>@task_lists
-
-#grand_total
-  Total:
-  #grand_total 
-    = @task_lists.sum(&:earnings).format(:accurate)
+%table#task_lists{:cellspacing=>0,:cellpadding=>0}
+  %tbody
+    %tr
+      %td#task_list_commands{:colspan=>6}
+        = link_to "New task list", new_task_list_url
+    = render :partial=>@task_lists
+  %tfoot
+    %tr
+      %td{:colspan=>3}
+      %td.grand_total
+        Total:
+      %td.grand_total
+        = @task_lists.sum(&:earnings).format(:accurate)
+      %td.grand_total

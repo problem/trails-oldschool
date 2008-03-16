@@ -1,13 +1,13 @@
-%div[task]
-  .status
+%tr{task_active_class(task)}[task]
+  %td.status
     = task_status(task)
-  .start
+  %td.start
     = task_action_button(task)
-  .name 
+  %td.description 
     = task.description
-  .rate
+  %td.rate
     = task_rate(task)
-  .earnings
+  %td.earnings
     = task.earnings.format(:accurate)
-  .duration
+  %td.duration
     = duration(task.duration)

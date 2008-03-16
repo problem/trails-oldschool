@@ -5,12 +5,8 @@ class TaskList < ActiveRecord::Base
   
   validates_presence_of :title
   
-  def active_tasks
-    tasks.select(&:active?)
-  end
-  
-  def completed_tasks
-    tasks.select(&:completed?)
+  def sorted_tasks
+    tasks.select(&:active?) + tasks.select(&:completed?)
   end
   
   def earnings

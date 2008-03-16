@@ -5,6 +5,7 @@
 
 // /*  COLORS  */
 
+
 !black = #000
 !dark_grey = #333
 !medium_grey = #666
@@ -27,6 +28,7 @@
 
 body
   :font = !main_font
+  :margin 50px
 
 #utility_menu
   :position absolute
@@ -45,146 +47,107 @@ body
     &:visited
       :text-decoration underline
 
-.task_lists
+#task_lists
+  
+  // The Big Table
+  
   :left 20px
   :top 200px
-
-.new_task_list a
-  :color = !blue
-  :text-decoration underline
-  &:hover
-    :text-decoration none
-    :background-color = !black
-  &:visited
+  a
+    :color = !blue
     :text-decoration underline
+    &:hover
+      :text-decoration none
+      :background-color = !black
+    &:visited
+      :text-decoration underline
 
+  td, th
+    :padding 5px
 
-// /*	Lists ----- */
-#task_list_commands
-  :float right
-  :margin-right 5px
-
-.header a
-  :color = !blue
-  :float right
-  &:hover
-    :text-decoration none
-    :background-color = !blue
+  #task_list_commands
+    :text-align right
+    :margin-right 5px
+  
+  .grand_total
+    :background-color = !turquoise
     :color #FFF
-  &:visited
-    :text-decoration underline
 
-.list_name
-  :color = !dark_grey
+    
+    
 
-.list_total_duration
-  :color = !black
+  // List
 
-.list_total_earnings
-  :color = !medium_grey
-
-
-
-// /*  Tasks --------------------*/
-.task
-  :display block
-  :left 30px
-  :float left
-  :width 600px
-  :height 30px
-  :border-top 1px solid #EEE
-  :font = !main_font
-  :size = !main_font_size
-  a
-    :text-decoration underline
-    &:hover
-      :color #FFF
-      :text-decoration none
-      :background-color = !green
-    &:visited
-      :text-decoration underline
-
-//STATUS
-.status
-  :display inline
-
-//START
-.start
-  :display block
-  :position relative
-  :margin-top 10px
-  :left 20px
-  a
+  th.title
     :color = !dark_grey
-    &:hover
-      :color #FFF
-      :text-decoration none
-      :background-color = !green
-    &:visited
+
+  th.new_task
+    :text-align right
+    a
+      :color = !blue
+      &:hover
+        :text-decoration none
+        :background-color = !blue
+        :color #FFF
+      &:visited
+        :text-decoration underline
+  
+  .total 
+    .duration
+      :color = !black
+    .earnings
+      :color = !medium_grey
+
+
+  // Task
+
+  .task
+    :border-top 1px solid #EEE
+    :font = !main_font
+    :size = !main_font_size
+    a
       :text-decoration underline
+      &:hover
+        :color #FFF
+        :text-decoration none
+        :background-color = !green
+      &:visited
+        :text-decoration underline
 
-.stop
-  :display block
-  :position relative
-  :margin-top 10px
-  :left 20px
-  a
-    :font-weight italic
-    :color = !magenta
-    &:hover
-      :color #FFF
-      :text-decoration none
-      :background-color = !magenta
-    &:visited
-      :text-decoration underline
+    .status
 
-//NAME
-.name
-  :display block
-  :position relative
-  :margin-top 10px
-  :left 100px
+    .start
+      :margin-top 10px
+      a
+        :color = !dark_grey
+        &:hover
+          :color #FFF
+          :text-decoration none
+          :background-color = !green
+        &:visited
+          :text-decoration underline
 
-.rate
-  :display block
-  :position relative
-  :margin-top 10px
-  :left 300px
+    .stop
+      :margin-top 10px
+      a
+        :font-weight italic
+        :color = !magenta
+        &:hover
+          :color #FFF
+          :text-decoration none
+          :background-color = !magenta
+        &:visited
+          :text-decoration underline
+
+      .description
+
+      .rate
   
-.earnings
-  :display block
-  :position relative
-  :margin-top 10px
-  :left 350px
+      .earnings
 
-.duration_zeros
-  :display inline
+      // was: .duration_zeros
+      .fade
 
-.duration
-  :display inline
-
-.active
-  :display inline
-  
-.completed
-  :display inline
-  
-.progress_bar
-
-.progress_bar_selected
+      .duration
 
 
-// /*	Grand Totals --------------------*/
-#grand_total
-  :display block
-  :position relative
-  :height 16px
-  :width 50px
-  :background-color = !turquoise
-  
-.grand_total
-  :color #FFF
-  
-.grand_total_time
-
-.grand_total_earnings
