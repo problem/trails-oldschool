@@ -1,4 +1,4 @@
-/*  COLORS  
+/*  COLORS  */
 
 !black = #000
 !dark_grey = #333
@@ -17,15 +17,15 @@
 !flat_gold = #999966
 
 /* TYPE	*/
-  !main_font = "Verdana, Helvetica, Arial, sans-serif"
-  !main_font_size = 2em
+!main_font = "Verdana, Helvetica, Arial, sans-serif"
+!main_font_size = 2em
 
-#utility_bar_container
+#utility_menu
   :position absolute
   :left 750px
   :top 18px
 
-#utility_bar
+#utility_menu
   :color = !light_grey
 
 #utility_bar a
@@ -49,55 +49,55 @@
 
 /*	Lists ----- */
 .list_container
-	:position absolute
-	:left 44px
-	:top 42px
+  :position absolute
+  :left 44px
+  :top 42px
 
 .list_name
-	:color = !dark_grey
+  :color = !dark_grey
 
 .list_total_duration
-	:color = !black
+  :color = !black
 
 .list_total_earnings
-	:color = !medium_grey
-	
+  :color = !medium_grey
 
 
-/*  Tasks --------------------
+
+/*  Tasks --------------------*/
 #task_container li
   :font = !main_font
   :size = !main_font_size
-	a
-	  :text-decoration underline
-     &:hover
-       :color #FFF
-	    :text-decoration none
-	    :background-color = !dark_green
-	  &:visited
-	    :text-decoration underline
-
-status //checkbox or green swirly?
-	:float left
-
-.start a
-	:color = !dark_grey
-  	&:hover
+  a
+    :text-decoration underline
+    &:hover
       :color #FFF
       :text-decoration none
-      :background-color = !dark_green
+      :background-color = !green
     &:visited
       :text-decoration underline
+
+status //checkbox or green swirly?
+  :float left
+
+.start a
+  :color = !dark_grey
+  &:hover
+    :color #FFF
+    :text-decoration none
+    :background-color = !green
+  &:visited
+    :text-decoration underline
 
 .stop a
   :font-weight italic
   :color = !magenta
-    &:hover
-      :color #FFF
-      :text-decoration none
-      :background-color = !magenta
-    &:visited
-      :text-decoration underline
+  &:hover
+    :color #FFF
+    :text-decoration none
+    :background-color = !magenta
+  &:visited
+    :text-decoration underline
 
 .check_box
   :float left
@@ -106,23 +106,24 @@ status //checkbox or green swirly?
   :color = !dark_grey
   
 
-task_stop
+.stop
 
-task_name
+.name
 
-task_time
+.time
 
-task_time_zeros
+.duration_zeros
 
-task_earnings
+.earnings
 
-task_selected
+.active
 
-task_completed
+.completed
 
-task_progress_bar
 
-task_progress_bar_selected
+.progress_bar
+
+.task_progress_bar_selected
 
 
 /*	Grand Totals --------------------*/
