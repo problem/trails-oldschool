@@ -1,68 +1,63 @@
-/*
-Sass::SyntaxError: Illegal Indentation: Only two space characters are allowed as tabulation.
-on line 3 of /Users/graysonstebbins/Projects/trails/public/stylesheets/sass/application.sass
+/* COLORS */
+/* TYPE */
+#user_bar_container {
+  position: absolute;
+  left: 750px;
+  top: 18px; }
 
-1: /*	COLORS 
-2: 	
-3: 	!black = #000
-4: 	!dark_grey = #333
-5: 	!medium_grey = #666
-6: 	!light_grey = #999999
-7: 
-8: 	!green = #669966
-9: 	!light_green = #99CC99
+#user_bar {
+  color: #999999; }
+
+#user_bar a {
+  text-decoration: none;
+  color: #333333; }
+  #user_bar a:hover {
+    text-decoration: underline;
+    background-color: #000000; }
+  #user_bar a:visited {
+    text-decoration: underline; }
+
+.new_task_list a {
+  color: #006699;
+  text-decoration: underline; }
+  .new_task_list a:hover {
+    text-decoration: none;
+    background-color: #000000; }
+  .new_task_list a:visited {
+    text-decoration: underline; }
+
+/* List ----- */
 
 
-Backtrace:
-/Users/graysonstebbins/Projects/trails/public/stylesheets/sass/application.sass:3
-/Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/engine.rb:160:in `count_tabs'
-/Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/engine.rb:131:in `split_lines'
-/Library/Ruby/Gems/1.8/gems/activesupport-2.0.2/lib/active_support/inflector.rb:257:in `each_with_index'
-/Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/engine.rb:128:in `each'
-/Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/engine.rb:128:in `each_with_index'
-/Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/engine.rb:128:in `split_lines'
-/Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/engine.rb:100:in `render_to_tree'
-/Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/engine.rb:82:in `render'
-/Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/plugin.rb:61:in `update_stylesheets'
-/Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/plugin.rb:46:in `each'
-/Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/plugin.rb:46:in `update_stylesheets'
-/Library/Ruby/Gems/1.8/gems/haml-1.8.2/lib/sass/plugin/rails.rb:16:in `process'
-/Library/Ruby/Gems/1.8/gems/actionpack-2.0.2/lib/action_controller/base.rb:388:in `process'
-/Library/Ruby/Gems/1.8/gems/actionpack-2.0.2/lib/action_controller/dispatcher.rb:171:in `handle_request'
-/Library/Ruby/Gems/1.8/gems/actionpack-2.0.2/lib/action_controller/dispatcher.rb:115:in `dispatch'
-/Library/Ruby/Gems/1.8/gems/actionpack-2.0.2/lib/action_controller/dispatcher.rb:126:in `dispatch_cgi'
-/Library/Ruby/Gems/1.8/gems/actionpack-2.0.2/lib/action_controller/dispatcher.rb:9:in `dispatch'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
-/Library/Ruby/Gems/1.8/gems/activesupport-2.0.2/lib/active_support/dependencies.rb:489:in `load'
-/Library/Ruby/Gems/1.8/gems/activesupport-2.0.2/lib/active_support/dependencies.rb:489:in `load'
-/Library/Ruby/Gems/1.8/gems/activesupport-2.0.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
-/Library/Ruby/Gems/1.8/gems/activesupport-2.0.2/lib/active_support/dependencies.rb:489:in `load'
-/Library/Ruby/Gems/1.8/gems/rails-2.0.2/lib/commands/servers/mongrel.rb:64
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
-/Library/Ruby/Gems/1.8/gems/activesupport-2.0.2/lib/active_support/dependencies.rb:496:in `require'
-/Library/Ruby/Gems/1.8/gems/activesupport-2.0.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
-/Library/Ruby/Gems/1.8/gems/activesupport-2.0.2/lib/active_support/dependencies.rb:496:in `require'
-/Library/Ruby/Gems/1.8/gems/rails-2.0.2/lib/commands/server.rb:39
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
-/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
-script/server:3
-*/
+
+
+
+/* Tasks -------------------- */
+#task_container li {
+  font: Verdana, Helvetica, Arial, sans-serif;
+  size: 2em; }
+  #task_container li a {
+    text-decoration: underline; }
+    #task_container li a:hover {
+      text-decoration: none; }
+    #task_container li a:visited {
+      text-decoration: underline; }
+
+.check_box {
+  float: left; }
+
+.task_start {
+  color: #333333; }
+
+
+
+
+
+
+
+
+
+
+/* Grand Totals -------------------- */
+
+
