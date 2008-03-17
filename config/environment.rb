@@ -44,6 +44,9 @@ Rails::Initializer.run do |config|
     :session_key => '_trails2_session',
     :secret      => 'e24b36dcb78d54cadad4f91f4c6f9d054e9b61bae6d3c4c74c32ad989dd0923bcf5a148afb211112f359d937d8441573b9cc2582c780ea0469f9e8dfb2e39983'
   }
+  
+  # We need this ... not
+  config.action_controller.allow_forgery_protection = false
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
