@@ -23,18 +23,21 @@
 !flat_gold = #999966
 
 // /* TYPE	*/
-!main_font = Verdana, Helvetica, Arial, "sans-serif"
-!main_font_size = 2em
+!main_font = Verdana
+!main_font_size = 11px
 
 body
-  :font = !main_font
-  :margin 50px
+  :font-family = !main_font
+  :font-size = !main_font_size
+  :margin-left 50px
+  :margin-top 20px
+  
 
 #utility_menu
   :position absolute
   :width 120px
   :left 650px
-  :top 18px
+  :top 25px
   :color = !light_grey
   :font = !main_font
   a
@@ -52,7 +55,7 @@ body
   // The Big Table
   
   :left 20px
-  :top 200px
+  :top 150px
   a
     :color = !blue
     :text-decoration underline
@@ -68,21 +71,32 @@ body
   #task_list_commands
     :text-align right
     :margin-right 5px
-  
+    a
+      :color = !blue
+      :text-decoration underline
+      &:hover
+        :color #FFF
+        :text-decoration none
+        :background-color = !blue
+      &:visited
+        :text-decoriation underline
+        
   .grand_total
     :background-color = !turquoise
     :color #FFF
 
-    
-    
+
+
 
   // List
 
   th.title
-    :color = !dark_grey
+    :color = !black
+    :background-color = !tan
 
   th.new_task
     :text-align right
+    :background-color = !tan
     a
       :color = !blue
       &:hover
@@ -93,10 +107,10 @@ body
         :text-decoration underline
   
   .total 
-    .duration
-      :color = !black
-    .earnings
-      :color = !medium_grey
+  .duration
+    :color = !medium_grey
+  .earnings
+    :color = !black
 
 
   // Task
@@ -114,40 +128,48 @@ body
       &:visited
         :text-decoration underline
 
-    .status
+  td.status
+    :height 20px
+    
+  .completed
+    :color = !light_grey
 
-    .start
-      :margin-top 10px
-      a
-        :color = !dark_grey
-        &:hover
-          :color #FFF
-          :text-decoration none
-          :background-color = !green
-        &:visited
-          :text-decoration underline
+  .start
+    a
+      :color = !dark_grey
+      &:hover
+        :color #FFF
+        :text-decoration none
+        :background-color = !green
+      &:visited
+        :text-decoration underline
 
-    .stop
-      :margin-top 10px
-      a
-        :font-weight italic
-        :color = !magenta
-        &:hover
-          :color #FFF
-          :text-decoration none
-          :background-color = !magenta
-        &:visited
-          :text-decoration underline
+#stop_task 
+  a
+    :font-weight italic
+    :color = !magenta
+    &:hover
+      :color #FFF
+      :text-decoration none
+      :background-color = !magenta
+    &:visited
+      :text-decoration underline
 
-      .description
+.description
 
-      .rate
-  
-      .earnings
+.rate
+  :color = !medium_grey
 
-      // was: .duration_zeros
-      .fade
+.earnings
+  :color = !black
 
-      .duration
+.fade
+  :color = !light_grey
 
+.duration
+  :color = !medium_grey
 
+.active
+  :color = !green
+  .description
+    :font-weight bold
