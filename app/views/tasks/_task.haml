@@ -8,6 +8,6 @@
   %td.rate
     = task_rate(task)
   %td.earnings
-    = task.earnings.format(:accurate)
+    = task_earnings(task)
   %td.duration
-    = duration(task.duration)
+    = task_duration(task)
