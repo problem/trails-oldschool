@@ -1,4 +1,4 @@
-%tr{task_active_class(task)}[task]
+%tr{:class=>task.status.to_s}[task]
   %td.status
     = task_status(task)
   %td.start
