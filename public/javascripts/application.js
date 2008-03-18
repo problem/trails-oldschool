@@ -39,7 +39,7 @@ function action(constructor, method) {
   return function(event) {
     if (event.isLeftClick()) {
       event.stop();
-      constructor(parseInt(/\d+/(event.element().id)[0]))[method]();
+      constructor(parseInt(event.element().id.match(/\d+/)[0]))[method]();
     }
   }
 }

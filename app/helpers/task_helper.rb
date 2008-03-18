@@ -26,9 +26,9 @@ module TaskHelper
   end
   
   def task_duration(task)
-    if task.duration > 60
+    if task.duration > 60 || task.status == :active
       duration(task.duration) 
-    elsif task.duration > 0
+    elsif task.duration > 0 
       %Q|#{task.duration}<span class="fade">s</span>|
     end
   end
