@@ -51,6 +51,10 @@ class Task < ActiveRecord::Base
   def rate
     (specific_rate? && specific_rate) or task_list.default_rate
   end
+
+  def rate=(value)
+    specific_rate = value if value
+  end
   
   def duration
     duration_cache || 0
