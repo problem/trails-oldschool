@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many    :task_lists, :foreign_key => "owner_id"
+  has_many    :task_lists, :foreign_key => "owner_id",  :dependent=>:destroy
   belongs_to  :last_command, :class_name => "Command"
   
   validates_presence_of     :email, :display_name

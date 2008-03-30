@@ -7,7 +7,7 @@
         %td.grand_total
           Total:
         %td.grand_total
-          = @task_lists.sum(&:earnings).format(:accurate)
+          = @task_lists.sum(&:earnings).to_money.format(:accurate)
         %td.grand_total
     %tbody
       %tr

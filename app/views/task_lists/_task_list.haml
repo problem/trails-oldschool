@@ -1,9 +1,6 @@
-%tr[task_list]
-  %td.external
-  %th.title{:colspan=>3}
-    = task_list.title
-  %th.new_task{:colspan=>3}
-    = link_to "New task", new_task_list_task_url(task_list)
+%tr.spacer_row
+  %td
+= render :partial=>"task_lists/header", :object=>task_list
 = render :partial=>"tasks/edit", :object=>task_list.tasks.build
 = render :partial=>task_list.sorted_tasks
 %tr.total

@@ -194,12 +194,32 @@ $S(".task.active *").observe("click", action(task,"actions","stop"))
 
 
 controller("task_list",
-  autoBuildChild("task_form")
+  autoBuildChild("task_form","task_list_form"),
+  {
+    edit: function() {
+      this.element().hide();
+      this.task_list_form().show();
+    },
+    remove: function(){
+      this.ajaxAction("remove",{method:"delete"});
+    },
+    afterRemove: function(name, transport) {
+      var oldElement, element = this.element();
+      element.previous().remove();
+      do {
+        oldElement = element;
+        element = element.next();
+        oldElement.remove();
+      } while(!element.match(".total"))
+      element.remove();
+    }
+  }
 )
 
 
 $S(".new_task a").observe("click", action(task_list,"task_form", "show"))
-
+$S(".task_list .toolbar .edit").observe("click", action(task_list, "edit"))
+$S(".task_list .toolbar .delete").observe("click", action(task_list, "remove"))
 
 controller("task_form",{
   show: function() {
@@ -243,7 +263,7 @@ $S(".task.edit .submit input[type=submit]").observe("click", function(event){
   element.form.responder = task(element.recordID()).task_form()
 })
 
-var TaskListForm = {
+controller("task_list_form",{
   show: function() {
     $A(this.element().getElementsByTagName("INPUT")).invoke("enable");
     this.element().show();
@@ -251,28 +271,41 @@ var TaskListForm = {
   hide: function() {
     $A(this.element().getElementsByTagName("INPUT")).invoke("disable");
     this.element().hide();
+    if(this.task_list) this.task_list.element().show();
   },
   onSuccess: function(transport) {
-    this.element().next().insert({after:transport.responseText})
-    this.element().next().next().highlight();
-    this.element().hide();
+    if(this.task_list) this.task_list.element().remove();
+    var element = this.element();
+    element.insert({after:transport.responseText})
+    var highlight = element.next();
+    if(!this.task_list) highlight = highlight.next();
+    highlight.highlight();
+    if(this.task_list) element.remove();
+    else this.hide();
   },
   element: function() {
-    return $("task_list_new")
+    if (this.task_list)
+      return $("edit_task_list_"+this.task_list.id);
+    else
+      return $("task_list_new");
   }
-}
+})
 
 
-function task_list_form() {
-  return TaskListForm;
-}
 
 $S("#new_task_list").observe("click", action(task_list_form, "show"));
-$S(".task_list.edit .submit a").observe("click", action(task_list_form, "hide"));
+$S(".new.task_list.form .submit a").observe("click", action(task_list_form, "hide"));
+$S(".edit.task_list.form .submit a").observe("click", action(task_list,"task_list_form", "hide"));
+
+
+$S(".task_list.new .submit input[type=submit]").observe("click", function(event){
+  var element = event.element();
+  element.form.responder = task_list_form()
+})
 
 $S(".task_list.edit .submit input[type=submit]").observe("click", function(event){
   var element = event.element();
-  element.form.responder = task_list_form();
+  element.form.responder = task_list(element.recordID()).task_list_form()
 })
 
 

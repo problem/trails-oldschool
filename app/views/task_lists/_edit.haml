@@ -1,5 +1,5 @@
 - fields_for edit do |form|
-  %tr{:class=>'edit',:style=>"display:none"}[edit]
+  %tr{:class=>"form #{edit.new_record? ? 'new' : 'edit'}",:id=>(edit.new_record? ? nil : "edit"), :style=>"display:none"}[edit]
     %td.external
     %td.title{:colspan=>3}
       = form.text_field   :title, :disabled=>true
@@ -8,8 +8,8 @@
       = form.text_field :default_rate, :disabled=>true
       = "/h"
     %td.submit.external
-      = form.submit((if edit.new_record? then "Create" else "Save" end), :action => task_lists_path, :disabled=>true)
+      - if edit.new_record?
+        = form.submit "Create" , :action => task_lists_path, :disabled=>true
+      - else
+        = form.submit "Save", :action => task_list_path(edit), :method=>"put", :disabled=>true
       = link_to "Cancel", "#cancel"
-
-%tr.spacer_row
-  %td

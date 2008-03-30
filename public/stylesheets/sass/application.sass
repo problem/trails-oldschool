@@ -90,6 +90,14 @@ body
   :background-color = !tan
   .external
     :background #fff
+  .toolbar *
+    :visibility hidden
+  &:hover 
+    .toolbar 
+      :background-color = !tan
+      * 
+        :visibility     visible
+
 th.title
   :color = !black
   
@@ -129,7 +137,14 @@ tr.task
   :font = !main_font
   :size = !main_font_size
   :height 25px
-  
+  :cursor     pointer
+  .toolbar *
+    :visibility hidden
+  &:hover 
+    :background-color #f6f6f6
+    .toolbar * 
+      :visibility     visible
+      
   a
     :text-decoration underline
     &:hover
@@ -202,15 +217,7 @@ input[type='text']
   :padding 2pxi
 
 
-.toolbar *
-  :visibility hidden
 
-.task
-  :cursor     pointer
-.task:hover 
-  :background-color #f6f6f6
-  .toolbar * 
-    :visibility     visible
     
     
 

@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
   composed_of :specific_rate, :class_name => "Money", :mapping => [%w(rate_cents cents), %w(currency currency)], :allow_nil=>true
-  has_many    :log_entries, :order=>"created_at DESC"
+  has_many    :log_entries, :order=>"created_at DESC",  :dependent=>:destroy
   has_one     :last_start, :class_name=>"LogEntry", :order=>"created_at DESC", :conditions=>"action = 'start'"
   belongs_to  :task_list
   
