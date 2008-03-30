@@ -1,14 +1,14 @@
 %tr{:class=>task.status.to_s}[task]
   %td.status
     = task_status(task)
-  %td.start
+  %td.start.border
     = task_action_button(task)
-  %td.description 
+  %td.description.border
     = task.description
-  %td.rate
+  %td.rate.border
     = task_rate(task)
-  %td.earnings
+  %td.earnings.border
     = task_earnings(task)
-  %td.duration
+  %td.duration.border
     = task_duration(task)
   %td.external
