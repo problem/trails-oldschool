@@ -177,9 +177,11 @@ $S(".new_task a").observe("click", action(task_list,"task_form", "show"))
 
 controller("task_form",{
   show: function() {
+    $A(this.element().getElementsByTagName("INPUT")).invoke("enable");
     this.element().show();
   },
   hide: function() {
+    $A(this.element().getElementsByTagName("INPUT")).invoke("disable");
     this.element().hide();
   },
   onSuccess: function(transport) {
