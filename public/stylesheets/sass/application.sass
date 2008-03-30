@@ -135,6 +135,10 @@ body
     :font = !main_font
     :size = !main_font_size
     :height 25px
+    & > td
+      :border-top 1px solid #EEE
+    & > .external
+      :border-top none
     a
       :text-decoration underline
       &:hover
@@ -170,6 +174,8 @@ body
       &:visited
         :text-decoration underline
 
+.description
+
 .rate
   :color = !medium_grey
 
@@ -193,3 +199,15 @@ body
     
 .grand_total_row
   :padding-top 30px
+    :font-weight bold
+
+// Temp by ruy
+// feel free to remove them entirely - just needed some reasonable default widths to work with
+
+input[name='task[rate]']
+  :width 50px
+input[name='task[description]']
+  :width 150px
+input[type='text']
+  :border 1px solid #ccc
+  :padding 2pxi

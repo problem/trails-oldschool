@@ -1,14 +1,15 @@
-%table#task_lists{:cellspacing=>0,:cellpadding=>0}
-  %tbody
-    %tr
-      %td#task_list_commands{:colspan=>6}
-        = link_to "New task list", new_task_list_url
-    = render :partial=>@task_lists
-  %tfoot
-    %tr.grand_total_row
-      %td{:colspan=>3}
-      %td.grand_total
-        Total:
-      %td.grand_total
-        = @task_lists.sum(&:earnings).format(:accurate)
-      %td.grand_total
+%form{:action=>"/tasks",:method=>"post", :id=>"task_form"}
+  %table#task_lists{:cellspacing=>0,:cellpadding=>0}
+    %tfoot
+      %tr
+        %td{:colspan=>3}
+        %td.grand_total
+          Total:
+        %td.grand_total
+          = @task_lists.sum(&:earnings).format(:accurate)
+        %td.grand_total
+    %tbody
+      %tr
+        %td#task_list_commands{:colspan=>6}
+          = link_to "New task list", new_task_list_url
+      = render :partial=>@task_lists

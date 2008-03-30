@@ -1,0 +1,13 @@
+- fields_for edit do |form|
+  %tr{:class=>'edit',:id=>"task_list_#{edit.task_list.id}", :style=>"display:none"}[edit]
+    %td{:colspan=>2}
+    %td.description
+      = form.text_field   :description, :disabled=>true
+    %td.rate{:colspan=>3}
+      = "$"
+      = form.text_field :rate, :disabled=>true
+      = "/h"
+    %td.submit.external
+      = form.submit((if edit.new_record? then "Create" else "Save" end), :action => task_list_tasks_path(edit.task_list.id), :disabled=>true)
+      = link_to "Cancel", "#cancel"
+      
