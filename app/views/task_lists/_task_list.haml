@@ -1,4 +1,5 @@
 %tr[task_list]
+  %td.external
   %th.title{:colspan=>3}
     = task_list.title
   %th.new_task{:colspan=>3}
@@ -6,6 +7,7 @@
 = render :partial=>"tasks/edit", :object=>task_list.tasks.build
 = render :partial=>task_list.sorted_tasks
 %tr.total
+  %td.external
   %td{:colspan=>4}
   %td.earnings
     = task_list.earnings.format(:accurate)

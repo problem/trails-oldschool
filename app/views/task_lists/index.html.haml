@@ -2,6 +2,7 @@
   %table#task_lists{:cellspacing=>0,:cellpadding=>0}
     %tfoot
       %tr
+        %td.external
         %td{:colspan=>3}
         %td.grand_total
           Total:
@@ -10,6 +11,7 @@
         %td.grand_total
     %tbody
       %tr
+        %td.external
         %td#task_list_commands{:colspan=>6}
           = link_to "New task list", new_task_list_url, :id=>"new_task_list"
       = render :partial=>"task_lists/edit", :object=>TaskList.new

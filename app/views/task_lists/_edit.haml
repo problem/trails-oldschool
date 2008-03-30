@@ -1,5 +1,6 @@
 - fields_for edit do |form|
   %tr{:class=>'edit',:style=>"display:none"}[edit]
+    %td.external
     %td.title{:colspan=>3}
       = form.text_field   :title, :disabled=>true
     %td.default_rate{:colspan=>3}
@@ -11,4 +12,4 @@
       = link_to "Cancel", "#cancel"
 
 %tr.spacer_row
-  %td{:colspan=>6}
+  %td
