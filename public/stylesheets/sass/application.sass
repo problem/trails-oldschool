@@ -11,6 +11,7 @@
 !medium_grey = #666
 !light_grey = #999999
 
+!dark_green = #669933
 !green = #669966
 !light_green = #99CC99
 
@@ -38,15 +39,17 @@ body
   :width 120px
   :left 650px
   :top 25px
+  :padding-bottom 20px
   :color = !light_grey
   :font = !main_font
   a
-    :text-decoration none
     :color = !dark_grey
+    :border 2px solid #FFF
     &:hover
       :color #FFF
       :text-decoration none
       :background-color = !dark_grey
+      :border = 2px solid !dark_grey
     &:visited
       :text-decoration underline
 
@@ -59,6 +62,7 @@ body
   a
     :color = !blue
     :text-decoration underline
+    :border 2px solid #FFF
     &:hover
       :text-decoration none
       :background-color = !black
@@ -71,15 +75,18 @@ body
   #task_list_commands
     :text-align right
     :margin-right 5px
+    :margin-bottom 10px
     a
       :color = !blue
       :text-decoration underline
+      :border 2px solid #FFF
       &:hover
         :color #FFF
         :text-decoration none
         :background-color = !blue
+        :border = 2px solid !blue
       &:visited
-        :text-decoriation underline
+        :text-decoration underline
         
   .grand_total
     :background-color = !turquoise
@@ -99,10 +106,13 @@ body
     :background-color = !tan
     a
       :color = !blue
+      :border 2px solid #F7F7E7
+      :text-decoration underline
       &:hover
-        :text-decoration none
         :background-color = !blue
-        :color #FFF
+        :border = 2px solid !blue
+        :color = !tan
+        :text-decoration none
       &:visited
         :text-decoration underline
   
@@ -112,12 +122,19 @@ body
   .earnings
     :color = !black
 
+  tr.blank_list_footer
+    :height 20px
 
   // Task
-
+  tr.task
+    :height 30px
+    
   .task
+    :border-top 1px solid #EEE
+    :border-bottom 1px solid #EEE
     :font = !main_font
     :size = !main_font_size
+    :height 25px
     & > td
       :border-top 1px solid #EEE
     & > .external
@@ -132,31 +149,30 @@ body
         :text-decoration underline
 
   td.status
-    :height 20px
-    
-  .completed
-    :color = !light_grey
+    :width 18px
 
   .start
     a
       :color = !dark_grey
+      :border 2px solid #FFF
       &:hover
         :color #FFF
         :text-decoration none
         :background-color = !green
+        :border 2px solid #669966
       &:visited
         :text-decoration underline
 
-#stop_task 
-  a
-    :font-weight italic
-    :color = !magenta
-    &:hover
-      :color #FFF
-      :text-decoration none
-      :background-color = !magenta
-    &:visited
-      :text-decoration underline
+  .stop_task 
+    a
+      :font-weight italic
+      :color = !magenta
+      &:hover
+        :color #FFF
+        :text-decoration none
+        :background-color = !black
+      &:visited
+        :text-decoration underline
 
 .description
 
@@ -173,8 +189,16 @@ body
   :color = !medium_grey
 
 .active
-  :color = !green
+  :color = !dark_green
+  
   .description
+    :font-weight italic
+    
+  .completed
+    :color = !light_grey
+    
+.grand_total_row
+  :padding-top 30px
     :font-weight bold
 
 // Temp by ruy
