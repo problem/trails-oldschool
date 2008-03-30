@@ -3,9 +3,7 @@ class TaskListsController < ApplicationController
     @task_lists = TaskList.find(:all, :order=>"updated_at DESC")
   end
   def create
-    @tl = TaskList.new(params["task_list"])
-    puts @tl.inspect
-    @tl.save!
-    render :partial => @tl, :object=>@tl
+    @task_list = TaskList.create!(params["task_list"])
+    render :partial => @task_list
   end
 end
