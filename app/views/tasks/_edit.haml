@@ -1,5 +1,5 @@
 - fields_for edit do |form|
-  %tr{:class=>'edit',:id=>"task_list_#{edit.task_list.id}", :style=>"display:non"}[edit]
+  %tr{:class=>'edit',:id=>"task_list_#{edit.task_list.id}", :style=>"display:none"}[edit]
     %td{:colspan=>2}
     %td.description
       = form.text_field   :description
