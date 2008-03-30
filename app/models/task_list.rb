@@ -6,7 +6,7 @@ class TaskList < ActiveRecord::Base
   validates_presence_of :title
   
   def sorted_tasks
-    tasks.select(&:active?) + tasks.select(&:completed?)
+    tasks.select(&:active?).reject(&:new_record?) + tasks.select(&:completed?)
   end
   
   def earnings
