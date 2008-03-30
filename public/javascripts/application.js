@@ -134,16 +134,16 @@ controller("actions",
   ajaxActions("start", "stop", "complete", "reopen"),
   {
     afterComplete: function(transport) {
-      var nexts = [this.element().next(".total"),this.element().next(".complete.task")].compact().pluck("rowIndex");
+      var nexts = [this.task.element().next(".total"),this.task.element().next(".complete.task")].compact().pluck("rowIndex");
       var targetRowIndex = Math.min.apply(Math,nexts)-1;
-      this.element().remove();
+      this.task.element().remove();
       var newRow = $("task_lists").insertRow(targetRowIndex);
       $(newRow).replace(transport.responseText);
     },
     afterReopen: function (transport) {
-      var prevs = [this.element().previous(".task_list"), this.element().previous(".stopped.task")].compact().pluck("rowIndex");
+      var prevs = [this.task.element().previous(".task_list"), this.task.element().previous(".stopped.task")].compact().pluck("rowIndex");
       var targetRowIndex = Math.max.apply(Math, prevs)+1;
-      this.element().remove();
+      this.task.element().remove();
       var newRow = $("task_lists").insertRow(targetRowIndex);
       $(newRow).replace(transport.responseText);
     },
