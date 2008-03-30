@@ -41,7 +41,7 @@ body
   :top 25px
   :padding-bottom 20px
   :color = !light_grey
-  :font = !main_font
+  :font-family = !main_font
   a
     :color = !dark_grey
     :border 2px solid #FFF
@@ -59,15 +59,6 @@ body
   
   :left 20px
   :top 150px
-  a
-    :color = !blue
-    :text-decoration underline
-    :border 2px solid #FFF
-    &:hover
-      :text-decoration none
-      :background-color = !black
-    &:visited
-      :text-decoration underline
 
   td, th
     :padding 5px
@@ -165,7 +156,6 @@ body
 
   .stop_task 
     a
-      :font-weight italic
       :color = !magenta
       &:hover
         :color #FFF
@@ -197,9 +187,6 @@ body
   .completed
     :color = !light_grey
     
-.grand_total_row
-  :padding-top 30px
-    :font-weight bold
 
 // Temp by ruy
 // feel free to remove them entirely - just needed some reasonable default widths to work with
