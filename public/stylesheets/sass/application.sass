@@ -96,14 +96,14 @@ body
 
 
   // List
-
+  .task_list
+    :background-color = !tan
+    .external
+      :background      #fff
   th.title
     :color = !black
-    :background-color = !tan
-
   th.new_task
     :text-align right
-    :background-color = !tan
     a
       :color = !blue
       :border 2px solid #F7F7E7
@@ -204,10 +204,12 @@ body
 // Temp by ruy
 // feel free to remove them entirely - just needed some reasonable default widths to work with
 
-input[name='task[rate]']
+input[name='task[rate]'], input[name='task_list[default_rate]']
   :width 50px
 input[name='task[description]']
   :width 150px
+input[name='task_list[title]']
+  :width 250px
 input[type='text']
   :border 1px solid #ccc
   :padding 2pxi
