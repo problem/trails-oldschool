@@ -139,10 +139,10 @@ controller("task",
       this.element().hide();
       this.task_form().show();
     },
-    delete: function(){
-      this.ajaxAction("delete",{method:"delete"});
+    remove: function(){
+      this.ajaxAction("remove",{method:"delete"});
     },
-    afterDelete: function(name, transport) {
+    afterRemove: function(name, transport) {
       this.element().fade({afterFinish:function(animation){
         animation.element.remove();
       }});
@@ -151,7 +151,7 @@ controller("task",
 )
 
 $S(".task .toolbar .edit").observe("click", action(task, "edit"))
-$S(".task .toolbar .delete").observe("click", action(task, "delete"))
+$S(".task .toolbar .delete").observe("click", action(task, "remove"))
 
 controller("actions", 
   ajaxActions("start", "stop", "complete", "reopen"),
@@ -217,6 +217,7 @@ controller("task_form",{
     element.insert({after:transport.responseText})
     element.next().highlight();
     if(this.task) element.remove();
+    else this.hide();
   },
   element: function() {
     if (this.task_list)
