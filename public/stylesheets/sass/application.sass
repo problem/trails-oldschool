@@ -122,16 +122,14 @@ body
   tr.task
     :height 30px
     
+    td.border
+      :border-bottom 1px solid #EEE
+    
   .task
-    :border-top 1px solid #EEE
-    :border-bottom 1px solid #EEE
     :font = !main_font
     :size = !main_font_size
     :height 25px
-    & > td
-      :border-top 1px solid #EEE
-    & > .external
-      :border-top none
+    
     a
       :text-decoration underline
       &:hover
@@ -156,15 +154,15 @@ body
       &:visited
         :text-decoration underline
 
-  .stop_task 
-    a
-      :color = !magenta
-      &:hover
-        :color #FFF
-        :text-decoration none
-        :background-color = !black
-      &:visited
-        :text-decoration underline
+    .stop_task 
+      a
+        :color = !magenta
+        &:hover
+          :color #FFF
+          :text-decoration none
+          :background-color = !black
+        &:visited
+          :text-decoration underline
 
 .description
 
