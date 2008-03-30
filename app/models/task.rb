@@ -53,7 +53,7 @@ class Task < ActiveRecord::Base
   end
 
   def rate=(value)
-    specific_rate = value if value
+    self.specific_rate = value.to_money if value
   end
   
   def duration

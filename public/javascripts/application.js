@@ -53,6 +53,7 @@ function action(constructor, _methods_, _event_handler_) {
   var methods = $A(arguments).slice(1);
   var eventHandlerName = methods.pop();
   return function(event) {
+    if (event.stopped) return;
     if (event.isLeftClick()) {
       event.stop();
       var callObj = constructor(event.element().recordID())
@@ -132,8 +133,25 @@ var Controller = Class.create({
 })
 
 controller("task",
-  autoBuildChild("actions")
+  autoBuildChild("actions", "task_form"),
+  {
+    edit: function() {
+      this.element().hide();
+      this.task_form().show();
+    },
+    delete: function(){
+      this.ajaxAction("delete",{method:"delete"});
+    },
+    afterDelete: function(name, transport) {
+      this.element().fade({afterFinish:function(animation){
+        animation.element.remove();
+      }});
+    }
+  }
 )
+
+$S(".task .toolbar .edit").observe("click", action(task, "edit"))
+$S(".task .toolbar .delete").observe("click", action(task, "delete"))
 
 controller("actions", 
   ajaxActions("start", "stop", "complete", "reopen"),
@@ -171,6 +189,8 @@ $S(".stop_task").observe("click", action(task,"actions","stop"))
 $S("input.stopped_task").observe("click", action(task,"actions","complete"))
 $S("input.complete_task").observe("click", action(task,"actions","reopen"))
 
+$S(".task.stopped *").observe("click", action(task,"actions","start"))
+$S(".task.active *").observe("click", action(task,"actions","stop"))
 
 
 controller("task_list",
@@ -189,24 +209,37 @@ controller("task_form",{
   hide: function() {
     $A(this.element().getElementsByTagName("INPUT")).invoke("disable");
     this.element().hide();
+    if(this.task) this.task.element().show();
   },
   onSuccess: function(transport) {
-    this.element().insert({after:transport.responseText})
-    this.element().next().highlight();
-    this.element().hide();
+    if(this.task) this.task.element().remove();
+    var element = this.element();
+    element.insert({after:transport.responseText})
+    element.next().highlight();
+    if(this.task) element.remove();
   },
   element: function() {
-    return $("task_list_"+this.task_list.id+"_task_new");
+    if (this.task_list)
+      return $("task_list_"+this.task_list.id+"_task_new");
+    if (this.task)
+      return $("edit_task_"+ this.task.id)
   }
 })
 
 
-$S(".task.edit .submit a").observe("click", action(task_list,"task_form", "hide"))
+$S(".new.task.form .submit a").observe("click", action(task_list,"task_form", "hide"))
+$S(".edit.task.form .submit a").observe("click", action(task,"task_form", "hide"))
 
+
+
+$S(".task.new .submit input[type=submit]").observe("click", function(event){
+  var element = event.element();
+  element.form.responder = task_list(element.recordID()).task_form()
+})
 
 $S(".task.edit .submit input[type=submit]").observe("click", function(event){
   var element = event.element();
-  element.form.responder = task_list(element.recordID()).task_form()
+  element.form.responder = task(element.recordID()).task_form()
 })
 
 var TaskListForm = {
@@ -241,11 +274,18 @@ $S(".task_list.edit .submit input[type=submit]").observe("click", function(event
   element.form.responder = task_list_form();
 })
 
+
+
 // HTML5
 
 $S("input[type=submit][action]").observe("click", function(event){
   var element = event.element();
   element.form.overrideAction = element.readAttribute("action");
+})
+
+$S("input[type=submit][method]").observe("click", function(event){
+  var element = event.element();
+  element.form.overrideMthod = element.readAttribute("method");
 })
 
 document.observe("dom:loaded", function(){
@@ -258,6 +298,10 @@ document.observe("dom:loaded", function(){
       var defaultAction = this.action;
       this.action = this.overrideAction;
     }
+    if(this.overrideMthod) {
+      var defaultMethod = this.method;
+      this.method = this.overrideMthod;
+    }
     if(this.responder) {
       if(this.responder.onSuccess) options.onSuccess = this.responder.onSuccess.bind(this.responder)
     }
@@ -269,8 +313,11 @@ document.observe("dom:loaded", function(){
     // Clean up
     if(this.overrideAction) {
       this.action = defaultAction;
-      this.responder = null;
     }
+    if(this.overrideMthod) {
+      this.method = defaultMethod;
+    }
+    this.responder = null;
       
   })
 })

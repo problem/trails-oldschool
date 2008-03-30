@@ -1,7 +1,7 @@
 %tr{:class=>task.status.to_s}[task]
   %td.toolbar.external
-    = link_to "[x]"
-    = link_to "edit"
+    = link_to "[x]", "#delete",:class=>"delete"
+    = link_to "edit", "#edit", :class=>"edit"
   %td.status
     = task_status(task)
   %td.start.border
@@ -15,4 +15,5 @@
   %td.duration.border
     = task_duration(task)
   %td.external
+= render :partial=>"tasks/edit", :object=>task
     
