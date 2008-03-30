@@ -63,106 +63,106 @@ body
   td, th
     :padding 5px
 
-  #task_list_commands
-    :text-align right
-    :margin-right 5px
-    :margin-bottom 10px
-    a
-      :color = !blue
+#task_list_commands
+  :text-align right
+  :margin-right 5px
+  :margin-bottom 10px
+  a
+    :color = !blue
+    :text-decoration underline
+    :border 2px solid #FFF
+    &:hover
+      :color #FFF
+      :text-decoration none
+      :background-color = !blue
+      :border = 2px solid !blue
+    &:visited
       :text-decoration underline
-      :border 2px solid #FFF
-      &:hover
-        :color #FFF
-        :text-decoration none
-        :background-color = !blue
-        :border = 2px solid !blue
-      &:visited
-        :text-decoration underline
-        
-  .grand_total
-    :background-color = !turquoise
-    :color #FFF
+      
+.grand_total
+  :background-color = !turquoise
+  :color #FFF
 
 
 
-  // List
-  .task_list
-    :background-color = !tan
-    .external
-      :background #fff
-  th.title
-    :color = !black
-    
-  th.new_task
-    :text-align right
-    a
-      :color = !blue
-      :border 2px solid #F7F7E7
-      :text-decoration underline
-      &:hover
-        :background-color = !blue
-        :border = 2px solid !blue
-        :color = !tan
-        :text-decoration none
-      &:visited
-        :text-decoration underline
+// List
+.task_list
+  :background-color = !tan
+  .external
+    :background #fff
+th.title
+  :color = !black
   
-  .total 
-  .duration
-    :color = !medium_grey
-  .earnings
-    :color = !black
-
-  tr.blank_list_footer
-    :height 20px
-
-
-
-  // Task
-  tr.task
-    :height 30px
-    
-    td.border
-      :border-bottom 1px solid #EEE
-    
-  .task
-    :font = !main_font
-    :size = !main_font_size
-    :height 25px
-    
-    a
+th.new_task
+  :text-align right
+  a
+    :color = !blue
+    :border 2px solid #F7F7E7
+    :text-decoration underline
+    &:hover
+      :background-color = !blue
+      :border = 2px solid !blue
+      :color = !tan
+      :text-decoration none
+    &:visited
       :text-decoration underline
-      &:hover
-        :color #FFF
-        :text-decoration none
-        :background-color = !green
-      &:visited
-        :text-decoration underline
 
-  td.status
-    :width 18px
+.total 
+.duration
+  :color = !medium_grey
+.earnings
+  :color = !black
 
-  .start
+tr.blank_list_footer
+  :height 20px
+
+
+
+// Task
+tr.task
+  :height 30px
+  
+  td.border
+    :border-bottom 1px solid #EEE
+  
+.task
+  :font = !main_font
+  :size = !main_font_size
+  :height 25px
+  
+  a
+    :text-decoration underline
+    &:hover
+      :color #FFF
+      :text-decoration none
+      :background-color = !green
+    &:visited
+      :text-decoration underline
+
+td.status
+  :width 18px
+
+.start
+  a
+    :color = !dark_grey
+    :border 2px solid #FFF
+    .task:hover  &
+      :color #FFF
+      :text-decoration none
+      :background-color = !green
+      :border 2px solid #669966
+    &:visited
+      :text-decoration underline
+
+  .stop_task 
     a
-      :color = !dark_grey
-      :border 2px solid #FFF
-      &:hover
+      :color = !magenta
+      .task:hover &
         :color #FFF
         :text-decoration none
-        :background-color = !green
-        :border 2px solid #669966
+        :background-color = !black
       &:visited
         :text-decoration underline
-
-    .stop_task 
-      a
-        :color = !magenta
-        &:hover
-          :color #FFF
-          :text-decoration none
-          :background-color = !black
-        &:visited
-          :text-decoration underline
 
 .description
 
@@ -205,9 +205,12 @@ input[type='text']
 .toolbar *
   :visibility hidden
 
-
-.task:hover .toolbar * 
-  :visibility visible
+.task
+  :cursor     pointer
+.task:hover 
+  :background-color #f6f6f6
+  .toolbar * 
+    :visibility     visible
     
     
 
