@@ -5,7 +5,7 @@
         = link_to "New task list", new_task_list_url
     = render :partial=>@task_lists
   %tfoot
-    %tr
+    %tr.grand_total_row
       %td{:colspan=>3}
       %td.grand_total
         Total:
