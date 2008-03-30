@@ -41,7 +41,7 @@ body
   :top 25px
   :padding-bottom 20px
   :color = !light_grey
-  :font = !main_font
+  :font-family = !main_font
   a
     :color = !dark_grey
     :border 2px solid #FFF
@@ -59,15 +59,6 @@ body
   
   :left 20px
   :top 150px
-  a
-    :color = !blue
-    :text-decoration underline
-    :border 2px solid #FFF
-    &:hover
-      :text-decoration none
-      :background-color = !black
-    &:visited
-      :text-decoration underline
 
   td, th
     :padding 5px
@@ -94,14 +85,14 @@ body
 
 
 
-
   // List
   .task_list
     :background-color = !tan
     .external
-      :background      #fff
+      :background #fff
   th.title
     :color = !black
+    
   th.new_task
     :text-align right
     a
@@ -125,20 +116,20 @@ body
   tr.blank_list_footer
     :height 20px
 
+
+
   // Task
   tr.task
     :height 30px
     
+    td.border
+      :border-bottom 1px solid #EEE
+    
   .task
-    :border-top 1px solid #EEE
-    :border-bottom 1px solid #EEE
     :font = !main_font
     :size = !main_font_size
     :height 25px
-    & > td
-      :border-top 1px solid #EEE
-    & > .external
-      :border-top none
+    
     a
       :text-decoration underline
       &:hover
@@ -163,16 +154,15 @@ body
       &:visited
         :text-decoration underline
 
-  .stop_task 
-    a
-      :font-weight italic
-      :color = !magenta
-      &:hover
-        :color #FFF
-        :text-decoration none
-        :background-color = !black
-      &:visited
-        :text-decoration underline
+    .stop_task 
+      a
+        :color = !magenta
+        &:hover
+          :color #FFF
+          :text-decoration none
+          :background-color = !black
+        &:visited
+          :text-decoration underline
 
 .description
 
@@ -197,9 +187,6 @@ body
   .completed
     :color = !light_grey
     
-.grand_total_row
-  :padding-top 30px
-    :font-weight bold
 
 // Temp by ruy
 // feel free to remove them entirely - just needed some reasonable default widths to work with
