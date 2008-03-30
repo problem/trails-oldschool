@@ -1,0 +1,14 @@
+- fields_for edit do |form|
+  %tr{:class=>'edit',:style=>"display:none"}[edit]
+    %td.title{:colspan=>3}
+      = form.text_field   :title, :disabled=>true
+    %td.default_rate{:colspan=>3}
+      = "$"
+      = form.text_field :default_rate, :disabled=>true
+      = "/h"
+    %td.submit.external
+      = form.submit((if edit.new_record? then "Create" else "Save" end), :action => task_lists_path, :disabled=>true)
+      = link_to "Cancel", "#cancel"
+
+%tr.spacer_row
+  %td{:colspan=>6}

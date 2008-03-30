@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 8) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "commands", :force => true do |t|
     t.string   "undo_message"
@@ -24,11 +24,12 @@ ActiveRecord::Schema.define(:version => 8) do
   end
 
   create_table "task_lists", :force => true do |t|
-    t.integer "owner_id"
-    t.string  "title"
-    t.text    "task_order"
-    t.integer "default_rate_cents"
-    t.string  "default_currency"
+    t.integer  "owner_id"
+    t.string   "title"
+    t.text     "task_order"
+    t.integer  "default_rate_cents"
+    t.string   "default_currency"
+    t.datetime "updated_at"
   end
 
   create_table "tasks", :force => true do |t|

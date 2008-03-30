@@ -4,7 +4,12 @@ Element.addMethods({
       element = element.parentNode;
     } while(!element.id && !element.href)
     
-    if(element.id) return  parseInt(element.id.match(/\d+/)[0]);
+    
+    if(element.id) {
+      var match = element.id.match(/\d+/);
+      if(!match) return "new";
+      return  parseInt(match[0]);
+    }
     
     if(element.href) return  parseInt(element.href.match(/\d+/).last());
   }
@@ -167,6 +172,7 @@ $S("input.stopped_task").observe("click", action(task,"actions","complete"))
 $S("input.complete_task").observe("click", action(task,"actions","reopen"))
 
 
+
 controller("task_list",
   autoBuildChild("task_form")
 )
@@ -203,6 +209,38 @@ $S(".task.edit .submit input[type=submit]").observe("click", function(event){
   element.form.responder = task_list(element.recordID()).task_form()
 })
 
+var TaskListForm = {
+  show: function() {
+    $A(this.element().getElementsByTagName("INPUT")).invoke("enable");
+    this.element().show();
+  },
+  hide: function() {
+    $A(this.element().getElementsByTagName("INPUT")).invoke("disable");
+    this.element().hide();
+  },
+  onSuccess: function(transport) {
+    this.element().next().insert({after:transport.responseText})
+    this.element().next().next().highlight();
+    this.element().hide();
+  },
+  element: function() {
+    return $("task_list_new")
+  }
+}
+
+
+function task_list_form() {
+  return TaskListForm;
+}
+
+$S("#new_task_list").observe("click", action(task_list_form, "show"));
+$S(".task_list.edit .submit a").observe("click", action(task_list_form, "hide"));
+
+$S(".task_list.edit .submit input[type=submit]").observe("click", function(event){
+  var element = event.element();
+  element.form.responder = task_list_form();
+})
+
 // HTML5
 
 $S("input[type=submit][action]").observe("click", function(event){
@@ -211,6 +249,7 @@ $S("input[type=submit][action]").observe("click", function(event){
 })
 
 document.observe("dom:loaded", function(){
+  
   $("task_form").observe("submit", function(event) {
     event.stop();
     var options = {};
