@@ -4,8 +4,6 @@
 // end reqs */
 
 // /*  COLORS  */
-
-
 !black = #000
 !dark_grey = #333
 !medium_grey = #666
@@ -20,12 +18,16 @@
 
 !magenta = #990000
 
+!light_tan = #f6f6f6
 !tan = #F7F7E7
 !flat_gold = #999966
+
 
 // /* TYPE	*/
 !main_font = Verdana
 !main_font_size = 11px
+
+
 
 body
   :font-family = !main_font
@@ -33,6 +35,8 @@ body
   :margin-left 50px
   :margin-top 20px
   
+
+// SETTINGS  and SIGN OUT --------
 
 #utility_menu
   :position absolute
@@ -53,6 +57,8 @@ body
     &:visited
       :text-decoration underline
 
+
+// TASK LISTS WITH AN 'S'  ------------
 #task_lists
   
   // The Big Table
@@ -63,6 +69,8 @@ body
   td, th
     :padding 5px
 
+
+// TASK LIST COMMANDS ------------
 #task_list_commands
   :text-align right
   :margin-right 5px
@@ -78,14 +86,15 @@ body
       :border = 2px solid !blue
     &:visited
       :text-decoration underline
-      
+
+
+// GRAND $ TOTAL -----------
 .grand_total
   :background-color = !turquoise
   :color #FFF
 
 
-
-// List
+// TASK LIST -----------
 .task_list
   :background-color = !tan
   .external
@@ -96,7 +105,17 @@ body
     .toolbar 
       :background-color = !tan
       * 
-        :visibility     visible
+        :visibility visible
+      
+      a
+        :color = !magenta
+      
+  .delete
+    a
+      :border none
+      &:hover
+        :border-bottom = 2px solid !magenta
+    
 
 th.title
   :color = !black
@@ -105,7 +124,7 @@ th.new_task
   :text-align right
   a
     :color = !blue
-    :border 2px solid #F7F7E7
+    :border = 2px solid !tan
     :text-decoration underline
     &:hover
       :background-color = !blue
@@ -122,11 +141,11 @@ th.new_task
   :color = !black
 
 tr.blank_list_footer
-  :height 20px
+  :height 18px
 
 
 
-// Task
+// TASK -------
 tr.task
   :height 30px
   
@@ -140,11 +159,17 @@ tr.task
   :cursor     pointer
   .toolbar *
     :visibility hidden
+  
+  .toolbar  
+    a
+      :color = !magenta
+      :border = 2px solid !tan
+      &:hover
+        co
   &:hover 
-    :background-color #f6f6f6
+    :background-color = !light_tan
     .toolbar * 
-      :visibility     visible
-      
+      :visibility visible
   a
     :text-decoration underline
     &:hover

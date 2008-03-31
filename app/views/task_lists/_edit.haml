@@ -9,7 +9,7 @@
       = "/h"
     %td.submit.external
       - if edit.new_record?
-        = form.submit "Create" , :action => task_lists_path, :disabled=>true
+        = form.submit "Create task" , :action => task_lists_path, :disabled=>true
       - else
-        = form.submit "Save", :action => task_list_path(edit), :method=>"put", :disabled=>true
+        = form.submit "Save task", :action => task_list_path(edit), :method=>"put", :disabled=>true
       = link_to "Cancel", "#cancel"
