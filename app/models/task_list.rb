@@ -1,9 +1,11 @@
 class TaskList < ActiveRecord::Base
-  has_many    :tasks, :dependent=>:destroy
+  has_many    :tasks, :dependent=>:destroy, :after_add=>:update_ordering_for_new_task
   belongs_to  :owner, :class_name => "User"
   composed_of :actual_default_rate, :class_name => "Money", :mapping => [%w(default_rate_cents cents), %w(default_currency currency)], :allow_nil=>true
   
   validates_presence_of :title, :actual_default_rate
+  
+  before_save :save_task_order
   
   def default_rate
     actual_default_rate or ((last_list = TaskList.find(:first, :order=>"updated_at DESC")) and last_list.default_rate) or 0.to_money
@@ -23,6 +25,25 @@ class TaskList < ActiveRecord::Base
   
   def duration
     tasks.to_a.sum(&:duration)
+  end
+  
+  def task_order
+    @task_order ||= ((ord=read_attribute(:task_order)) && ord.split(',')) || []
+  end
+  
+  def task_order=(order)
+    @task_order = order
+  end
+  
+  
+  private
+  
+  def save_task_order
+    write_attribute(:task_orde, self.task_order.join(','))
+  end
+  
+  def update_ordering_for_new_task(new_task)
+    self.task_order.unshift(new_task.id)
   end
   
 end

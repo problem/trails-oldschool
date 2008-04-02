@@ -1,6 +1,6 @@
 %tr{:class=>task.status.to_s}[task]
   %td.toolbar.external
-    = link_to image_tag("Trash.png"), "#delete",:class=>"delete"
+    = link_to "Delete", "#delete",:class=>"delete"
     = link_to "Edit", "#edit", :class=>"edit"
   %td.status
     = task_status(task)

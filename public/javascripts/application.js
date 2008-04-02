@@ -322,36 +322,44 @@ $S("input[type=submit][method]").observe("click", function(event){
   element.form.overrideMthod = element.readAttribute("method");
 })
 
+function mainFormSubmitHandler(event) {
+  event.stop();
+  var options = {};
+  // Setup before request
+  if(this.overrideAction) {
+    var defaultAction = this.action;
+    this.action = this.overrideAction;
+  }
+  if(this.overrideMthod) {
+    var defaultMethod = this.method;
+    this.method = this.overrideMthod;
+  }
+  if(this.responder) {
+    if(this.responder.onSuccess) options.onSuccess = this.responder.onSuccess.bind(this.responder)
+  }
+  
+  
+  // Perofrm request!
+  this.request(options)
+
+  // Clean up
+  if(this.overrideAction) {
+    this.action = defaultAction;
+  }
+  if(this.overrideMthod) {
+    this.method = defaultMethod;
+  }
+  this.responder = null;
+    
+}
 document.observe("dom:loaded", function(){
   
-  $("task_form").observe("submit", function(event) {
-    event.stop();
-    var options = {};
-    // Setup before request
-    if(this.overrideAction) {
-      var defaultAction = this.action;
-      this.action = this.overrideAction;
-    }
-    if(this.overrideMthod) {
-      var defaultMethod = this.method;
-      this.method = this.overrideMthod;
-    }
-    if(this.responder) {
-      if(this.responder.onSuccess) options.onSuccess = this.responder.onSuccess.bind(this.responder)
-    }
-    
-    
-    // Perofrm request!
-    this.request(options)
-
-    // Clean up
-    if(this.overrideAction) {
-      this.action = defaultAction;
-    }
-    if(this.overrideMthod) {
-      this.method = defaultMethod;
-    }
-    this.responder = null;
-      
-  })
+  $("task_form").observe("submit", mainFormSubmitHandler)
 })
+
+if(Prototype.Browser.Gecko)
+  $S("input").observe("keypress", function(event){
+    if(event.keyCode == Event.KEY_RETURN)
+      //TODO: fire click ??
+      mainFormSubmitHandler.call(event.element().form,event)
+  })
