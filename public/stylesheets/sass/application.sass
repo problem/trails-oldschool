@@ -35,7 +35,7 @@ body
   :font-size = !main_font_size
   :margin-left 50px
   :margin-top 20px
-  
+
 
 // SETTINGS  and SIGN OUT --------
 
@@ -89,9 +89,9 @@ body
       :text-decoration underline
 
 
-// GRAND $ TOTAL -----------
+// GRAND $ TOTAL -----------------
 .grand_total
-  :background-color = !turquoise
+  :background-color = !medium_grey
   :color #FFF
 
 
@@ -107,16 +107,14 @@ body
       :background-color = !tan
       * 
         :visibility visible
-      
       a
         :color = !magenta
-      
   .delete
     a
       :border none
       &:hover
         :border-bottom = 2px solid !magenta
-    
+
 
 th.title
   :color = !black
@@ -135,7 +133,7 @@ th.new_task
     &:visited
       :text-decoration underline
 
-.total 
+//.total
 .duration
   :color = !medium_grey
 .earnings
@@ -149,7 +147,6 @@ tr.blank_list_footer
 // TASK -------
 tr.task
   :height 30px
-  
   td.border
     :border-bottom = 1px solid !lighter_grey
   
@@ -157,16 +154,25 @@ tr.task
   :font = !main_font
   :size = !main_font_size
   :height 25px
-  :cursor     pointer
+  :cursor pointer
   .toolbar *
     :visibility hidden
-  
   .toolbar  
     a
       :color = !magenta
       :border = 2px solid !tan
       &:hover
-        co
+        :color = !tan
+        :border = 2px solid !magenta
+        :background-color = !magenta
+    .edit
+      a
+        :color = !magenta
+        :border = 2px solid !tan
+        &:hover
+          :color = !tan
+          :border = 2px solid !magenta
+          :background-color = !magenta
   &:hover 
     :background-color = !light_tan
     .toolbar * 
@@ -221,10 +227,8 @@ td.status
 
 .active
   :color = !dark_green
-  
   .description
     :font-weight italic
-    
   .completed
     :color = !light_grey
     
@@ -255,6 +259,13 @@ input[type='text']
   :overflow hidden
   :border none !important
   :font-size 1px
+  a 
+    :background
+      :image url('/images/TrashHover.png')
+      :repeat no-repeat
+    :background-position top left
+    &:hover
+      :background-position bottom left
     
     
 
