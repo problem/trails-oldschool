@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   def create
-    @task = TaskList.find(params[:task_list_id]).tasks.create(params[:task])
+    task_list = TaskList.find(params[:task_list_id])
+    @task = task_list.tasks.create(params[:task])
+    task_list.save!
     render :partial=>@task
   end
   
