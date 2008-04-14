@@ -5,8 +5,9 @@
     = stylesheet_link_tag("application")
     = javascript_include_tag :all
   %body{:class=>page_class}
-    #utility_menu
-      = link_to "Settings", "settings"
-      |
-      = link_to "Sign out", "signout"
+    - if session[:auth]
+      #utility_menu
+        = link_to "Settings", "settings"
+        |
+        = link_to "Sign out", { :controller => "session" }, :method => :delete
     = yield
