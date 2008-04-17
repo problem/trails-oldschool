@@ -16,7 +16,15 @@ class TaskList < ActiveRecord::Base
   end
   
   def sorted_tasks
-    tasks.select(&:active?).reject(&:new_record?) + tasks.select(&:completed?)
+    active = []
+    completed = []
+    task_order.each do |task_id|
+      task = tasks.find(task_id)
+      next if task.new_record?
+      active << task if task.active?
+      completed << task if task.completed?
+    end
+    active + completed
   end
   
   def earnings
@@ -39,11 +47,11 @@ class TaskList < ActiveRecord::Base
   private
   
   def save_task_order
-    write_attribute(:task_orde, self.task_order.join(','))
+    write_attribute(:task_order, self.task_order.join(','))
   end
   
   def update_ordering_for_new_task(new_task)
-    self.task_order.unshift(new_task.id)
+    self.task_order.unshift(new_task.id) if new_task.id
   end
   
 end

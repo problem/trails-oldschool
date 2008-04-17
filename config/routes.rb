@@ -17,6 +17,8 @@ ActionController::Routing::Routes.draw do |map|
     map.resources :tasks do |task|
       task.resources :actions
     end
+    
+    map.resource :session
 
   # Sample resource route with options:
   #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
