@@ -1,9 +1,16 @@
 - if flash[:notice]
   #notice
     = flash[:notice]
-%form{:action=>"/session",:method=>"post", :id=>"login_form"}
-  = text_field :login, :email, :size => 20
-  %br
-  = password_field :login, :password, :size => 20
-  %br
-  = submit_tag "Log in"
+#login
+  %form{:action=>"/session",:method=>"post", :id=>"login_form"}
+    %fieldset
+      %legend Trails
+      %ol
+        %li
+          %label Email
+          = text_field :login, :email, :size => 20
+        %li
+          %label Password
+          = password_field :login, :password, :size => 20
+        %li#submit
+          = submit_tag "Log in"
