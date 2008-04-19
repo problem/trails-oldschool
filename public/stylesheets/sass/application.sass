@@ -239,22 +239,24 @@ td.status
   :width 280px
   :height 150px
   :background-color = !light_tan
+  :border-color #CCC
+  :border-width 1px 1px 0 0
+  :border-style solid none none solid
 form
   :margin 0
   :padding 0
   :font-size 100%
   :width 280px
   fieldset
-    :border-color = !light_grey
-    :border-width 1px 1px 0 0
-    :border-style solid none none solid
     :padding 10px
     :margin 0 0 0 0
     legend
-      :margin 10px 0 0px 10px
+      :margin 10px 0 0 36px
       :font-size 14px
       :color = !light_grey
     input, select, textarea
+      :padding 2px
+      :height 20px
       :color = !dark_grey
     li
       :text-align right
@@ -276,13 +278,17 @@ form
 
 input[name='task[rate]'], input[name='task_list[default_rate]']
   :width 50px
+  :height 20px
 input[name='task[description]']
   :width 150px
+  :height 20px
 input[name='task_list[title]']
   :width 250px
+  :height 20px
 input[type='text']
   :border 1px solid #ccc
   :padding 2pxi
+  :height 20px 
 
 // Had to make this img bg
 .delete
