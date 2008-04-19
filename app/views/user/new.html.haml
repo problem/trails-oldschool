@@ -1,0 +1,23 @@
+- if flash[:notice]
+  #notice
+    = flash[:notice]
+#signup
+  %form{:action=>"/user",:method=>"post", :id=>"signup_form"}
+    %fieldset
+      %legend Trails Sign Up
+      %ol
+        %li
+          %label First Name
+        %li
+          %label Last Name
+        %li
+          %label Email
+          = text_field :login, :email, :size => 20
+        %li
+          %label Password
+          = password_field :login, :password, :size => 20
+        %li
+          %label Password again
+          = password_field :login, :password, :size => 20
+        %li#submit
+          = submit_tag "Sign up"
