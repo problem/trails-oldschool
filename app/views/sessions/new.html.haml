@@ -1,6 +1,4 @@
-- if flash[:notice]
-  #notice
-    = flash[:notice]
+
 #login
   %form{:action=>"/session",:method=>"post", :id=>"login_form"}
     %fieldset
@@ -14,3 +12,6 @@
           = password_field :login, :password, :size => 20
         %li#submit
           = submit_tag "Log in"
+- if flash[:notice]
+  #notice
+    = flash[:notice]

@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if session[:auth]
       redirect_to :controller => "task_lists"
     else
-      flash[:notice] = "Incorrect user name or password"
+      flash[:notice] = "Incorrect user name<br />or password. <br /><span class='please'>Please try again.</span>"
       redirect_to :controller => "session", :action => "new"
     end
   end
