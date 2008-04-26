@@ -2,20 +2,23 @@
   #notice
     = flash[:notice]
 #signup
-  %form{:action=>"/user",:method=>"post", :id=>"signup_form"}
+  - form_for @user, :id=>"signup_form" do |f|
     %fieldset
       %legend Trails Sign Up
+      = f.error_messages
       %ol
         %li
           %label Full Name
+          = f.text_field :display_name, :size => 20
         %li
           %label Email
-          = text_field :login, :email, :size => 20
+          = f.text_field :email, :size => 20
         %li
           %label Password
-          = password_field :login, :password, :size => 20
+          = f.password_field :unencrypted_password, :size => 20
         %li
           %label Password again
-          = password_field :login, :password, :size => 20
+          = f.password_field :unencrypted_password_confirmation, :size => 20
         %li#submit
           = submit_tag "Sign up"
+

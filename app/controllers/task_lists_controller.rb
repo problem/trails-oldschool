@@ -2,11 +2,11 @@ class TaskListsController < ApplicationController
   before_filter :check_rights, :only => [:update, :destroy]
   
   def index
-    @task_lists = TaskList.find(:all, :conditions=> {:owner_id => session[:user].id} , :order=>"updated_at DESC")
+    @task_lists = TaskList.find(:all, :conditions=> {:owner_id=>session[:user_id]}, :order=>"updated_at DESC")
   end
   
   def create
-    @task_list = TaskList.create!(params[:task_list].merge(:owner=>session[:user]))
+    @task_list = TaskList.create!(params[:task_list].merge(:owner_id=>session[:user_id]))
     render :partial => @task_list
   end
   

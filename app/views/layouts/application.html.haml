@@ -5,7 +5,7 @@
     = stylesheet_link_tag("application")
     = javascript_include_tag :all
   %body{:class=>page_class}
-    - if session[:auth]
+    - if session[:user_id]
       #utility_menu
         = link_to "Settings", "settings"
         |
