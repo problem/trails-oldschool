@@ -22,7 +22,7 @@ market:
   task_list: book
   description: Market the book door-to-door
   currency: USD
-  rate: 4000
+  rate_cents: 4000
   
 wallpaper:
   task_list: paint
@@ -38,7 +38,7 @@ pick_color:
   task_list: paint
   description: Pick a nice color
   currency: USD
-  rate: 0
+  rate_cents: 0
   
 paint:
   task_list: paint

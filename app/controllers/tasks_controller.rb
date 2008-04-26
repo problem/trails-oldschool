@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_filter :check_rights, :only => [:update, :destroy]
+  
   def create
     task_list = TaskList.find(params[:task_list_id])
     @task = task_list.tasks.create(params[:task])
@@ -15,4 +17,9 @@ class TasksController < ApplicationController
     Task.destroy(params[:id])
     head :ok
   end
+  
+  private
+    def check_rights
+      check_obj_rights(Task, "task_list.owner")
+    end
 end
