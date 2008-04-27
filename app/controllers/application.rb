@@ -14,10 +14,18 @@ class ApplicationController < ActionController::Base
   protected
 
     def authenticate
-      logger.info 'authenticating NOW NOW NOW'
-      unless session[:auth]
+      unless session[:user]
         redirect_to :controller => "session", :action => "new"
         return false
       end
     end
+    
+  def check_obj_rights(klass, owner_path)
+    obj = klass.find(params[:id])
+    if obj == nil or eval("obj.#{owner_path}") != session[:user]
+      render :file => "#{RAILS_ROOT}/public/422.html", :status => 422
+      return false
+    end
+  end
+
 end

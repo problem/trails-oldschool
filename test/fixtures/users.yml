@@ -1,5 +1,11 @@
 edward:
   display_name: Edward T. Huntington
   email: ed@huntingon.com
-  password: eded
+  password: 3da541559918a808c2402bba5012f6c60b27661c # "asdf"
+  default_currency: USD
+
+boris:
+  display_name: Boris Smirnoff
+  email: bsmirn@off.com
+  password: 3da541559918a808c2402bba5012f6c60b27661c # "asdf"
   default_currency: USD
