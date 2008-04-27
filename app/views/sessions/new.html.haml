@@ -1,15 +1,15 @@
 
 #login
-  %form{:action=>"/session",:method=>"post", :id=>"login_form"}
+  - form_for :session, :url=>{:action=>:create}, :method=>:post, :id=>"login_form" do |f|
     %fieldset
       %legend Trails
       %ol
         %li
           %label Email
-          = text_field :login, :email, :size => 20
+          = f.text_field :email, :size => 20
         %li
           %label Password
-          = password_field :login, :password, :size => 20
+          = f.password_field :password, :size => 20
         %li#submit
           = submit_tag "Log in"
 - if flash[:notice]

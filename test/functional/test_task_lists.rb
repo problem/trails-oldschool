@@ -21,31 +21,31 @@ class TaskListsControllerTest < Test::Unit::TestCase
   end
   
   def test_index_authorized
-    get :index, nil, {:user=>users(:edward)}
+    get :index, nil, {:user_id=>users(:edward).id}
     assert_response :success
   end
   
   def test_update_not_authorized
     task_list = task_lists(:paint) # Does not belong to edward
-    put :update, {:id=>task_list.id, :title=>"asdfg"}, {:user=>users(:edward)}
+    put :update, {:id=>task_list.id, :title=>"asdfg"}, {:user_id=>users(:edward).id}
     assert_response 422
   end
   
   def test_update_authorized
     task_list = task_lists(:book) # Belongs to edward
-    put :update, {:id=>task_list.id, :title=>"asdfg"}, {:user=>users(:edward)}
+    put :update, {:id=>task_list.id, :title=>"asdfg"}, {:user_id=>users(:edward).id}
     assert_response :success
   end
 
   def test_destroy_not_authorized
     task_list = task_lists(:paint) # Does not belong to edward
-    delete :destroy, {:id=>task_list.id}, {:user=>users(:edward)}
+    delete :destroy, {:id=>task_list.id}, {:user_id=>users(:edward).id}
     assert_response 422
   end
   
   def test_destroy_authorized
     task_list = task_lists(:book) # Belongs to edward
-    delete :destroy, {:id=>task_list.id}, {:user=>users(:edward)}
+    delete :destroy, {:id=>task_list.id}, {:user_id=>users(:edward).id}
     assert_response :success
   end
 
