@@ -8,6 +8,7 @@
 !dark_grey = #333
 !medium_grey = #666
 !light_grey = #999999
+!lighte_grey = #CCC
 !lighter_grey = #EEE
 
 !dark_green = #669933
@@ -236,8 +237,15 @@ td.status
 
 // LOGIN FORM ------
 #login
-  :width 280px
-  :height 150px
+  :width 290px
+  :height 200px
+  :background-color = !light_tan
+  :border-color #CCC
+  :border-width 1px 1px 0 0
+  :border-style solid none none solid
+#signup
+  :width 300px
+  :height 300px
   :background-color = !light_tan
   :border-color #CCC
   :border-width 1px 1px 0 0
@@ -245,7 +253,6 @@ td.status
 form
   :margin 0
   :padding 0
-  :font-size 100%
   :width 280px
   fieldset
     :padding 10px
@@ -254,6 +261,13 @@ form
       :margin 10px 0 0 33px
       :font-size 14px
       :color = !light_grey
+    label
+      :display block
+      :width 100px
+      :float left
+      :text-align right
+      :margin-right 20px
+      
     input, select, textarea
       :padding 2px
       :height 20px
@@ -261,15 +275,21 @@ form
     li
       :text-align right
       :display block
-      :margin 10px 19px 0 0px
-      :padding 1px 3px
-      #login_email
+      :margin 10px 0px 0 0px
+      #session_email
         :margin-left 10px
-      #login_password
+      #session_password
+        :border = 1px solid !lighte_grey
         :margin-left 10px
       #submit
         :display block
         :float right
+      #user_unencrypted_password
+        :border = 1px solid !lighte_grey
+        :margin-left 10px  
+      #user_unencrypted_password_confirmation
+        :border = 1px solid !lighte_grey
+        :margin-left 10px
 #notice
   :float left
   :display block
@@ -285,10 +305,7 @@ form
   .please
     color = !dark_grey
 
-// Temp by ruy
-// feel free to remove them entirely - 
-// just needed some reasonable default widths to work with
-
+// Task form fields
 input[name='task[rate]'], input[name='task_list[default_rate]']
   :width 50px
   :height 20px
