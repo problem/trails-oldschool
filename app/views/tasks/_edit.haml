@@ -3,15 +3,15 @@
     %td.external
     %td{:colspan=>2}
     %td.description
-      = form.text_field   :description, :disabled=>true
+      = form.text_field   :description
     %td.rate{:colspan=>3}
       = "$"
-      = form.text_field :rate, :disabled=>true
+      = form.text_field :rate
       = "/h"
     %td.submit.external
       - if edit.new_record?
-        = form.submit "Create task" , :action => task_list_tasks_path(edit.task_list.id), :disabled=>true
+        = form.submit "Create task" , :action => task_list_tasks_path(edit.task_list.id)
       - else
-        = form.submit "Save task", :action => task_path(edit), :method=>"put", :disabled=>true
+        = form.submit "Save task", :action => task_path(edit), :method=>"put"
       = link_to "Cancel", "#cancel"
       

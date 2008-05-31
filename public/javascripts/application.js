@@ -48,7 +48,7 @@ function controller(className, method_hashes_) {
 // Only fires on left clicks.
 // Will stop the event and delegate it to the +constructor+'s +_event_handler_+
 // (already instantiated with the apropriate record ID set)
-// You can pass severeral +_method_+s to specify a call chain path from the constructor
+// You can pass severeral +_method_+s to specify a call chain path from the constructor.
 function action(constructor, _methods_, _event_handler_) {
   var methods = $A(arguments).slice(1);
   var eventHandlerName = methods.pop();
@@ -71,6 +71,9 @@ function action(constructor, _methods_, _event_handler_) {
 
 // Method gen macros
 
+// e.g. ajaxActions(foo), generates .foo(opts) and .afterFoo(opts)
+// which initially defer to .ajaxAction('foo',opts) and .afterAjaxAction('foo', opts)
+// respectively
 function ajaxActions(_actions_) {
   var methods = {}
   $A(arguments).each(function(methodName){
@@ -84,7 +87,14 @@ function ajaxActions(_actions_) {
   return methods;
 }
 
-
+// e.g. autoBuildChild('location')
+// Builds a method .location() that will return a new Location() object
+// the first time it's called, and then cache it for subsequent calls (it will be cached)
+// Can generate any number of child names.
+//
+// Arguments can also be a pair where the first value is the attribute name and the second
+// value is a class that can't be inferred from the attrib name.
+// e.g. autoBuildChild("location", ["employee",Person])
 function autoBuildChild(_names_) {
   var methods = {}
   $A(arguments).each(function(childAttrib){
@@ -353,13 +363,6 @@ function mainFormSubmitHandler(event) {
     
 }
 document.observe("dom:loaded", function(){
-  
-  $("task_form").observe("submit", mainFormSubmitHandler)
+  var task_form = $("task_form");
+  if(task_form) task_form.observe("submit", mainFormSubmitHandler);
 })
-
-if(Prototype.Browser.Gecko)
-  $S("input").observe("keypress", function(event){
-    if(event.keyCode == Event.KEY_RETURN)
-      //TODO: fire click ??
-      mainFormSubmitHandler.call(event.element().form,event)
-  })
