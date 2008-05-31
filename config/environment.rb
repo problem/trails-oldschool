@@ -24,7 +24,7 @@ Rails::Initializer.run do |config|
   # To use Rails without a database, you must remove the Active Record framework
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
 
-  # Only load the plugins named here, in the order given. By default, all plugins 
+  # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -38,13 +38,13 @@ Rails::Initializer.run do |config|
 
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!
-  # Make sure the secret is at least 30 characters and all random, 
+  # Make sure the secret is at least 30 characters and all random,
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
     :session_key => '_trails2_session',
     :secret      => 'e24b36dcb78d54cadad4f91f4c6f9d054e9b61bae6d3c4c74c32ad989dd0923bcf5a148afb211112f359d937d8441573b9cc2582c780ea0469f9e8dfb2e39983'
   }
-  
+
   # We need this ... not
   config.action_controller.allow_forgery_protection = false
 
@@ -63,5 +63,13 @@ Rails::Initializer.run do |config|
 
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
+
+  # We can start using these when Rails 2.1 is out
+  # For now this is just a good place to record them.
+  # See http://ryandaigle.com/articles/2008/4/1/what-s-new-in-edge-rails-gem-dependencies
+
+  # config.gem "haml", :version=>"2.0.2"
+  # config.gem "money", :version=>"1.7.1"
+
   LoadProfile::perform(:config, config)
 end
