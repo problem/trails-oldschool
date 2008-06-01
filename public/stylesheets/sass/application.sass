@@ -69,7 +69,7 @@ body
   
   // The Big Table
   
-  :left 20px
+  :left 10px
   :top 150px
 
   td, th
@@ -104,7 +104,7 @@ body
 .task_list
   :background-color = !tan
   .external
-    :background #fff
+    :background-color #fff
   .toolbar *
     :visibility hidden
   &:hover 
@@ -114,12 +114,6 @@ body
         :visibility visible
       a
         :color = !magenta
-  .delete
-    a
-      :border none
-      &:hover
-        :border-bottom = 2px solid !magenta
-
 
 th.title
   :color = !black
@@ -191,6 +185,25 @@ tr.task
     &:visited
       :text-decoration underline
 
+// Delete rollover for trash can
+.delete
+  :padding-top 15px
+  :height 0px
+  :width 15px
+  :display block
+  :float left
+  :background
+    :image url('/images/Trash.png')
+    :repeat no-repeat
+    :position top left
+  :overflow hidden
+  :border none !important
+  :font-size 1px
+  :background-color none
+  &:hover
+    :background-position bottom left
+    :background-color none
+
 td.status
   :width 18px
 
@@ -218,7 +231,7 @@ td.status
         :text-decoration underline
 
 .description
-  :width 400px
+  :width 200px
 
 .rate
   :color = !medium_grey
@@ -236,11 +249,25 @@ td.status
   :color = !dark_green
   .description
     :font-weight italic
-  .completed
-    :color = !light_grey
+.complete
+  :color = !medium_grey
 
+// Task form fields
+input[name='task[rate]'], input[name='task_list[default_rate]']
+  :width 50px
+  :height 20px
+input[name='task[description]']
+  :width 150px
+  :height 20px
+input[name='task_list[title]']
+  :width 250px
+  :height 20px
+input[type='text']
+  :border 1px solid #ccc
+  :padding 2pxi
+  :height 20px
 
-// LOGIN FORM ------
+// LOGIN FORM --------------
 #login
   :width 290px
   :height 200px
@@ -313,36 +340,5 @@ td.status
   .please
     color = !dark_grey
 
-// Task form fields
-input[name='task[rate]'], input[name='task_list[default_rate]']
-  :width 50px
-  :height 20px
-input[name='task[description]']
-  :width 150px
-  :height 20px
-input[name='task_list[title]']
-  :width 250px
-  :height 20px
-input[type='text']
-  :border 1px solid #ccc
-  :padding 2pxi
-  :height 20px 
 
-// Had to make this img bg
-.delete
-  :padding-top 15px
-  :height 0px
-  :width 15px
-  :display block
-  :float left
-  :background
-    :image url('/images/Trash.png')
-    :repeat no-repeat
-    :position top left
-  :overflow hidden
-  :border none !important
-  :font-size 1px
-  &:hover
-    :background-position bottom left
-    
     
