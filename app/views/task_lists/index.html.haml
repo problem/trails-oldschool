@@ -1,5 +1,5 @@
 %form{:action=>"/tasks",:method=>"post", :id=>"task_form"}
-  %table#task_lists{:cellspacing=>0,:cellpadding=>0}
+  %table#task_lists.task_lists.controller{:cellspacing=>0,:cellpadding=>0}
     %tfoot
       %tr
         %td.external
@@ -13,6 +13,6 @@
       %tr
         %td.external
         %td#task_list_commands{:colspan=>6}
-          = link_to "New task list", new_task_list_url, :id=>"new_task_list"
+          = link_to "New task list", new_task_list_url, :class=>"new_task_list command"
       = render :partial=>"task_lists/edit", :object=>TaskList.new
       = render :partial=>@task_lists

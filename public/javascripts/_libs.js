@@ -1,3 +1,5 @@
+// External support libaries (mostly lifted from hex & other palces)
+
 // Function composition utilities
 
 // Composed function will run provided filter (with same arguments as original) and only call the original function if the filter returns true.
