@@ -15,13 +15,17 @@
 !green = #669966
 !light_green = #99CC99
 
+// Buttons
 !blue = #006699
 !turquoise = #339999
 
+//Alerts and things that need to stand out alot
 !magenta = #990000
 
+//
 !light_tan = #f6f6f6
-!tan = #F7F7E7
+!tan = #F7F7E7G
+
 !flat_gold = #999966
 
 
@@ -38,7 +42,7 @@ body
   :margin-top 20px
 
 
-// SETTINGS  and SIGN OUT --------
+// SETTINGS and SIGN OUT --------
 
 #utility_menu
   :position absolute
@@ -213,7 +217,8 @@ td.status
       &:visited
         :text-decoration underline
 
-.description
+td.description
+  :width 400px
 
 .rate
   :color = !medium_grey
@@ -267,7 +272,6 @@ form
       :float left
       :text-align right
       :margin-right 20px
-      
     input, select, textarea
       :padding 2px
       :height 20px
@@ -290,6 +294,9 @@ form
       #user_unencrypted_password_confirmation
         :border = 1px solid !lighte_grey
         :margin-left 10px
+
+// Notice box that informs the user of cool 
+// stuff some of the time and errors most of the time
 #notice
   :float left
   :display block
