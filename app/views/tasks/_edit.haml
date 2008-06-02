@@ -1,5 +1,5 @@
 - fields_for edit do |form|
-  %tr{:class=>"form #{edit.new_record? ? 'new' : 'edit'}",:id=>(edit.new_record? ? "task_list_#{edit.task_list.id}" : "edit"), :style=>"display:none"}[edit]
+  %tr{act_as_task_form(edit)}
     %td.external
     %td{:colspan=>2}
     %td.description

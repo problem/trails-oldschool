@@ -26,12 +26,6 @@ controller("task_list_form",{
     highlight.highlight();
     if(this.task_list) element.remove();
     else this.hide();
-  },
-  element: function() {
-    if (this.task_list)
-      return $("edit_task_list_"+this.task_list.id);
-    else
-      return $("task_list_new");
   }
 })
 
@@ -138,6 +132,7 @@ controller("actions",
 
 controller("task_form",{
   show: function() {
+    console.log(this, this.elementID())
     $A(this.element().getElementsByTagName("INPUT")).invoke("enable");
     this.element().show();
   },
@@ -154,12 +149,9 @@ controller("task_form",{
     if(this.task) element.remove();
     else this.hide();
   },
-  element: function() {
-    if (this.task_list)
-      return $("task_list_"+this.task_list.id+"_task_new");
-    if (this.task)
-      return $("edit_task_"+ this.task.id)
-  }
+  newElementID: function($super) {
+    return this.task_list.elementID() + "_" + $super();
+  },
 })
 
 
@@ -194,16 +186,23 @@ controller("task_form",{
 var GlobalHandlers = {
   submit: function (event) {
     event.stop();
-    console.log('submit', event.element().submit);
+    var form = GlobalHandlers.formSource.up(".form");
+    form.serialize = Form.serialize.methodize();
+    form.method = form.readAttribute("method");
+    var controller = form.controller();
+    var options = {};
+    ["Success", "Failure", "Complete", "Exception"].each(function(callbackName){
+      if( controller["on"+callbackName] ) options["on"+callbackName] = controller["on"+callbackName].bind(controller);
+    });
+    Form.request(form, options);
   },
   action: function(event) {
     if((event.type == "click" && !event.isLeftClick()) || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.keyCode < 32 ) return;
     event.stop();
     var element = event.element();
-    var controlleringElement = element.up(".controller");
-    var controllerInstance   = window[controlleringElement.className.match(/([^ ]+) controller/)[1]](element.recordID());
+    var controller = element.controller();
     var commandName = element.className.match(/([^ ]+) command/)[1];
-    controllerInstance[commandName.camelCase()](event);
+    controller[commandName.camelCase()](event);
   },
   prepForm: function(event) {
     GlobalHandlers.formSource = event.element();

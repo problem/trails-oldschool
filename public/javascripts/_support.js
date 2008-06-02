@@ -2,18 +2,18 @@
 
 Element.addMethods({
   recordID: function(element) {
-    do {
-      element = element.parentNode;
-    } while(!element.id && !element.href)
-
-
-    if(element.id) {
-      var match = element.id.match(/\d+/);
-      if(!match) return "new";
-      return  parseInt(match[0]);
+    if( ! element.hasClassName('controller')) element = element.up(".controller");
+    var match = element.id.match(/\d+|new/g);
+    return match ? match.last() : "new" ;
+  },
+  controller: function(element) {
+    var match, name;
+    while ( !(match = element.className.match(/([^ ]+) controller/)) ) {
+      element = element.parentNode
     }
-
-    if(element.href) return  parseInt(element.href.match(/\d+/).last());
+    name = match[1];
+    if ( element.hasClassName("form") ) name = name + "_form";
+    return window[name](element.recordID());
   }
 });
 
@@ -36,7 +36,8 @@ Controllers = {}
 */
 function controller(className, method_hashes_) {
   var constantName = className.TitleCase();
-  var klass = window[constantName] = Class.create(Controller)
+  var baseClass = className.match(/form$/) ?  FormController : Controller ;
+  var klass = window[constantName] = Class.create(baseClass)
   klass.prototype.className = className;
   klass.cache = {};
   window[className] = function(id) {
@@ -132,7 +133,51 @@ function autoBuildChild(_names_) {
 
 var Controller = Class.create({
   element: function() {
-    return $(this.className+"_"+this.id);
+    return $(this.elementID());
+  },
+  elementID: function() {
+    if( !this.id || this.id == "new" ) {
+      return this.newElementID()
+    } else {
+      return this.editElementID()
+    }
+  },
+  newElementID: function() {
+    return this.className;
+  },
+  editElementID: function() {
+    return this.className+"_"+this.id;
+  },
+  baseURL: function() {
+    return "/" + this.className + "s/"
+  },
+  url: function() {
+    return this.baseURL() + this.id + "/"
+  },
+  ajaxAction: function(name, options){
+    var ajaxOptions = {
+      onSuccess:this["after"+name.capitalize()].bind(this)
+    }
+    if(options) Object.extend(ajaxOptions, options);
+    return new Ajax.Request(this.url(),ajaxOptions);
+  },
+  afterAjaxAction: function(name, transport){
+    this.element().replace(transport.responseText);
+  },
+  onException: function(t,e) {
+    (function () { throw(e)  }).delay()
+  }
+})
+
+var FormController = Class.create(Controller, {
+  newElementID: function() {
+    return "new_" + this.baseName();
+  },
+  editElementID: function() {
+    return "edit_" + this.baseName() + "_" + this.id;
+  },
+  baseName: function() {
+    return this.className.slice(0,-5);
   },
   baseURL: function() {
     return "/" + this.className + "s/"
