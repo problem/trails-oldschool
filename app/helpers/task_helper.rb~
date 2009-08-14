@@ -25,14 +25,13 @@ module TaskHelper
     content_tag :span, task.rate.format(:minimal) + "/h", :class=>(task.specific_rate? ? "specfic" : "inherited")
   end
   
-  
-  #def task_duration(task)
-  #  if task.duration > 60 || task.status == :active
-  #    duration(task.duration) 
-  #  elsif task.duration > 0 
-  #    %Q|#{task.duration}<span class="fade">s</span>|
-  #  end
-  #end
+  def task_duration(task)
+    if task.duration > 60 || task.status == :active
+      duration(task.duration) 
+    elsif task.duration > 0 
+      %Q|#{task.duration}<span class="fade">s</span>|
+    end
+  end
   
   def task_earnings(task)
      task.earnings.format(:accurate) if task.earnings?

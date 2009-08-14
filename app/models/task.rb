@@ -3,6 +3,7 @@ class Task < ActiveRecord::Base
   has_many    :log_entries, :order=>"created_at DESC",  :dependent=>:destroy
   has_one     :last_start, :class_name=>"LogEntry", :order=>"created_at DESC", :conditions=>"action = 'start'"
   belongs_to  :task_list
+  include ApplicationHelper
   
   validates_presence_of :task_list_id, :description
   
@@ -44,6 +45,10 @@ class Task < ActiveRecord::Base
     status == :stopped or status == :active
   end
   
+  def running?
+    status == :active
+  end
+  
   def specific_rate?
     rate_cents?
   end
@@ -62,14 +67,39 @@ class Task < ActiveRecord::Base
   
   
   def earnings
-    rate * (duration.to_f/(60*60))
+    rate * (running_time.to_f/(60*60))
   end
   
   def earnings?
     earnings.cents > 0
   end
   
+  def running_time
+    if(running?)
+      Time.now - last_start.created_at + duration
+    else
+      duration
+    end
+  end
 
-
+  #not quite sure why task_duration(task) exists as a helper method
+  #i believe it should be an object method and
+  #therefore will be moved here
+  def task_duration
+    if status == :active
+      formatted_duration(running_time) 
+    elsif status == :stopped
+      formatted_duration(duration)
+    end
+  end
+  
+  #same for task_earnings (see task_duration)   
+  def task_earnings
+     earnings.format(:accurate) if earnings?
+  end
+ 
+  def task_duration_bar
+    %Q|<div class="duration_bar" style="width:#{[500,running_time/60].min}px"</div>|
+  end
   
 end

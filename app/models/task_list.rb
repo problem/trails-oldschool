@@ -15,6 +15,15 @@ class TaskList < ActiveRecord::Base
     self.actual_default_rate = rate.to_money
   end
   
+  def running_tasks
+    running = []
+    task_order.each do |task_id|
+      task = tasks.find(task_id)
+      running << task if task.running?
+    end
+    running
+  end
+  
   def sorted_tasks
     active = []
     completed = []

@@ -11,10 +11,22 @@ class TasksController < ApplicationController
   def update
     @task = Task.update(params[:id],params[:task])
     render :partial=>@task
+    #respond_to do |format|
+    #  format.html {render :partial=>@task}
+    #  format.js {
+    #    render(:update) do |page|
+    #      page["task_container_#{@task.id}"].replace render :partial=>@task
+    #    end
+    #  }
+    #end
   end
   
   def destroy
+    task = Task.find(params[:id])
+    task_list = TaskList.find(task.task_list_id)
     Task.destroy(params[:id])
+    task_list.task_order.delete(params[:id].to_s)
+    task_list.save!
     head :ok
   end
   

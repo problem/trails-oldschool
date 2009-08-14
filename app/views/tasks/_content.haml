@@ -1,0 +1,20 @@
+%table
+  %tr{:class=>content.status.to_s}[content]
+    %td.toolbar.external
+      = link_to "Delete", "#delete",:class=>"delete"
+      = link_to "Edit", "#edit", :class=>"edit"
+    %td.status
+      = task_status(content)
+    %td.start.border
+      = task_action_button(content)
+    %td.description.border
+      = content.description
+    %td.rate.border
+      = task_rate(content)
+    %td.earnings.border
+      = content.task_earnings
+    %td.duration.border
+      = content.task_duration
+    %td.external_bars
+      = content.task_duration_bar
+  = render :partial=>"tasks/edit", :object=>content

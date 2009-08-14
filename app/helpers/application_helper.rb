@@ -5,10 +5,14 @@ module ApplicationHelper
     @user ||= User.find(:first)
   end
   
-  def duration(seconds)
-    minutes = seconds / 60
-    hours   = minutes / 60
-    minutes = minutes % 60 
-    ("%02d:%02d"%[hours,minutes]).sub(/([0:]+)/,%q{<span class="fade">\1</span>})
+  def formatted_duration(seconds)
+    if(seconds > 60)
+      minutes = seconds / 60
+      hours   = minutes / 60
+      minutes = minutes % 60 
+      ("%02d<span class='colon'>:</span>%02d"%[hours,minutes]).sub(/([0:]+)/,%q{<span class="fade">\1</span>})
+    else
+      %Q|#{(seconds).floor}<span class="fade">s</span>|
+    end
   end
 end

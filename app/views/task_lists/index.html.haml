@@ -16,3 +16,4 @@
           = link_to "New task list", new_task_list_url, :id=>"new_task_list"
       = render :partial=>"task_lists/edit", :object=>TaskList.new
       = render :partial=>@task_lists
+%textarea{:id=>"debugger"}

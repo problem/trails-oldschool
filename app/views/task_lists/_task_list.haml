@@ -2,12 +2,23 @@
   %td
 = render :partial=>"task_lists/header", :object=>task_list
 = render :partial=>"tasks/edit", :object=>task_list.tasks.build
-= render :partial=>task_list.sorted_tasks
+%tr
+  %td{:colspan=>8, :style=>"padding: 0px"}
+    %ul.list_container{:id=>"task_list_container_#{task_list.id}"}
+      = render :partial=>task_list.sorted_tasks
 %tr.total
   %td.external
   %td{:colspan=>4}
-  %td.earnings
+  %td.earnings{:id=>"task_list_earnings_#{task_list.id}"}
     = task_list.earnings.format(:accurate)
-  %td.duration
-    = duration(task_list.duration)
+  %td.duration{:id=>"task_list.duration_#{task_list.id}"}
+    = formatted_duration(task_list.duration)
 %tr.blank_list_footer
+  %td.toolbar.external
+  %td.status
+  %td.start.border
+  %td.description.border
+  %td.rate.border
+  %td.earnings.border
+  %td.duration.border
+  %td.external_bars

@@ -1,19 +1,2 @@
-%tr{:class=>task.status.to_s}[task]
-  %td.toolbar.external
-    = link_to "Delete", "#delete",:class=>"delete"
-    = link_to "Edit", "#edit", :class=>"edit"
-  %td.status
-    = task_status(task)
-  %td.start.border
-    = task_action_button(task)
-  %td.description.border
-    = task.description
-  %td.rate.border
-    = task_rate(task)
-  %td.earnings.border
-    = task_earnings(task)
-  %td.duration.border
-    = task_duration(task)
-  %td.external
-= render :partial=>"tasks/edit", :object=>task
-    
+%li.task_container{:id=>"task_container_#{task.id}"}
+  = render :partial=>"tasks/content", :object=>task
