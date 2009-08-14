@@ -18,13 +18,14 @@
 // Buttons
 !blue = #006699
 !turquoise = #339999
+!light_blue = #DDEEEE
 
 //Alerts and things that need to stand out alot
 !magenta = #990000
 
 //
 !light_tan = #f6f6f6
-!tan = #F7F7E7G
+!tan = #F7F7E7
 
 !flat_gold = #999966
 
@@ -33,8 +34,14 @@
 !main_font = Verdana
 !main_font_size = 11px
 
-
-
+table
+  td
+    :border 0px solid red
+ul
+  :min-height 10px
+ol
+  :min-height 10px
+  
 body
   :font-family = !main_font
   :font-size = !main_font_size
@@ -64,6 +71,8 @@ body
       :text-decoration underline
 
 
+
+  
 // TASK LISTS WITH AN 'S'  ------------
 #task_lists
   
@@ -98,6 +107,7 @@ body
 .grand_total
   :background-color = !medium_grey
   :color #FFF
+  :text-align right
 
 
 // TASK LIST -----------
@@ -127,20 +137,35 @@ th.new_task
     &:hover
       :background-color = !blue
       :border = 2px solid !blue
-      :color = !tan
       :text-decoration none
+      :color = !tan
     &:visited
       :text-decoration underline
 
 //.total
 .duration
   :color = !medium_grey
+  :text-align right
+  .colonTick
+    :color white
+  
 .earnings
   :color = !black
 
 tr.blank_list_footer
   :height 18px
 
+tr.blank_task
+  :height 1px
+  :font-size 1px
+  :line-height 0px
+  :margin 0
+  :padding 0
+  td
+    :height 1px
+    :padding 0px
+
+    
 
 
 // TASK -------
@@ -209,6 +234,7 @@ td.status
 
 //Start button ----
 .start
+  :width 32px
   a
     :color = !dark_grey
     :border 2px solid #FFF
@@ -229,28 +255,74 @@ td.status
         :background-color = !black
       &:visited
         :text-decoration underline
-
+        
+.task_form
+  :background-color = !light_blue
+  :border-bottom 1px solid white
+  .description
+    :width 325px
+  .title
+    :width 270px
+  .rate
+    :width 180px
+  .submit
+    :width 290px
+  .toolbar, .status
+    :background-color white
+  input[name='task[description]']
+    :width 250px
+    :height 20px
+  &:hover 
+    :background-color = !light_blue
+    
+.external_bars, .submit
+  :background-color white
+  :width 500px
+    
 .description
   :width 200px
 
 .rate
+  :width 40px
   :color = !medium_grey
+  :text-align right
 
+.default_rate
+  :text-align right
+  
 .earnings
+  :width 70px
   :color = !black
+  :text-align right
 
 .fade
   :color = !light_grey
 
 .duration
+  :width 50px
   :color = !medium_grey
 
+.toolbar  
+  :width 40px
+  :min-width 40px
+    
 .active
   :color = !dark_green
   .description
     :font-weight italic
+  .external_bars
+    .duration_bar
+      :height 2px
+      :background-color = !light_green
+.stopped
+  .external_bars
+    .duration_bar
+      :height 2px
+      :background-color = !medium_grey
+            
 .complete
   :color = !medium_grey
+
 
 // Task form fields
 input[name='task[rate]'], input[name='task_list[default_rate]']

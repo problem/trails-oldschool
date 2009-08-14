@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
 
+  map.connect 'task_lists/:id/setsequence', :controller => "task_lists", :action => "setTasksSequence"
+  map.connect 'task_lists/refreshactivetasks', :controller => "task_lists", :action => "refreshActiveTasks"
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action

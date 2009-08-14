@@ -1,3 +1,18 @@
+//===== [ DISABLE TEXT SELECT ] =====
+if(/MSIE/.test(navigator.userAgent)) {
+  document.onselectstart = function(event) {
+    if(!/input|textarea/i.test(Event.element(event).tagName))
+      return false;
+  };
+  } else { // assume DOM
+  document.onmousedown = function(event) {
+    if(!/input|textarea/i.test(Event.element(event).tagName))
+      return false;
+  };
+}
+//===== [ /DISABLE ] =====
+
+
 Element.addMethods({
   recordID: function(element) {
     do {
@@ -12,6 +27,11 @@ Element.addMethods({
     }
     
     if(element.href) return  parseInt(element.href.match(/\d+/).last());
+  },
+  fadeDelete: function(element) { //fades element, then deletes it
+  	element.fade({afterFinish:function(){
+		element.remove();
+	}});
   }
 });
 
@@ -132,6 +152,7 @@ var Controller = Class.create({
   }
 })
 
+
 controller("task",
   autoBuildChild("actions", "task_form"),
   {
@@ -143,12 +164,34 @@ controller("task",
       this.ajaxAction("remove",{method:"delete"});
     },
     afterRemove: function(name, transport) {
-      this.element().fade({afterFinish:function(animation){
-        animation.element.remove();
-      }});
-    }
+      this.element().fadeDelete();
+    },
+    taskContainer: function(){
+  	  //LI task_container
+	  return $("task_container_" + this.id);
+    },
+	taskList: function(){
+		var elem = this.element().up(".list_container");
+		return task_list(strip_id(elem));
+	},
+	durationBar: function(){
+		return this.element().down(".duration_bar");
+	},
+	earnings: function(){
+		return this.element().down(".earnings");
+	},
+	duration: function(){
+		return this.element().down(".duration");
+	}
   }
 )
+
+function strip_id(element){
+	//some_element_12 => 12
+	var full_id = element.id;
+	var idx = full_id.lastIndexOf("_");
+	return full_id.substring(idx+1);
+}
 
 $S(".task .toolbar .edit").observe("click", action(task, "edit"))
 $S(".task .toolbar .delete").observe("click", action(task, "remove"))
@@ -157,18 +200,41 @@ controller("actions",
   ajaxActions("start", "stop", "complete", "reopen"),
   {
     afterComplete: function(transport) {
-      var nexts = [this.task.element().next(".total"),this.task.element().next(".complete.task")].compact().pluck("rowIndex");
+	  /*
+      //apparently, this piece of code tries to insert the closed task at the proper index. 
+	  //for the sake of simplicity, I think it is better to just 
+	  //append it to the bottom of the list and let the user move it around.
+	  var nexts = [this.task.element().next(".total"),this.task.element().next(".complete.task")].compact().pluck("rowIndex");
       var targetRowIndex = Math.min.apply(Math,nexts)-1;
       this.task.element().remove();
       var newRow = $("task_lists").insertRow(targetRowIndex);
       $(newRow).replace(transport.responseText);
+	  */
+	  var task_list = this.task.taskList()
+	  var listContainer = task_list.listContainer();
+	  this.task.taskContainer().remove();
+	  listContainer.insert({bottom: transport.responseText});
+	  this.task.taskContainer().highlight();
     },
     afterReopen: function (transport) {
-      var prevs = [this.task.element().previous(".task_list"), this.task.element().previous(".stopped.task")].compact().pluck("rowIndex");
+	  /*
+	  //apparently, this piece of code tries to insert the reopened task at the proper index. 
+	  //for the sake of simplicity, I think it is better to just 
+	  //insert it at the top of the list and let the user move it around.
+      
+	  var prevs = [this.task.element().previous(".task_list"), this.task.element().previous(".stopped.task")].compact().pluck("rowIndex");
       var targetRowIndex = Math.max.apply(Math, prevs)+1;
       this.task.element().remove();
       var newRow = $("task_lists").insertRow(targetRowIndex);
       $(newRow).replace(transport.responseText);
+      */
+	  var task_list = this.task.taskList()
+	  var listContainer = task_list.listContainer();
+	  this.task.taskContainer().remove();
+	  listContainer.insert({top: transport.responseText});
+	  this.task.taskContainer().highlight();
+	  //when a task is reOpened, it should be allowed to start moving again
+	  initDragAndDrop();
     },
     url: function() {
       return this.task.url()+"actions";
@@ -177,9 +243,10 @@ controller("actions",
       return $super(name, {parameters:{"log_entry[action]":name}});
     },
     afterAjaxAction: function(name, transport) {
-      this.task.element().replace(transport.responseText);
+	  //call back for all actions (start, stop ...)
+      this.task.taskContainer().update(transport.responseText);
+	  //start 
     }
-
   }
 )
 
@@ -189,14 +256,25 @@ $S(".stop_task").observe("click", action(task,"actions","stop"))
 $S("input.stopped_task").observe("click", action(task,"actions","complete"))
 $S("input.complete_task").observe("click", action(task,"actions","reopen"))
 
-$S(".task.stopped *").observe("click", action(task,"actions","start"))
-$S(".task.active *").observe("click", action(task,"actions","stop"))
+//$S(".task.stopped *").observe("click", action(task,"actions","start"))
+//$S(".task.active *").observe("click", action(task,"actions","stop"))
 
 
 controller("task_list",
   autoBuildChild("task_form","task_list_form"),
   {
-    edit: function() {
+    setTaskSequence: function(seq){
+	  var options = {
+	  	method: "put",
+		onSuccess:this["afterSetTaskSequence"].bind(this),
+	  	parameters: { tasks: seq.toString() }
+	  };
+	  new Ajax.Request(this.url() + "setsequence", options);
+	},
+	listContainer: function(){
+	  return $("task_list_container_" + this.id); 
+	},
+	edit: function() {
       this.element().hide();
       this.task_list_form().show();
     },
@@ -204,14 +282,20 @@ controller("task_list",
       this.ajaxAction("remove",{method:"delete"});
     },
     afterRemove: function(name, transport) {
+		//remy: replaced remove() with fadeDelete() for consistency
       var oldElement, element = this.element();
-      element.previous().remove();
+	  //remove row spacer
+      element.previous().fadeDelete();
       do {
         oldElement = element;
         element = element.next();
-        oldElement.remove();
-      } while(!element.match(".total"))
-      element.remove();
+        oldElement.fadeDelete();
+      } while(!element.match(".blank_list_footer"))
+      element.fadeDelete();
+    },
+	afterSetTaskSequence: function(transport) {
+		//update list earnings and duration after task_reordering
+	  eval(transport.responseText);
     }
   }
 )
@@ -232,12 +316,28 @@ controller("task_form",{
     if(this.task) this.task.element().show();
   },
   onSuccess: function(transport) {
-    if(this.task) this.task.element().remove();
+  	//call back method on update for Tasks
     var element = this.element();
-    element.insert({after:transport.responseText})
-    element.next().highlight();
-    if(this.task) element.remove();
-    else this.hide();
+	
+	if(this.task){
+	  //update existing task
+	  var taskContainer = this.task.taskContainer();
+	  taskContainer.update(transport.responseText);
+	  taskContainer.highlight();
+	}else{
+	  //insert newly created task
+	  var listContainer = this.task_list.listContainer();
+	  listContainer.insert({top:transport.responseText});
+      listContainer.firstChild.highlight();
+	  initDragAndDrop();
+	}
+    if (this.task) {
+		//no need to remove anymore. the content is just updated
+	}
+	else {
+		//hide new_task_form
+		this.hide();
+	}
   },
   element: function() {
     if (this.task_list)
@@ -274,14 +374,19 @@ controller("task_list_form",{
     if(this.task_list) this.task_list.element().show();
   },
   onSuccess: function(transport) {
+  	//call back method on update for Tasks_Lists
+	//also handles task_list creation
     if(this.task_list) this.task_list.element().remove();
     var element = this.element();
     element.insert({after:transport.responseText})
-    var highlight = element.next();
-    if(!this.task_list) highlight = highlight.next();
-    highlight.highlight();
-    if(this.task_list) element.remove();
-    else this.hide();
+    element.next(".task_list").highlight();
+    if (this.task_list) 
+		element.remove();
+	else {
+		this.hide();
+		//new task list needs to e DnD enabled
+		initDragAndDrop();
+	}
   },
   element: function() {
     if (this.task_list)
@@ -323,6 +428,7 @@ $S("input[type=submit][method]").observe("click", function(event){
 })
 
 function mainFormSubmitHandler(event) {
+	
   event.stop();
   var options = {};
   // Setup before request
@@ -339,8 +445,8 @@ function mainFormSubmitHandler(event) {
   }
   
   
-  // Perofrm request!
-  this.request(options)
+  // Perform request!
+  this.request(options);
 
   // Clean up
   if(this.overrideAction) {
@@ -352,10 +458,82 @@ function mainFormSubmitHandler(event) {
   this.responder = null;
     
 }
+
+function updateTasksOrder(container){
+	var task_list_id = container.identify().replace(/task_list_container_/gi, '');
+	var tl = task_list(task_list_id);
+	var seq = Sortable.sequence(container.identify());
+	tl.setTaskSequence(seq);
+	
+	debug(task_list_id + " = > " +Sortable.sequence(container.identify()) + "\n");
+
+}
+function debug(string){
+	$("debugger").innerHTML += string + "\n";
+}
+
 document.observe("dom:loaded", function(){
-  
-  $("task_form").observe("submit", mainFormSubmitHandler)
+ 
+	$("task_form").observe("submit", mainFormSubmitHandler);
+	initDragAndDrop();
+	setInterval ( "updateACtiveTasks()", 10000 )
+	setInterval ( "clockTick()", 500 )
+	
 })
+
+function initDragAndDrop(){
+	//This code will eventually need to be changed.
+	//on some operations, only single lists need to be re-initialized
+	
+	//===== [ SORTABLES ] =====
+	//get sortable_containers element by className
+	$sortable_containers =  $$(".list_container");
+	
+	//get sortable_containers' ids
+	$sortable_containers_ids = $sortable_containers.pluck("id");
+	
+	//make each container Sortable
+	$sortable_containers_ids.each(function(s) {
+		Sortable.create(s, { tag: 'li', dropOnEmpty: true, constraint: false, onUpdate: updateTasksOrder , containment: $sortable_containers_ids });
+	});
+}
+function updateACtiveTasks(){
+	if($$(".active").length<=0)
+		return;
+	 var options = {
+	  	method: "put",
+		onSuccess:this["updateACtiveTasks_callback"].bind(this)
+	  };
+	  new Ajax.Request("/task_lists/refreshactivetasks", options);
+}
+
+function updateACtiveTasks_callback(transport){
+	
+	//read json response
+	var json = transport.responseText.evalJSON();
+	for(var i=0; i<json.length;i++){
+		var id = json[i].id;
+		var t = task(id);
+		t.earnings().update(json[i].task_earnings);
+		t.duration().update(json[i].task_duration);
+		t.durationBar().replace(json[i].task_duration_bar);
+		t.durationBar().highlight();
+	}
+}
+
+function clockTick(){
+	var c;
+	$active_tasks =  $$(".active");
+	$active_tasks.each(function(taskElem) {
+	  t = task(strip_id(taskElem));
+	  c = null;
+	  c = t.duration().down(".colon");
+	  if(c!=null)
+	    c.toggleClassName("colonTick");
+	});
+}
+
+
 
 if(Prototype.Browser.Gecko)
   $S("input").observe("keypress", function(event){
@@ -363,3 +541,4 @@ if(Prototype.Browser.Gecko)
       //TODO: fire click ??
       mainFormSubmitHandler.call(event.element().form,event)
   })
+
