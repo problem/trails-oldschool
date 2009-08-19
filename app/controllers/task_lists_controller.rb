@@ -44,7 +44,7 @@ class TaskListsController < ApplicationController
       @task_list = TaskList.find(task_list_id)
       @tasks = @task_list.running_tasks
       @tasks.each do |task|
-        @jsonTasks << task#page["task_container_#{task.id}"].replace_html "lol"
+        @jsonTasks << task
       end
     end
     render :json => @jsonTasks.to_json(:only=>:id,:methods=>[:task_duration,:task_earnings,:task_duration_bar])

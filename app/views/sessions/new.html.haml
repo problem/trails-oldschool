@@ -12,6 +12,8 @@
           = f.password_field :password, :size => 20
         %li#submit
           = submit_tag "Log in"
+    %p
+      = link_to "Register", new_user_path
 - if flash[:notice]
   #notice
     = flash[:notice]

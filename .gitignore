@@ -3,3 +3,4 @@ log/*
 *.DS_Store
 db/*.sqlite3
 public/stylesheets/application.css
+vendor/plugins/haml/init.rb

@@ -476,8 +476,11 @@ document.observe("dom:loaded", function(){
  
 	$("task_form").observe("submit", mainFormSubmitHandler);
 	initDragAndDrop();
-	setInterval ( "updateACtiveTasks()", 10000 )
-	setInterval ( "clockTick()", 500 )
+	setInterval ( "updateACtiveTasks()", 10000 );
+	
+	//Initialize clockTicking
+	$showTick = false;
+	setInterval ( "clockTick()", 500 );
 	
 })
 
@@ -521,18 +524,30 @@ function updateACtiveTasks_callback(transport){
 	}
 }
 
+//this method called every 1000ms to show/hide clock colons.
 function clockTick(){
 	var c;
+	var showColon = toggleTick();
 	$active_tasks =  $$(".active");
 	$active_tasks.each(function(taskElem) {
 	  t = task(strip_id(taskElem));
-	  c = null;
 	  c = t.duration().down(".colon");
-	  if(c!=null)
-	    c.toggleClassName("colonTick");
+	  if (c != null) {
+	  	if(showColon)
+			c.addClassName("colonTick");
+		else
+			c.removeClassName("colonTick");
+	  }
 	});
 }
 
+function toggleTick(){
+	if($showTick)
+		$showTick = false;
+	else
+		$showTick = true;
+	return $showTick;
+}
 
 
 if(Prototype.Browser.Gecko)
