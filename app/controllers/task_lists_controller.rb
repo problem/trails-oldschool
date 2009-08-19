@@ -33,7 +33,7 @@ class TaskListsController < ApplicationController
     @task_list.update_attributes("task_order" => @tasks)
     render(:update) do |page|
       page["task_list_earnings_#{@task_list.id}"].replace_html @task_list.earnings.format(:accurate)
-      page["task_list.duration_#{@task_list.id}"].replace_html duration(@task_list.duration)
+      page["task_list.duration_#{@task_list.id}"].replace_html formatted_duration(@task_list.duration)
     end
   end
   
