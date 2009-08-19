@@ -33,6 +33,7 @@
 // /* TYPE	*/
 !main_font = Verdana
 !main_font_size = 11px
+!task_list_title_font_size = 18px
 
 table
   td
@@ -45,7 +46,7 @@ ol
 body
   :font-family = !main_font
   :font-size = !main_font_size
-  :margin-left 50px
+  :margin-left 0px
   :margin-top 20px
 
 
@@ -53,7 +54,7 @@ body
 
 #utility_menu
   :position absolute
-  :width 120px
+  :min-width 120px
   :left 650px
   :top 25px
   :padding-bottom 20px
@@ -115,6 +116,8 @@ body
   :background-color = !tan
   .external
     :background-color #fff
+  .submit
+    :width 1000px
   .toolbar *
     :visibility hidden
   &:hover 
@@ -124,9 +127,14 @@ body
         :visibility visible
       a
         :color = !magenta
+        
+tr.task_list
+  :height 35px
 
 th.title
   :color = !black
+  :font-size = !task_list_title_font_size
+  :font-weight bold
   
 th.new_task
   :text-align right
@@ -230,11 +238,11 @@ tr.task
     :background-color none
 
 td.status
-  :width 18px
+  :min-width 18px
 
 //Start button ----
 .start
-  :width 32px
+  :min-width 32px
   a
     :color = !dark_grey
     :border 2px solid #FFF
@@ -260,13 +268,13 @@ td.status
   :background-color = !light_blue
   :border-bottom 1px solid white
   .description
-    :width 325px
+    :min-width 325px
   .title
     :width 270px
   .rate
-    :width 180px
+    :width 155px
   .submit
-    :width 290px
+    :min-width 2px
   .toolbar, .status
     :background-color white
   input[name='task[description]']
@@ -277,13 +285,14 @@ td.status
     
 .external_bars, .submit
   :background-color white
-  :width 500px
+  :width 100%
+  :text-align left
     
 .description
-  :width 200px
+  :min-width 200px
 
 .rate
-  :width 40px
+  :min-width 40px
   :color = !medium_grey
   :text-align right
 
@@ -291,7 +300,7 @@ td.status
   :text-align right
   
 .earnings
-  :width 70px
+  :min-width 55px
   :color = !black
   :text-align right
 
@@ -299,7 +308,7 @@ td.status
   :color = !light_grey
 
 .duration
-  :width 50px
+  :min-width 40px
   :color = !medium_grey
 
 .toolbar  

@@ -33,7 +33,7 @@ class TaskListsController < ApplicationController
     @task_list.update_attributes("task_order" => @tasks)
     render(:update) do |page|
       page["task_list_earnings_#{@task_list.id}"].replace_html @task_list.earnings.format(:accurate)
-      page["task_list.duration_#{@task_list.id}"].replace_html formatted_duration(@task_list.duration)
+      page["task_list_duration_#{@task_list.id}"].replace_html formatted_duration(@task_list.duration)
     end
   end
   
@@ -47,7 +47,8 @@ class TaskListsController < ApplicationController
         @jsonTasks << task
       end
     end
-    render :json => @jsonTasks.to_json(:only=>:id,:methods=>[:task_duration,:task_earnings,:task_duration_bar])
+    render :json => {:tasklists => @task_lists.to_json(:only=>:id,:methods=>[:task_list_duration,:task_list_earnings]),:tasks => @jsonTasks.to_json(:only=>:id,:methods=>[:task_duration,:task_earnings,:task_duration_bar]),:total => @task_lists.sum(&:earnings).to_money.format(:accurate)}
+    #render :json => @jsonTasks.to_json(:only=>:id,:methods=>[:task_duration,:task_earnings,:task_duration_bar])
   end
   
   private

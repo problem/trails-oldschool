@@ -6,4 +6,5 @@
     = header.title
   %th.new_task{:colspan=>3}
     = link_to "New task", new_task_list_task_url(header)
+  %th.external.submit
 = render :partial=>"task_lists/edit", :object=>header

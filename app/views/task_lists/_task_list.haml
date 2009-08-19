@@ -11,7 +11,7 @@
   %td{:colspan=>4}
   %td.earnings{:id=>"task_list_earnings_#{task_list.id}"}
     = task_list.earnings.format(:accurate)
-  %td.duration{:id=>"task_list.duration_#{task_list.id}"}
+  %td.duration{:id=>"task_list_duration_#{task_list.id}"}
     = formatted_duration(task_list.duration)
 %tr.blank_list_footer
   %td.toolbar.external

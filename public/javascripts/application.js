@@ -296,7 +296,13 @@ controller("task_list",
 	afterSetTaskSequence: function(transport) {
 		//update list earnings and duration after task_reordering
 	  eval(transport.responseText);
-    }
+    },
+	earnings: function(){
+		return $("task_list_earnings_" + this.id);  
+	},
+	duration: function(){
+		return $("task_list_duration_" + this.id);  
+	}
   }
 )
 
@@ -514,14 +520,27 @@ function updateACtiveTasks_callback(transport){
 	
 	//read json response
 	var json = transport.responseText.evalJSON();
-	for(var i=0; i<json.length;i++){
-		var id = json[i].id;
+	var jsonTaskLists = json.tasklists.evalJSON();
+	var jsonTasks = json.tasks.evalJSON();
+	//update tasks
+	for(var i=0; i<jsonTasks.length;i++){
+		var id = jsonTasks[i].id;
 		var t = task(id);
-		t.earnings().update(json[i].task_earnings);
-		t.duration().update(json[i].task_duration);
-		t.durationBar().replace(json[i].task_duration_bar);
+		t.earnings().update(jsonTasks[i].task_earnings);
+		t.duration().update(jsonTasks[i].task_duration);
+		t.durationBar().replace(jsonTasks[i].task_duration_bar);
 		t.durationBar().highlight();
 	}
+	//update taskLists
+	for(var i=0; i<jsonTaskLists.length;i++){
+		var id = jsonTaskLists[i].id;
+		var l = task_list(id);
+		l.earnings().update(jsonTaskLists[i].task_list_earnings);
+		l.duration().update(jsonTaskLists[i].task_list_duration);
+	}
+	
+	//update grand total
+	$("grand_total").update(json.total);
 }
 
 //this method called every 1000ms to show/hide clock colons.

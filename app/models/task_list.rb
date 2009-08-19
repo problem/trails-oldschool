@@ -2,10 +2,9 @@ class TaskList < ActiveRecord::Base
   has_many    :tasks, :dependent=>:destroy, :after_add=>:update_ordering_for_new_task
   belongs_to  :owner, :class_name => "User"
   composed_of :actual_default_rate, :class_name => "Money", :mapping => [%w(default_rate_cents cents), %w(default_currency currency)], :allow_nil=>true
-  
   validates_presence_of :title, :actual_default_rate
-  
   before_save :save_task_order
+  include ApplicationHelper
   
   def default_rate
     actual_default_rate or ((last_list = TaskList.find(:first, :order=>"updated_at DESC")) and last_list.default_rate) or 0.to_money
@@ -41,7 +40,7 @@ class TaskList < ActiveRecord::Base
   end
   
   def duration
-    tasks.to_a.sum(&:duration)
+    tasks.to_a.sum(&:running_time)
   end
   
   def task_order
@@ -50,6 +49,14 @@ class TaskList < ActiveRecord::Base
   
   def task_order=(order)
     @task_order = order
+  end
+  
+  def task_list_earnings
+    earnings.format(:accurate)
+  end
+  
+  def task_list_duration
+    formatted_duration(duration)
   end
   
   
