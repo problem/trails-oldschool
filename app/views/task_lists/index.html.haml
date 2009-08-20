@@ -9,6 +9,7 @@
         %td.grand_total{:id => "grand_total"}
           = @task_lists.sum(&:earnings).to_money.format(:accurate)
         %td.grand_total
+      = render :partial=>"task_lists/footer"
     %tbody
       %tr
         %td.external

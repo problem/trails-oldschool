@@ -13,12 +13,4 @@
     = task_list.earnings.format(:accurate)
   %td.duration{:id=>"task_list_duration_#{task_list.id}"}
     = formatted_duration(task_list.duration)
-%tr.blank_list_footer
-  %td.toolbar.external
-  %td.status
-  %td.start.border
-  %td.description.border
-  %td.rate.border
-  %td.earnings.border
-  %td.duration.border
-  %td.external_bars
+= render :partial=>"task_lists/footer"
