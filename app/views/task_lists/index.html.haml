@@ -6,9 +6,10 @@
         %td{:colspan=>3}
         %td.grand_total
           Total:
-        %td.grand_total{:id => "grand_total"}
+        %td.grand_total{:id => "grand_total_earnings"}
           = @task_lists.sum(&:earnings).to_money.format(:accurate)
-        %td.grand_total
+        %td.grand_total{:id => "grand_total_duration"}
+          = formatted_duration(@task_lists.sum(&:duration))
       = render :partial=>"task_lists/footer"
     %tbody
       %tr

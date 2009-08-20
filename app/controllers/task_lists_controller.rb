@@ -1,6 +1,6 @@
 class TaskListsController < ApplicationController
   before_filter :check_rights, :only => [:update, :destroy]
-  
+  include ApplicationHelper
   def index
     @task_lists = TaskList.find(:all, :conditions=> {:owner_id=>session[:user_id]}, :order=>"updated_at DESC")
   end
@@ -55,7 +55,11 @@ class TaskListsController < ApplicationController
         @jsonTasks << task
       end
     end
-    render :json => {:tasklists => @task_lists.to_json(:only=>:id,:methods=>[:task_list_duration,:task_list_earnings]),:tasks => @jsonTasks.to_json(:only=>:id,:methods=>[:task_duration,:task_earnings,:task_duration_bar]),:total => @task_lists.sum(&:earnings).to_money.format(:accurate)}
+    total_duration = formatted_duration(@task_lists.sum(&:duration))
+    total_earnings = @task_lists.sum(&:earnings).to_money.format(:accurate)
+    json_tasks = @jsonTasks.to_json(:only=>:id,:methods=>[:task_duration,:task_earnings,:task_duration_bar])
+    json_task_lists = @task_lists.to_json(:only=>:id,:methods=>[:task_list_duration,:task_list_earnings])
+    render :json => {:tasklists => json_task_lists,:tasks => json_tasks,:total_duration => total_duration,:total_earnings => total_earnings}
     #render :json => @jsonTasks.to_json(:only=>:id,:methods=>[:task_duration,:task_earnings,:task_duration_bar])
   end
   

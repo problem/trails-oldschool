@@ -28,6 +28,8 @@
 !tan = #F7F7E7
 
 !flat_gold = #999966
+  
+!bright_turquoise = #99cccc
 
 
 // /* TYPE	*/
@@ -83,7 +85,7 @@ body
   :top 150px
 
   td, th
-    :padding 5px
+    :padding 3px
 
 
 // TASK LIST COMMANDS ------------
@@ -106,10 +108,15 @@ body
 
 // GRAND $ TOTAL -----------------
 .grand_total
-  :background-color = !medium_grey
+  :background-color = !bright_turquoise
   :color #FFF
   :text-align right
-
+  .fade
+    :color = !lighte_grey
+  .colon
+    :color white
+    .fade
+      :color white
 
 // TASK LIST -----------
 .task_list
@@ -127,12 +134,12 @@ body
         :color = !magenta
         
 tr.task_list
-  :height 35px
+  td
+    :height 40px
 
 th.title
   :color = !black
   :font-size = !task_list_title_font_size
-  :font-weight bold
   
 th.new_task
   :text-align right
@@ -176,14 +183,14 @@ tr.blank_task
 
 // TASK -------
 tr.task
-  :height 30px
+  td
+    :height 25px
   td.border
     :border-bottom = 1px solid !lighter_grey
   
 .task
   :font = !main_font
   :size = !main_font_size
-  :height 25px
   :cursor pointer
   .toolbar *
     :visibility hidden
@@ -270,14 +277,14 @@ td.status
   .title
     :width 270px
   .rate
-    :width 155px
+    :width 139px
   .submit
     :min-width 2px
   .toolbar, .status
     :background-color white
   input[name='task[description]']
     :width 250px
-    :height 20px
+    :height 18px
   &:hover 
     :background-color = !light_blue
     
@@ -336,17 +343,17 @@ td.status
 // Task form fields
 input[name='task[rate]'], input[name='task_list[default_rate]']
   :width 50px
-  :height 20px
+  :height 18px
 input[name='task[description]']
   :width 150px
-  :height 20px
+  :height 18px
 input[name='task_list[title]']
   :width 250px
-  :height 20px
+  :height 18px
 input[type='text']
   :border 1px solid #ccc
-  :padding 2pxi
-  :height 20px
+  :height 18px
+  
 
 // LOGIN FORM --------------
 #login

@@ -540,7 +540,8 @@ function updateACtiveTasks_callback(transport){
 	}
 	
 	//update grand total
-	$("grand_total").update(json.total);
+	$("grand_total_earnings").update(json.total_earnings);
+	$("grand_total_duration").update(json.total_duration);
 }
 
 //this method called every 1000ms to show/hide clock colons.
