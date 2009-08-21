@@ -7,7 +7,7 @@
 !black = #000
 !dark_grey = #333
 !medium_grey = #666666
-!light_grey = #999999
+!light_grey = #AAAAAA
 !lighte_grey = #CCC
 !lighter_grey = #EEE
 
@@ -18,7 +18,7 @@
 // Buttons
 !blue = #006699
 !turquoise = #339999
-!light_blue = #DDEEEE
+!light_blue = #e3eeec
 
 //Alerts and things that need to stand out alot
 !magenta = #990000
@@ -36,6 +36,11 @@
 !main_font = Verdana
 !main_font_size = 11px
 !task_list_title_font_size = 18px
+
+ul
+  table
+    td
+      :border 0px solid blue
 
 table
   td
@@ -187,6 +192,9 @@ tr.task
     :height 25px
   td.border
     :border-bottom = 1px solid !lighter_grey
+  .task_submit
+    :text-align right
+    :height 30px
   
 .task
   :font = !main_font
@@ -268,18 +276,35 @@ td.status
         :background-color = !black
       &:visited
         :text-decoration underline
-        
+.task_list_container_row
+  td
+    :text-align center
+    hr
+      :height 1px
+      :border 0
+      :color #cccccc
+      :background-color = #cccccc
+      :width 95%
+  
+.task_form_container
+  :border-bottom 1px solid #cdcdcd
+  :min-width 416px 
+  *
+    :padding 0px
+    .submit
+      :background-color = !light_blue       
 .task_form
   :background-color = !light_blue
-  :border-bottom 1px solid white
   .description
     :min-width 325px
   .title
     :width 270px
+  .task_title
+    :min-width 308px
+    #task_description
+      :margin-left 11px
   .rate
     :width 139px
-  .submit
-    :min-width 2px
   .toolbar, .status
     :background-color white
   input[name='task[description]']
@@ -291,7 +316,8 @@ td.status
 .external_bars, .submit
   :background-color white
   :text-align left
-
+  
+    
 .external_bars
   :width 1000px
   
@@ -308,7 +334,6 @@ td.status
   
 .earnings
   :min-width 55px
-  :color = !black
   :text-align right
 
 .fade
@@ -339,8 +364,25 @@ td.status
 .complete
   *
     :color = !light_grey
+.default_rate_check
+  :margin-left 50px
+  span
+    :text-decoration underline
 
-
+.slider_handle
+  :background url(../images/slider_handle.png)
+  :background-repeat no-repeat
+  :width 15px 
+  :height 15px
+  :cursor move
+  :position relative
+  :top 3px
+  
+.slider_track
+  :background url(../images/bg-fader.gif)
+  :height 28px 
+  :margin-left 40px
+  
 // Task form fields
 input[name='task[rate]'], input[name='task_list[default_rate]']
   :width 50px
@@ -354,7 +396,8 @@ input[name='task_list[title]']
 input[type='text']
   :border 1px solid #ccc
   :height 18px
-  
+input[type='checkbox']
+  :vertical-align middle  
 
 // LOGIN FORM --------------
 #login

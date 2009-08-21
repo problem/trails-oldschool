@@ -475,13 +475,14 @@ function updateTasksOrder(container){
 
 }
 function debug(string){
-	$("debugger").innerHTML += string + "\n";
+	//$("debugger").innerHTML += string + "\n";
 }
 
 document.observe("dom:loaded", function(){
  
 	$("task_form").observe("submit", mainFormSubmitHandler);
 	initDragAndDrop();
+	initSliders();
 	setInterval ( "updateACtiveTasks()", 10000 );
 	
 	//Initialize clockTicking
@@ -489,6 +490,22 @@ document.observe("dom:loaded", function(){
 	setInterval ( "clockTick()", 500 );
 	
 })
+
+function initSliders(){
+	
+	//get slider tracks' ids
+	$slider_track_elements = $$(".slider_track");
+	$slider_track_elements.each(function(s) {
+	  id = strip_id(s);
+	  var s = new Control.Slider('handle_'+id, 'track_'+id, {
+	  	range: $R(-60,60),
+		sliderValue: 0,
+		onSlide: function(value){
+			//debug(value);
+		}
+	  });
+	});
+}
 
 function initDragAndDrop(){
 	//This code will eventually need to be changed.
@@ -503,7 +520,7 @@ function initDragAndDrop(){
 	
 	//make each container Sortable
 	$sortable_containers_ids.each(function(s) {
-		Sortable.create(s, { tag: 'li', dropOnEmpty: true, constraint: false, onUpdate: updateTasksOrder , containment: $sortable_containers_ids });
+		Sortable.create(s, { tag: 'li', dropOnEmpty: true, constraint: false, handle: "description", onUpdate: updateTasksOrder , containment: $sortable_containers_ids });
 	});
 }
 function updateACtiveTasks(){

@@ -1,15 +1,40 @@
 - fields_for edit do |form|
   %tr.task_form{:class=>"form #{edit.new_record? ? 'new' : 'edit'}",:id=>(edit.new_record? ? "task_list_#{edit.task_list.id}" : "edit"), :style=>"display:none"}[edit]
-    %td.external.toolbar
-    %td.title{:colspan=>3}
-      = form.text_field   :description, :disabled=>true
-    %td.rate{:colspan=>3}
-      = "$"
-      = form.text_field :rate, :disabled=>true
-      = "/h"
-    %td.submit.external
-      - if edit.new_record?
-        = form.submit "Create task" , :action => task_list_tasks_path(edit.task_list.id), :disabled=>true
-      - else
-        = form.submit "Save task", :action => task_path(edit), :method=>"put", :disabled=>true
-      = link_to "Cancel", "#cancel"
+    %td.toolbar.external
+    %td.task_form_container{:colspan=>6,:style=>"padding:0px;"}
+      %table
+        %tr.task_form
+          %td.task_title
+            = form.text_field   :description, :disabled=>true
+          %td.earnings
+            00.00$
+          %td.duration
+            0s
+        %tr.task_form
+          %td.task_title
+            = "$"
+            = form.text_field :rate, :disabled=>true
+            = "/hour"
+            %span.default_rate_check
+              %input{:type=>"checkbox"}
+              %span
+                Use default rate
+          %td{:colspan=>2} 
+        %tr.task_list_container_row
+          %td{:colspan=>3}
+            %hr 
+            %b
+              Adjust
+            the total time of this task:
+            %div.slider_track{:style=>"width:330px", :id=>"track_#{edit.id}"}
+              %div.slider_handle{:id=>"handle_#{edit.id}"}
+            %hr 
+        %tr.task_form 
+          %td.task_submit.submit{:colspan=>3}
+            - if edit.new_record?
+              = form.submit "Create task" , :action => task_list_tasks_path(edit.task_list.id), :disabled=>true
+            - else
+              = form.submit "Save this task", :action => task_path(edit), :method=>"put", :disabled=>true
+            = "or "
+            = link_to "Cancel", "#cancel"
+    %td.external_bars
