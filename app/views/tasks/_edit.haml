@@ -6,10 +6,16 @@
         %tr.task_form
           %td.task_title
             = form.text_field   :description, :disabled=>true
-          %td.earnings
-            00.00$
-          %td.duration
-            0s
+          - if edit.new_record?
+            %td.earnings
+              00.00$
+            %td.duration
+              0s
+          - else
+            %td.earnings
+              = edit.task_earnings
+            %td.duration
+              = edit.task_duration
         %tr.task_form
           %td.task_title
             = "$"
