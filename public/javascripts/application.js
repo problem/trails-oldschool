@@ -165,7 +165,15 @@ controller("task",
       this.ajaxAction("remove",{method:"delete"});
     },
     afterRemove: function(name, transport) {
-      this.element().fadeDelete();
+	  ///remove whole container instead of single task element
+      //this.element().fadeDelete();
+	  var tContainer = this.taskContainer();
+	  var tList = this.taskList();
+	  tContainer.fade({afterFinish: function(){
+	  	tContainer.remove();
+		tList.checkIfTotalNeeded();
+	  }});
+	  
     },
     taskContainer: function(){
   	  //LI task_container
@@ -303,6 +311,26 @@ controller("task_list",
 	},
 	duration: function(){
 		return $("task_list_duration_" + this.id);  
+	},
+	numTasks: function(){
+		return this.listContainer().childNodes.length;
+	},
+	hideTotal: function(){
+		this.total().hide();
+	},
+	showTotal: function(){
+		this.total().show();
+	},
+	total: function(){
+		return $("total_" + this.id); 
+	},
+	checkIfTotalNeeded: function(){
+		var n = this.numTasks();
+		if(n < 2){
+			this.hideTotal();
+		}else{
+			this.showTotal();
+		}
 	}
   }
 )
@@ -345,7 +373,9 @@ controller("task_form",{
 	  var listContainer = this.task_list.listContainer();
 	  listContainer.insert({top:transport.responseText});
       listContainer.firstChild.highlight();
+	  //the content of the list has changed so we need to re-init
 	  initDragAndDrop();
+	  this.task_list.checkIfTotalNeeded();
 	}
     if (this.task) {
 		//no need to remove anymore. the content is just updated
@@ -394,14 +424,22 @@ controller("task_list_form",{
 	//also handles task_list creation
     if(this.task_list) this.task_list.element().remove();
     var element = this.element();
+	
     element.insert({after:transport.responseText})
-    element.next(".task_list").highlight();
+    var tList = element.next(".task_list");
+	tList.highlight();
+	
+	//get newly created TaskList's Id
+	var newId = strip_id(tList);
+	
     if (this.task_list) 
 		element.remove();
 	else {
 		this.hide();
-		//new task list needs to e DnD enabled
+		//new task list needs to be DnD enabled
 		initDragAndDrop();
+		//new list needs to hide total
+		task_list(newId).checkIfTotalNeeded();
 	}
   },
   element: function() {
@@ -480,12 +518,10 @@ function updateTasksOrder(container){
 	var tl = task_list(task_list_id);
 	var seq = Sortable.sequence(container.identify());
 	tl.setTaskSequence(seq);
-	
-	debug(task_list_id + " = > " +Sortable.sequence(container.identify()) + "\n");
-
 }
+
 function debug(string){
-	//$("debugger").innerHTML += string + "\n";
+	$("debugger").innerHTML += string + "\n";
 }
 
 document.observe("dom:loaded", function(){
@@ -499,7 +535,10 @@ document.observe("dom:loaded", function(){
 	$showTick = false;
 	setInterval ( "clockTick()", 500 );
 	
+	//check if totals need to be shown for each list
+	toggleTotals();
 })
+
 
 function initSliders(){
 	
@@ -514,6 +553,14 @@ function initSliders(){
 			//debug(value);
 		}
 	  });
+	});
+}
+
+function toggleTotals(){
+	$sortable_containers =  $$(".list_container");
+	$sortable_containers.each(function(s) {
+		var l = task_list(strip_id(s));
+		l.checkIfTotalNeeded()
 	});
 }
 

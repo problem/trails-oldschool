@@ -6,7 +6,7 @@
   %td{:colspan=>8, :style=>"padding: 0px"}
     %ul.list_container{:id=>"task_list_container_#{task_list.id}"}
       = render :partial=>task_list.sorted_tasks
-%tr.total
+%tr.total{:id=>"total_#{task_list.id}"}
   %td.external
   %td{:colspan=>4}
   %td.earnings{:id=>"task_list_earnings_#{task_list.id}"}
