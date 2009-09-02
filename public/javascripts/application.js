@@ -520,7 +520,7 @@ function initDragAndDrop(){
 	
 	//make each container Sortable
 	$sortable_containers_ids.each(function(s) {
-		Sortable.create(s, { tag: 'li', dropOnEmpty: true, constraint: false, onUpdate: updateTasksOrder , containment: $sortable_containers_ids });
+		Sortable.create(s, { tag: 'li', dropOnEmpty: true, handle: "taskhandle", constraint: false, onUpdate: updateTasksOrder , containment: $sortable_containers_ids });
 	});
 }
 function updateACtiveTasks(){
