@@ -158,7 +158,8 @@ controller("task",
   {
     edit: function() {
       this.element().hide();
-      this.task_form().show();
+	  this.task_form().show();
+
     },
     remove: function(){
       this.ajaxAction("remove",{method:"delete"});
@@ -315,6 +316,15 @@ controller("task_form",{
   show: function() {
     $A(this.element().getElementsByTagName("INPUT")).invoke("enable");
     this.element().show();
+	
+	//focus on title input when form appears
+	var title_input = this.element().down(".task_title").down("input");
+	if(!this.task){
+		//if this is not an existing task, reset input value.
+		title_input.value=""; 
+	}
+	title_input.focus();
+	title_input.select();
   },
   hide: function() {
     $A(this.element().getElementsByTagName("INPUT")).invoke("disable");
