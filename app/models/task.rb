@@ -54,7 +54,15 @@ class Task < ActiveRecord::Base
   end
   
   def rate
-    (specific_rate? && specific_rate) or task_list.default_rate
+    if(specific_rate?)
+      if(rate_cents < 0)
+        task_list.default_rate
+      else
+        specific_rate
+      end
+    else
+      Money.new(0, "USD")
+    end
   end
 
   def rate=(value)
