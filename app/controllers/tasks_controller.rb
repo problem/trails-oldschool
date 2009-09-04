@@ -9,7 +9,11 @@ class TasksController < ApplicationController
   end
   
   def update
-    @task = Task.update(params[:id],params[:task])
+    @task = Task.find(params[:id])
+    new_duration = @task.updateDiffTime(params[:diffTime].to_i)
+    #new_duration = (     @task.duration_cache     +      (     params[:diffTime].to_i     )*60     ).to_s
+    @task.update_attributes("duration_cache" => new_duration.to_s)
+    @task.update_attributes(params[:task])
     render :partial=>@task
     #respond_to do |format|
     #  format.html {render :partial=>@task}

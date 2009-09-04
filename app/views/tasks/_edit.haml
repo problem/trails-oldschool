@@ -26,19 +26,22 @@
               %span
                 Use default rate
           %td{:colspan=>2} 
-        %tr.task_list_container_row
+            %div.duration{:id=>"diffTime_#{edit.id}"}
+            <input type="text_field" name="diffTime" style="display:none" id="diffTime_input_#{edit.id}" disabled="disabled">
+        %tr.task_list_container_row.slider_row
           %td{:colspan=>3}
             %hr 
             %b
               Adjust
             the total time of this task:
             %div.slider_track{:style=>"width:330px", :id=>"track_#{edit.id}"}
-              %div.slider_handle{:id=>"handle_#{edit.id}"}
+              %div.slider_handle.slider_handle_hour
+              %div.slider_handle
             %hr 
         %tr.task_form 
           %td.task_submit.submit{:colspan=>3}
             - if edit.new_record?
-              = form.submit "Create task" , :action => task_list_tasks_path(edit.task_list.id), :disabled=>true
+              = form.submit "Create task" , :action => task_list_tasks_path(edit.task_list.id),:method=>"post", :disabled=>true
             - else
               = form.submit "Save this task", :action => task_path(edit), :method=>"put", :disabled=>true
             = "or "

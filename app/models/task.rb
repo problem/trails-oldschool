@@ -53,6 +53,8 @@ class Task < ActiveRecord::Base
     rate_cents?
   end
   
+  #if rate is negative then use default rate
+  #else use specific_rate (value of 0 is now valid)
   def rate
     if(specific_rate?)
       if(rate_cents < 0)
@@ -88,6 +90,14 @@ class Task < ActiveRecord::Base
     else
       duration
     end
+  end
+  
+  def updateDiffTime(difftime)
+    new_time = duration + difftime*60
+    if(new_time < 0)
+      new_time = 0
+    end
+    return new_time
   end
 
   #not quite sure why task_duration(task) exists as a helper method

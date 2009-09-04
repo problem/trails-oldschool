@@ -159,7 +159,8 @@ controller("task",
     edit: function() {
       this.element().hide();
 	  this.task_form().show();
-
+	  this.getSlider().setValue(0, 0);
+	  this.getSlider().setValue(0, 1);
     },
     remove: function(){
       this.ajaxAction("remove",{method:"delete"});
@@ -175,6 +176,30 @@ controller("task",
 	  }});
 	  
     },
+	initSlider: function(){
+		this.slider = new Control.Slider( $('track_'+this.id).select(".slider_handle"), 'track_'+this.id, {
+	  	range: $R(-60,60),
+		sliderValue: [0.03,0.03],
+		myId: this.id,
+		onSlide: function(values){
+			
+			var hours = values[0];
+			var mins = Math.floor(values[1]);
+			if (hours) {
+				hours /= 10;
+			}
+			var diffTime = $("diffTime_"+this.myId);
+			var diffTimeInput = $("diffTime_input_"+this.myId);
+			total = Math.floor(hours)*60  + mins; 
+			
+			diffTime.innerHTML = formattedTime(total);
+			diffTimeInput.value=total;
+		}
+	  });
+	},
+	getSlider: function(){
+		return this.slider;
+	},
     taskContainer: function(){
   	  //LI task_container
 	  return $("task_container_" + this.id);
@@ -342,6 +367,7 @@ $S(".task_list .toolbar .delete").observe("click", action(task_list, "remove"))
 
 controller("task_form",{
   show: function() {
+  	$A(document.getElementsByTagName("INPUT")).invoke("disable");
     $A(this.element().getElementsByTagName("INPUT")).invoke("enable");
     this.element().show();
 	
@@ -350,6 +376,8 @@ controller("task_form",{
 	if(!this.task){
 		//if this is not an existing task, reset input value.
 		title_input.value=""; 
+		var slider_row = this.element().down(".slider_row");
+		slider_row.display = "none";
 	}
 	title_input.focus();
 	title_input.select();
@@ -372,7 +400,11 @@ controller("task_form",{
 	  //insert newly created task
 	  var listContainer = this.task_list.listContainer();
 	  listContainer.insert({top:transport.responseText});
-      listContainer.firstChild.highlight();
+      var newTask = listContainer.firstChild;
+	  newTask.highlight();
+	  
+	  
+	  
 	  //the content of the list has changed so we need to re-init
 	  initDragAndDrop();
 	  this.task_list.checkIfTotalNeeded();
@@ -381,6 +413,10 @@ controller("task_form",{
 		//no need to remove anymore. the content is just updated
 	}
 	else {
+		//get new task id
+		var newTaskId = strip_id(newTask);
+		task(newTaskId).initSlider();
+		  
 		//hide new_task_form
 		this.hide();
 	}
@@ -389,7 +425,7 @@ controller("task_form",{
     if (this.task_list)
       return $("task_list_"+this.task_list.id+"_task_new");
     if (this.task)
-      return $("edit_task_"+ this.task.id)
+      return $("edit_task_"+ this.task.id);
   }
 })
 
@@ -550,14 +586,26 @@ function initSliders(){
 	$slider_track_elements = $$(".slider_track");
 	$slider_track_elements.each(function(s) {
 	  id = strip_id(s);
-	  var s = new Control.Slider('handle_'+id, 'track_'+id, {
-	  	range: $R(-60,60),
-		sliderValue: 0,
-		onSlide: function(value){
-			//debug(value);
-		}
-	  });
+	  if (id != "") {
+	  	currentTask = task(id);
+	  	currentTask.initSlider();
+	  }
 	});
+}
+
+function formattedTime(t){
+	var res = "";
+	if(total<0){
+		res ="-";
+	}else{
+		res = "+";
+	}
+	var mins = Math.abs(t%60);
+	if(mins <10){
+		mins = "0"+mins;
+	}
+	res += Math.floor(Math.abs(t/60)) + ":" + mins;
+	return res;
 }
 
 function toggleTotals(){
