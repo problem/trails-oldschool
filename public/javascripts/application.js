@@ -269,6 +269,7 @@ controller("actions",
 	  this.task.taskContainer().highlight();
 	  //when a task is reOpened, it should be allowed to start moving again
 	  initDragAndDrop();
+	  this.task.initSlider();
     },
     url: function() {
       return this.task.url()+"actions";
@@ -279,7 +280,7 @@ controller("actions",
     afterAjaxAction: function(name, transport) {
 	  //call back for all actions (start, stop ...)
       this.task.taskContainer().update(transport.responseText);
-	  //start 
+	  this.task.initSlider();
     }
   }
 )
@@ -396,6 +397,7 @@ controller("task_form",{
 	  var taskContainer = this.task.taskContainer();
 	  taskContainer.update(transport.responseText);
 	  taskContainer.highlight();
+	  this.task.initSlider();
 	}else{
 	  //insert newly created task
 	  var listContainer = this.task_list.listContainer();
