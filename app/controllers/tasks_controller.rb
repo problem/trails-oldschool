@@ -10,8 +10,12 @@ class TasksController < ApplicationController
   
   def update
     @task = Task.find(params[:id])
-    new_duration = @task.updateDiffTime(params[:diffTime].to_i)
-    #new_duration = (     @task.duration_cache     +      (     params[:diffTime].to_i     )*60     ).to_s
+    diffTime = params[:diffTime].to_i
+    if(diffTime && @task.running?)
+      @task.add_action(:action=>"stop")
+      @task.add_action(:action=>"start")
+    end
+    new_duration = @task.updateDiffTime(diffTime)
     @task.update_attributes("duration_cache" => new_duration.to_s)
     @task.update_attributes(params[:task])
     render :partial=>@task

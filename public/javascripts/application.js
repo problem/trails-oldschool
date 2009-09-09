@@ -157,8 +157,8 @@ controller("task",
   autoBuildChild("actions", "task_form"),
   {
     edit: function() {
-      this.element().hide();
 	  this.task_form().show();
+      this.element().hide();
 	  this.getSlider().setValue(0, 0);
 	  this.getSlider().setValue(0, 1);
     },
@@ -285,6 +285,9 @@ controller("actions",
   }
 )
 
+$S(".task").observe("foo:bar",function(evt){
+	//alert(strip_id(  evt.element()));
+	}  );
 
 $S(".start_task").observe("click", action(task,"actions","start"))
 $S(".stop_task").observe("click", action(task,"actions","stop"))
@@ -310,8 +313,8 @@ controller("task_list",
 	  return $("task_list_container_" + this.id); 
 	},
 	edit: function() {
-      this.element().hide();
-      this.task_list_form().show();
+	      this.task_list_form().show();
+	  this.element().hide();
     },
     remove: function(){
       this.ajaxAction("remove",{method:"delete"});
@@ -366,9 +369,10 @@ $S(".new_task a").observe("click", action(task_list,"task_form", "show"))
 $S(".task_list .toolbar .edit").observe("click", action(task_list, "edit"))
 $S(".task_list .toolbar .delete").observe("click", action(task_list, "remove"))
 
+
 controller("task_form",{
   show: function() {
-  	$A(document.getElementsByTagName("INPUT")).invoke("disable");
+  	hideTaskForms();
     $A(this.element().getElementsByTagName("INPUT")).invoke("enable");
     this.element().show();
 	
@@ -384,8 +388,9 @@ controller("task_form",{
 	title_input.select();
   },
   hide: function() {
-    $A(this.element().getElementsByTagName("INPUT")).invoke("disable");
-    this.element().hide();
+  	var elem = this.element();
+    $A(elem.getElementsByTagName("INPUT")).invoke("disable");
+    elem.hide();
     if(this.task) this.task.element().show();
   },
   onSuccess: function(transport) {
@@ -449,6 +454,7 @@ $S(".task.edit .submit input[type=submit]").observe("click", function(event){
 
 controller("task_list_form",{
   show: function() {
+  	hideTaskForms();
     $A(this.element().getElementsByTagName("INPUT")).invoke("enable");
     this.element().show();
 	var titleInput = this.element().down(".title").down("input");
@@ -459,7 +465,9 @@ controller("task_list_form",{
   hide: function() {
     $A(this.element().getElementsByTagName("INPUT")).invoke("disable");
     this.element().hide();
-    if(this.task_list) this.task_list.element().show();
+    if(this.task_list){
+		this.task_list.element().show();
+	} 
   },
   onSuccess: function(transport) {
   	//call back method on update for Tasks_Lists
@@ -695,6 +703,29 @@ function toggleTick(){
 	else
 		$showTick = true;
 	return $showTick;
+}
+
+function hideTaskForms(){
+	//lists (task_form + task_list_form)
+	$lists =  $$(".list_container");
+	$lists.each(function(s) {
+		var tl = task_list(strip_id(s));
+		tl.task_form().hide();
+		tl.task_list_form().hide();
+	});
+	
+  
+  
+  //tasks (task_form)
+  $tasks = $$(".task_container");
+  $tasks.each(function(s) {
+		var t = task(strip_id(s));
+		t.task_form().hide();
+	});
+  //task_list_Create
+  var taskListCreator = $("task_list_new");
+  taskListCreator.hide();
+  $A(taskListCreator.getElementsByTagName("INPUT")).invoke("disable");
 }
 
 
