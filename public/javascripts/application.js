@@ -163,7 +163,13 @@ controller("task",
 	  this.getSlider().setValue(0, 1);
     },
     remove: function(){
-      this.ajaxAction("remove",{method:"delete"});
+      var response = confirm("Are you sure you want to delete task?");
+      if(response) {
+        this.ajaxAction("remove",{method:"delete"});
+        console.log("Task removed!");
+      } else {
+        console.log("removing canceled.");
+      }
     },
     afterRemove: function(name, transport) {
 	  ///remove whole container instead of single task element
@@ -229,6 +235,9 @@ function strip_id(element){
 
 $S(".task .toolbar .edit").observe("click", action(task, "edit"))
 $S(".task .toolbar .delete").observe("click", action(task, "remove"))
+
+
+
 
 controller("actions", 
   ajaxActions("start", "stop", "complete", "reopen"),
