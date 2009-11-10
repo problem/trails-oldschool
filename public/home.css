@@ -1,0 +1,231 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #333 url(images/bg.jpg) -900px left;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 160%;
+  color: #666;
+}
+
+#header {
+  height: 125px;
+  width: 100%;
+  margin-bottom: 40px;
+  background: url(images/tr30.png);
+  color: white;
+}
+
+#header div {
+  width: 630px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#header h1 {
+  float: left;
+  width: 86px;
+  height: 35px;
+  margin-top: 60px;
+}
+
+#header h1 a {
+  display: block;
+  width: 86px;
+  height: 35px;
+  background: url(images/trails-logo-tr.png) no-repeat;
+  text-indent: -10000px;
+  border: none;
+}
+
+#header h1 a:hover {
+  background: url(images/trails-logo-tr-a.png) no-repeat;
+}
+
+#header ul {
+  float: left;
+  margin: 30px 10px 0 20px;
+  list-style: none;
+}
+
+#header a, #footer a {
+  color: white;
+  text-decoration: none;
+  padding-bottom: 1px;
+  border-bottom: 1px solid white;
+}
+
+#header a:hover, #footer a:hover {
+  color: #333;
+  border-color: #999;
+}
+
+#header a.sticker {
+  display: block;
+  position: absolute;
+  width: 118px;
+  height: 76px;
+  left: 245px;
+  top: 0;
+  background: url(images/sticker.png) no-repeat;
+  border: none;
+  text-indent: -10000px;
+}
+
+#header a.sticker:hover {
+  background: url(images/sticker-a.png) no-repeat;
+}
+
+#header #loginform {
+  position: absolute;
+  left: 390px;
+  top: 30px;
+}
+
+#header #loginform div {
+  width: 230px;
+}
+
+#loginform * {
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+#loginform input {
+
+}
+
+#loginform #session_email {
+  width: 210px;
+  margin-bottom: 10px;
+  height: 23px;
+  border: 1px solid #666;
+
+}
+
+#loginform #session_password {
+  margin: 0 4px 0 0;
+  width: 145px;
+  height: 23px;
+  border: 1px solid #666;
+}
+
+div#slogan {
+  width: 630px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+#slogan h1 {
+  width: 498px;
+  height: 143px;
+  background: url(images/home-slogan.png) no-repeat top left;
+  text-indent: -10000px;
+}
+#slogan h2 {
+  display: none;
+}
+
+#page {
+  width: 630px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+#content, #footer {
+  width: 350px;
+  padding: 10px;
+  background: url(images/tr30.png);
+  float: left;
+}
+
+#footer {
+  margin: 10px 0 40px 0;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  clear: both;
+}
+
+.box {
+  padding: 20px;
+  background: white;
+}
+
+#sidebar {
+  width: 230px;
+  float: right;
+  padding: 10px;
+  background: url(images/tr30.png);
+}
+
+h2#time_is_scarce {
+  width: 255px;
+  height: 20px;
+  background: url(images/h2-time-is-scarce.png) no-repeat top left;
+  text-indent: -10000px;
+}
+
+h2#trails-is-free {
+  width: 170px;
+  height: 64px;
+  text-indent: -10000px;
+  background: url(images/h2-trails-is-free.png) no-repeat top left;
+}
+
+#content p, h2, #sidebar ul {
+  margin-bottom: 20px;
+}
+
+#content p strong {
+  color: #336666;
+  font-weight: bold;
+}
+
+#sidebar p {
+  margin-bottom: 5px;
+}
+
+#sidebar ul {
+	margin-left: 20px;
+
+}
+
+#sidebar li {
+  margin-bottom: 5px;
+}
+
+#sidebar .sticker {
+  width: 125px;
+  height: 117px;
+  margin-left: -20px;
+  text-indent: -10000px;
+}
+
+#sidebar .sticker a {
+  display: block;
+  width: 125px;
+  height: 117px;
+  background: url(images/sticker-we-like.png) no-repeat top left;
+}
+
+#sidebar .sticker a:hover {
+  background: url(images/sticker-we-like-a.png) no-repeat top left;
+}
+
+a#try_it {
+  width: 121px;
+  height: 119px;
+  display: block;
+  background: url(images/sticker-try-it.png) no-repeat top center;
+  margin-left: 90px;
+  text-indent: -10000px;
+}
+
+a#try_it:hover {
+  background: url(images/sticker-try-it-a.png) no-repeat top center;
+}
