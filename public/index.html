@@ -28,14 +28,14 @@
     
     $("a:has(img)").css("border", "none");
     
-    $('input[type=text]').focus(function(){ 
+    $('input[type=text], input[type=password]').focus(function(){ 
       if($(this).val() == $(this).attr('defaultValue'))
       {
         $(this).val('');
       }
     });
 
-    $('input[type=text]').blur(function(){
+    $('input[type=text], input[type=password]').blur(function(){
       if($(this).val() == '')
       {
         $(this).val($(this).attr('defaultValue'));
@@ -62,8 +62,8 @@
 		
 		
       <form action="/session" method="post" id="loginform">
-        <input id="session_email" name="session[email]" size="20" type="text" />
-        <input id="session_password" name="session[password]" size="20" type="password" />
+        <input id="session_email" name="session[email]" size="20" type="text" value="E-mail" />
+        <input id="session_password" name="session[password]" size="20" type="password" value="my-pass" />
         <input type="image" name="commit" src="images/login.png" />
       </form>
     </div>
@@ -127,7 +127,7 @@
 	<div id="footer">
     <p>Photo by <a href="http://belitsky.info">Dmitry Belitsky</a>.</p>
     <p>Website and its contents copyright &copy;2009 <a href="http://problem.la">Problem</a></p>
-    <p>Follow us on <a href="http://twitter.com/trailstracks">Twitter</a> / <a href="hello@trails.es">Contact us</a> with questions or comments.</p>
+    <p>Follow us on <a href="http://twitter.com/trailstracks">Twitter</a> / <a href="mailto:hello@trails.es">Contact us</a> with questions or comments.</p>
   </div>
 
 

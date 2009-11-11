@@ -96,22 +96,23 @@ body {
 }
 
 #loginform input {
-
+  padding: 3px 5px;
+  color: #666;
 }
 
 #loginform #session_email {
-  width: 210px;
+  width: 200px;
   margin-bottom: 10px;
-  height: 23px;
-  border: 1px solid #666;
+  height: 17px;
+  border: 1px solid #999;
 
 }
 
 #loginform #session_password {
-  margin: 0 4px 0 0;
-  width: 145px;
-  height: 23px;
-  border: 1px solid #666;
+  margin: 0 0px 0 0;
+  width: 135px;
+  height: 17px;
+  border: 1px solid #999;
 }
 
 div#slogan {
