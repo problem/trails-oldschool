@@ -1,0 +1,405 @@
+@import url(reset.css);
+@import url(reset-fonts.css);
+ul table td {
+  border: 0px solid blue; }
+
+table td {
+  border: 0px solid red; }
+
+ul {
+  min-height: 10px; }
+
+ol {
+  min-height: 10px; }
+
+body {
+  font-family: Verdana;
+  font-size: 11px;
+  margin-left: 0px;
+  margin-top: 20px; }
+
+#utility_menu {
+  position: absolute;
+  min-width: 120px;
+  left: 650px;
+  top: 25px;
+  padding-bottom: 20px;
+  color: #aaaaaa;
+  font-family: Verdana; }
+  #utility_menu a {
+    color: #333333;
+    border: 2px solid #FFF; }
+    #utility_menu a:hover {
+      color: #FFF;
+      text-decoration: none;
+      background-color: #333333;
+      border: 2px solid #333333; }
+    #utility_menu a:visited {
+      text-decoration: underline; }
+
+#task_lists {
+  left: 10px;
+  top: 150px; }
+  #task_lists td, #task_lists th {
+    padding: 3px; }
+
+#task_list_commands {
+  text-align: right;
+  margin-right: 5px;
+  margin-bottom: 10px; }
+  #task_list_commands a {
+    color: #006699;
+    text-decoration: underline;
+    border: 2px solid #FFF; }
+    #task_list_commands a:hover {
+      color: #FFF;
+      text-decoration: none;
+      background-color: #006699;
+      border: 2px solid #006699; }
+    #task_list_commands a:visited {
+      text-decoration: underline; }
+
+.grand_total {
+  background-color: #99cccc;
+  color: #FFF;
+  text-align: right; }
+  .grand_total .fade {
+    color: #cccccc; }
+  .grand_total .colon {
+    color: white; }
+    .grand_total .colon .fade {
+      color: white; }
+
+.task_list {
+  background-color: #f7f7e7; }
+  .task_list .external {
+    background-color: #fff; }
+  .task_list .toolbar * {
+    visibility: hidden; }
+  .task_list:hover .toolbar {
+    background-color: #f7f7e7; }
+    .task_list:hover .toolbar * {
+      visibility: visible; }
+    .task_list:hover .toolbar a {
+      color: #990000; }
+
+tr.task_list td {
+  height: 40px; }
+
+th.title {
+  color: black;
+  font-size: 18px;
+  font-family: Helvetica, Arial, Verdana, sans-serif; }
+
+th.new_task {
+  text-align: right; }
+  th.new_task a {
+    color: #006699;
+    border: 2px solid #f7f7e7;
+    text-decoration: underline; }
+    th.new_task a:hover {
+      background-color: #006699;
+      border: 2px solid #006699;
+      text-decoration: none;
+      color: #f7f7e7; }
+    th.new_task a:visited {
+      text-decoration: underline; }
+
+.duration {
+  color: #666666;
+  text-align: right; }
+  .duration .colonTick {
+    color: white; }
+
+.earnings {
+  color: black; }
+
+tr.blank_list_footer {
+  height: 18px; }
+
+tr.blank_task {
+  height: 1px;
+  font-size: 1px;
+  line-height: 0px;
+  margin: 0;
+  padding: 0; }
+  tr.blank_task td {
+    height: 1px;
+    padding: 0px; }
+
+tr.task td {
+  height: 25px; }
+tr.task td.border {
+  border-bottom: 1px solid #eeeeee; }
+tr.task .task_submit {
+  text-align: right;
+  height: 30px; }
+
+.task {
+  font: Verdana;
+  size: 11px;
+  cursor: pointer; }
+  .task .toolbar * {
+    visibility: hidden; }
+  .task .toolbar a {
+    vertical-align: top;
+    color: #990000;
+    border: 2px solid #f7f7e7; }
+    .task .toolbar a:hover {
+      text-decoration: underline;
+      color: #990000;
+      border: 2px solid #f7f7e7;
+      background-color: #f7f7e7; }
+
+  .task:hover {
+    background-color: #f6f6f6; }
+    .task:hover .toolbar * {
+      visibility: visible; }
+  .task a {
+    text-decoration: underline; }
+    .task a:hover {
+      color: #FFF;
+      text-decoration: none;
+      background-color: #669966; }
+    .task a:visited {
+      text-decoration: underline; }
+
+.delete {
+  padding-top: 15px;
+  height: 0px;
+  width: 15px;
+  display: block;
+  float: left;
+  background-image: url('/images/Trash.png');
+  background-repeat: no-repeat;
+  background-position: 0px left;
+  overflow: hidden;
+  border: none !important;
+  font-size: 1px;
+  background-color: none; }
+  .delete:hover {
+    background-position: -14px left;
+    background-color: none; }
+
+td.status {
+  min-width: 18px; }
+
+.start {
+  min-width: 32px; }
+  .start a {
+    color: #333333;
+    border: 2px solid #FFF; }
+    .task:hover  .start a {
+      color: #FFF;
+      text-decoration: none;
+      background-color: #669966;
+      border: 2px solid #669966; }
+    .start a:visited {
+      text-decoration: underline; }
+  .start .stop_task a {
+    color: #990000; }
+    .task:hover .start .stop_task a {
+      color: #FFF;
+      text-decoration: none;
+      background-color: black; }
+    .start .stop_task a:visited {
+      text-decoration: underline; }
+
+.task_list_container_row td {
+  text-align: center; }
+  .task_list_container_row td hr {
+    height: 1px;
+    border: 0;
+    color: #cccccc;
+    background-color: #cccccc;
+    width: 95%; }
+
+.task_form_container {
+  border-bottom: 1px solid #cdcdcd;
+  min-width: 416px; }
+  .task_form_container * {
+    padding: 0px; }
+    .task_form_container * .submit {
+      background-color: #e3eeec; }
+
+.task_form {
+  background-color: #e3eeec; }
+  .task_form .description {
+    min-width: 325px; }
+  .task_form .title {
+    width: 270px; }
+  .task_form .task_title {
+    min-width: 308px; }
+    .task_form .task_title #task_description {
+      margin-left: 11px; }
+  .task_form .rate {
+    width: 139px; }
+  .task_form .toolbar, .task_form .status {
+    background-color: white; }
+  .task_form input[name='task[description]'] {
+    width: 250px;
+    height: 18px; }
+  .task_form:hover {
+    background-color: #e3eeec; }
+
+.external_bars, .submit {
+  background-color: white;
+  text-align: left; }
+
+.external_bars {
+  width: 1000px; }
+
+.description {
+  min-width: 200px; }
+
+.rate {
+  min-width: 40px;
+  color: #666666;
+  text-align: right; }
+
+.default_rate {
+  text-align: right; }
+
+.earnings {
+  min-width: 55px;
+  text-align: right; }
+
+.fade {
+  color: #aaaaaa; }
+
+.duration {
+  min-width: 40px;
+  color: #666666; }
+
+.toolbar {
+  width: 60px;
+  min-width: 60px; }
+
+.active {
+  color: #669933; }
+  .active .description {
+    font-weight: italic; }
+  .active .external_bars .duration_bar {
+    height: 2px;
+    background-color: #99cc99; }
+
+.stopped .external_bars .duration_bar {
+  height: 2px;
+  background-color: #666666; }
+
+.complete * {
+  color: #aaaaaa; }
+
+.default_rate_check {
+  margin-left: 50px; }
+  .default_rate_check span {
+    text-decoration: underline; }
+
+.slider_handle {
+  background: url(../images/slider_handle.png);
+  background-repeat: no-repeat;
+  width: 15px;
+  height: 15px;
+  cursor: move;
+  position: absolute;
+  top: 3px; }
+
+.slider_handle_hour {
+  background: url(../images/slider_handle_hour.png);
+  background-repeat: no-repeat; }
+
+.slider_track {
+  background: url(../images/bg-fader.gif);
+  height: 28px;
+  margin-left: 40px;
+  position: relative; }
+
+input[name='task[rate]'], input[name='task_list[default_rate]'] {
+  width: 50px;
+  height: 18px; }
+
+input[name='task[description]'] {
+  width: 150px;
+  height: 18px; }
+
+input[name='task_list[title]'] {
+  width: 250px;
+  height: 18px; }
+
+input[type='text'] {
+  border: 1px solid #ccc;
+  height: 18px; }
+
+input[type='checkbox'] {
+  vertical-align: middle; }
+
+#login {
+  width: 290px;
+  height: 200px;
+  background-color: #f6f6f6;
+  border-color: #CCC;
+  border-width: 1px 1px 0 0;
+  border-style: solid none none solid; }
+
+#signup {
+  width: 300px;
+  height: 300px;
+  background-color: #f6f6f6;
+  border-color: #CCC;
+  border-width: 1px 1px 0 0;
+  border-style: solid none none solid; }
+
+#login form {
+  margin: 0;
+  padding: 0;
+  width: 280px; }
+  #login form fieldset {
+    padding: 10px;
+    margin: 0 0 0 0; }
+    #login form fieldset legend {
+      margin: 10px 0 0 33px;
+      font-size: 14px;
+      color: #aaaaaa; }
+    #login form fieldset label {
+      display: block;
+      width: 100px;
+      float: left;
+      text-align: right;
+      margin-right: 20px; }
+    #login form fieldset input, #login form fieldset select, #login form fieldset textarea {
+      padding: 2px;
+      height: 20px;
+      color: #333333; }
+    #login form fieldset li {
+      text-align: right;
+      display: block;
+      margin: 10px 0px 0 0px; }
+      #login form fieldset li #session_email {
+        margin-left: 10px; }
+      #login form fieldset li #session_password {
+        border: 1px solid #cccccc;
+        margin-left: 10px; }
+      #login form fieldset li #submit {
+        display: block;
+        float: right; }
+      #login form fieldset li #user_unencrypted_password {
+        border: 1px solid #cccccc;
+        margin-left: 10px; }
+      #login form fieldset li #user_unencrypted_password_confirmation {
+        border: 1px solid #cccccc;
+        margin-left: 10px; }
+
+#notice {
+  float: left;
+  display: block;
+  margin-top: -100px;
+  margin-left: 310px;
+  color: #990000;
+  line-height: 15px;
+  border-color: #aaaaaa;
+  border-width: 1px 1px 1px 1px;
+  border-style: dotted none dotted none;
+  padding: 2px 0 2px;
+  width: 130px; }
+  #notice .please {
+    color: #333333; }
