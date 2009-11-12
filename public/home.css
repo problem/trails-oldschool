@@ -92,12 +92,17 @@ body {
 #loginform * {
   margin: 0;
   padding: 0;
-  vertical-align: middle;
 }
 
 #loginform input, #new_user input {
   padding: 3px 5px;
   color: #666;
+}
+
+#loginform input.login-pass {
+	float: left;
+	margin-left: 5px;
+	margin-top: -4px;
 }
 
 #loginform #session_email {
@@ -108,11 +113,17 @@ body {
 
 }
 
-#loginform #session_password {
+#loginform #session_password, #loginform .session_password {
   margin: 0 0px 0 0;
   width: 135px;
   height: 17px;
   border: 1px solid #999;
+}
+
+#header form#loginform div {
+  margin: 0px;
+  width: 145px;
+  float: left;
 }
 
 div#slogan {
@@ -278,6 +289,10 @@ body.signup div#slogan h1 {
   padding: 10px;
   background: url(images/tr46.png);
   margin: 0 0 10px 0;
+}
+
+.signup .content.input-fields {
+  padding: 10px 10px 0 10px;
 }
 
 .signup form#new_user {

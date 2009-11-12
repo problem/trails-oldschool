@@ -28,45 +28,22 @@
     
     $("a:has(img)").css("border", "none");
     
-    $('input[type=text]').focus(function(){ 
+    $('input[type=text], input[type=password]').focus(function(){ 
       if($(this).val() == $(this).attr('defaultValue'))
       {
         $(this).val('');
+        $(this).css("border-color", "#000000");
       }
     });
 
-    $('input[type=text]').blur(function(){
+    $('input[type=text], input[type=password]').blur(function(){
       if($(this).val() == '')
       {
         $(this).val($(this).attr('defaultValue'));
         $(this).css("border-color", "#999999");
       } 
     });
-
-
-    $('input:password').each(function(){
-      var $currentPass = $(this);
-      $currentPass.hide();
-      $currentPass.wrap('<div style="position: relative; height: 38px"></div>');
-      $currentPass.before('<input type="text" class="removeit ' + $currentPass.attr("id") + '" value="' + $currentPass.attr("rel") + '" style="position: absolute;" />');
-      
-      var $visiblePassword = $(".removeit");
-
-      $visiblePassword.focus(function () {
-        $(this).hide();
-        $currentPass.show();
-      });
-
-      $currentPass.blur( function () {
-        if ( $currentPass.attr("value") == "" ){
-          $currentPass.hide();
-          $visiblePassword.show();
-          }
-       });
-
-    });
-
-   });
+  });
 </script>
 
 </head>
@@ -87,10 +64,10 @@
 		
       <form action="/session" method="post" id="loginform">
         <input id="session_email" name="session[email]" size="20" type="text" value="E-mail" />
-        <input id="session_password" name="session[password]" size="20" type="password" rel="Password" />
-        <input type="image" name="commit" src="images/login.png" class="login-pass" />
+        <input id="session_password" name="session[password]" size="20" type="password" value="my-pass" />
+        <input type="image" name="commit" src="images/login.png" />
       </form>
-   
+    </div>
     
 </div></div>
 <div class="bg-lines">
@@ -104,8 +81,8 @@
   <div class="content input-fields">
   <input id="user_display_name" name="user[display_name]" size="20" type="text" value="Full Name" />
   <input id="user_email" name="user[email]" size="20" type="text" value="Email (used for login)" />
-  <input id="user_unencrypted_password" name="user[unencrypted_password]" size="20" type="password" rel="Password" />
-  <input id="user_unencrypted_password_confirmation" name="user[unencrypted_password_confirmation]" size="20" type="password" rel="Password again" class="last" />
+  <input id="user_unencrypted_password" name="user[unencrypted_password]" size="20" type="password" value="Password" />
+  <input id="user_unencrypted_password_confirmation" name="user[unencrypted_password_confirmation]" size="20" type="password" value="Password again" class="last" />
         
   </div> 
 	

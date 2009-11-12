@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def new
     @user = flash[:user] || User.new
+    render :layout => false
   end
   
   def create
