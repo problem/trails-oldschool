@@ -99,7 +99,7 @@ body {
   color: #666;
 }
 
-#loginform input.login-pass {
+#loginform input.login-pass, input#login-btn {
 	float: left;
 	margin-left: 5px;
 	margin-top: -4px;
