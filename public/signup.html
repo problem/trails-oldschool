@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Trails is a process.</title>
+
+<link rel="stylesheet" href="home.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" href="javascripts/fancybox/fancybox.css" type="text/css" media="screen" />
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="javascripts/fancybox/jquery.fancybox.pack.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("a.iframe").fancybox({
+      'frameWidth': 690,
+      'frameHeight': 650,
+      'zoomSpeedIn': 300, 
+  		'zoomSpeedOut': 300
+    });
+    
+    $("a:has(img)").fancybox({
+        'zoomSpeedIn': 300, 
+    		'zoomSpeedOut': 300
+      });
+    
+    $("a:has(img)").css("border", "none");
+    
+    $('input[type=text], input[type=password]').focus(function(){ 
+      if($(this).val() == $(this).attr('defaultValue'))
+      {
+        $(this).val('');
+        $(this).css("border-color", "#000000");
+      }
+    });
+
+    $('input[type=text], input[type=password]').blur(function(){
+      if($(this).val() == '')
+      {
+        $(this).val($(this).attr('defaultValue'));
+        $(this).css("border-color", "#999999");
+      } 
+    });
+  });
+</script>
+
+</head>
+
+<body class="signup">
+
+
+
+<div id="header"><div>
+		<h1><a href="http://process.trailstracks.us/">Trails.</a></h1>
+		<ul class="links">
+		  <li class=""><a href="http://trails.es">Trails tracks time</a></li>
+		  <li>Signup for the Alpha</li>
+		  <li><a href="http://process.trails.es">The Process Blog</a></li>
+		</ul>
+
+		<a href="http://problem.wufoo.com/forms/how-much-would-you-pay/" class="sticker iframe">How much would you pay?</a>
+		
+      <form action="/session" method="post" id="loginform">
+        <input id="session_email" name="session[email]" size="20" type="text" value="E-mail" />
+        <input id="session_password" name="session[password]" size="20" type="password" value="my-pass" />
+        <input type="image" name="commit" src="images/login.png" />
+      </form>
+    </div>
+    
+</div></div>
+<div class="bg-lines">
+<div id="slogan">
+  <h1>Signup for the Trails Alpha</h1>
+  <h2>Let's make an amazing tool together.</h2>
+</div>
+
+<div id="page">
+<form action="/users" class="new_user" id="new_user" method="post">
+  <div class="content input-fields">
+  <input id="user_display_name" name="user[display_name]" size="20" type="text" value="Full Name" />
+  <input id="user_email" name="user[email]" size="20" type="text" value="Email (used for login)" />
+  <input id="user_unencrypted_password" name="user[unencrypted_password]" size="20" type="password" value="Password" />
+  <input id="user_unencrypted_password_confirmation" name="user[unencrypted_password_confirmation]" size="20" type="password" value="Password again" class="last" />
+        
+  </div> 
+	
+	<div class="content agreement">
+  <input type="checkbox" />
+    <p>	  
+<strong>Agree to our simple terms of use:</strong>
+I understand that this is Alpha (pre-Beta) 
+software and could break at any time 
+without any warning, and that it is only 
+tested in Firefox 2+ and Safari 2+.</p>      
+ </div> 
+  <input name="commit" type="image" src="images/create.png" class="create-btn" />
+</form>
+
+	<div id="footer">
+    <p>
+<strong>Privacy &amp; Email Policy:</strong> we will never sell your informaton; we will do our absolute best to keep your information secure.
+We will not annoy you with incessant emails.    
+    </p>
+    <p class="">Copyright &copy;2009</p>
+  </div>
+
+
+
+</div>
+</body>
+</html>

@@ -58,7 +58,7 @@ body {
   border-bottom: 1px solid white;
 }
 
-#header a:hover, #footer a:hover {
+#header a:hover, #footer a:hover, .signup #header a:hover {
   color: #333;
   border-color: #999;
 }
@@ -95,7 +95,7 @@ body {
   vertical-align: middle;
 }
 
-#loginform input {
+#loginform input, #new_user input {
   padding: 3px 5px;
   color: #666;
 }
@@ -230,3 +230,124 @@ a#try_it {
 a#try_it:hover {
   background: url(images/sticker-try-it-a.png) no-repeat top center;
 }
+
+/* 
+Signup page markup
+*/
+
+body.signup {
+	background: white;
+}
+
+body.signup #header {
+	background: #f0f0f0;
+	margin-bottom: 0px;
+}
+
+body.signup div#slogan {
+	margin-bottom: 25px;
+}
+
+body.signup div#slogan h1 {
+	width: 416px;
+	height: 61px;
+	background: url(images/slogan-sign.png) no-repeat top left;
+}
+
+.signup #header h1 a {
+  display: block;
+  width: 86px;
+  height: 35px;
+  background: url(images/logo-sign.png) no-repeat;
+  text-indent: -10000px;
+  border: none;
+  margin-left: -5px;
+}
+
+.signup #header a, .signup #footer a {
+	color: #336666;
+	border-bottom-color: #336666;
+}
+
+.signup #header, .signup #footer {
+	color: #666666;
+}
+
+.signup .content{
+  width: 250px;
+  padding: 10px;
+  background: url(images/tr46.png);
+  margin: 0 0 10px 0;
+}
+
+.signup form#new_user {
+	margin-left: 60px;
+}
+
+.signup .content .box {
+	background: none;
+}
+
+.signup .input-fields input {
+	border: 1px solid #999999;
+	margin-bottom: 10px;
+	height: 20px;
+}
+
+.signup .input-fields input.last {
+	margin-bottom: 0;
+}
+
+#user_display_name, #user_email {
+	width: 238px;	
+}
+
+.signup .create-btn {
+	margin: 10px 0 0 -4px;
+}
+
+.signup .content.agreement {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.signup .content.agreement input {
+	float: left;
+	margin: 2px 0 0 0;
+}
+
+.signup .content.agreement p {
+	margin-left: 20px;
+}
+
+.signup .content.agreement strong {
+	color: #336666;
+	font-weight: normal;
+	display: block;
+}
+
+.bg-lines {
+width: 670px;
+margin: 0 auto;
+padding-top: 25px;
+background: url(images/bg-sign.png) no-repeat left -120px;
+}
+
+.signup #footer {
+	font-size: 11px;
+	line-height: 16px;
+	text-align: left;
+	margin-left: 60px;
+	padding: 0;
+	position: relative;
+	margin-top: 20px;
+}
+
+
+.signup #footer .copy {
+	position: absolute;
+	top: 0;
+	left: -100px;
+}
+
+/*#user_display_name, #user_email, #*/
