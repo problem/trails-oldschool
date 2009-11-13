@@ -365,4 +365,12 @@ background: url(images/bg-sign.png) no-repeat left -120px;
 	left: -100px;
 }
 
+.signup #errorbox {
+	background-image: url(images/trred.png);
+	display: none;
+}
+
+.signup #errorbox  ul {
+	list-style-position: inside;
+}
 /*#user_display_name, #user_email, #*/
