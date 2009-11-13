@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many    :task_lists, :foreign_key => "owner_id",  :dependent=>:destroy
   belongs_to  :last_command, :class_name => "Command"
   
-  validates_presence_of     :email, :display_name
+  validates_presence_of     :email #, :display_name
   validates_uniqueness_of   :email, :case_sensitive => false
   validates_length_of       :email, :within => 3..100
   validates_format_of       :email, :with => /^\S+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,4})(\]?)$/ix
