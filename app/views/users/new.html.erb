@@ -1,118 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
-
+<!DOCTYPE html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
 <title>Trails is a process.</title>
-
 <link rel="stylesheet" href="home.css" type="text/css" media="screen" />
-
 <link rel="stylesheet" href="javascripts/fancybox/fancybox.css" type="text/css" media="screen" />
-
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <script type="text/javascript" src="javascripts/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.5.5/jquery.validate.min.js"></script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("a.iframe").fancybox({
-      'frameWidth': 690,
-      'frameHeight': 650,
-      'zoomSpeedIn': 300, 
-  		'zoomSpeedOut': 300
-    });
-    
-    $("a:has(img)").fancybox({
-        'zoomSpeedIn': 300, 
-    		'zoomSpeedOut': 300
-      });
-    
-    $("a:has(img)").css("border", "none");
-
-    $("#new_user").validate({
-    
-    errorContainer: "#errorbox",
-    errorLabelContainer: "#errorbox ul",
-    wrapper: "li",
-    rules: {
-    	"user[email]": {
-    		required: true,
-    		email: true,
-    	},
-    	"user[unencrypted_password]": "required",
-      "agreement-checkbox": "required",
-    },
-	messages: {
-    	"user[email]": {
-    		required: "Email address is required.",
-    	},
-    	"user[unencrypted_password]": {
-    		required: "Password is required."
-    	},
-      "agreement-checkbox": {
-        required: "Please agree to our terms."
-      },
-    }
-        
-    });
-
-    
-    $('input[type=text]').focus(function(){ 
-      if($(this).val() == $(this).attr('defaultValue'))
-      {
-        $(this).val('');
-      }
-    });
-
-    $('input[type=text]').blur(function(){
-      if($(this).val() == '')
-      {
-        $(this).val($(this).attr('defaultValue'));
-        $(this).css("border-color", "#999999");
-      } 
-    });
-
-
-    $('input:password').each(function(){
-      var $currentPass = $(this);
-      $currentPass.hide();
-      $currentPass.wrap('<div style="position: relative; height: 38px"></div>');
-      $currentPass.before('<input type="text" class="removeit ' + $currentPass.attr("id") + '" value="' + $currentPass.attr("rel") + '" style="position: absolute;" />');
-      
-      var $visiblePassword = $(".removeit");
-      $visiblePassword.removeClass("required");
-      $visiblePassword.focus(function () {
-        $(this).hide();
-        $currentPass.show();
-      });
-
-      $currentPass.blur( function () {
-        if ( $currentPass.attr("value") == "" ){
-          $currentPass.hide();
-          $visiblePassword.show();
-          }
-       });
-
-    });
-
-    $('#header h1 a').hover(
-      function(){
-        $(this).css({opacity: 0.7});
-      },
-      function(){
-        $(this).css({opacity: 1});
-      });
-    
-
-   });
-</script>
-
+<script type="text/javascript" src="javascripts/signup.js"></script>
 </head>
 
 <body class="signup">
-
-
-
 <div id="header"><div>
 		<h1><a href="http://trails.es">Trails</a></h1>
 		<ul class="links">

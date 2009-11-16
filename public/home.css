@@ -214,7 +214,7 @@ h2#trails-is-free {
 #sidebar .sticker {
   width: 125px;
   height: 117px;
-  margin-left: -20px;
+  margin: 0 0 3px -20px;
   text-indent: -10000px;
 }
 
