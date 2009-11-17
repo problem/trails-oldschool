@@ -11,7 +11,7 @@
     		'zoomSpeedOut': 300
       });
     
-    $("a:has(img)").css("border", "none");
+    $("a:has(img), a img").css("border", "none");
     
     $('input[type=text]').focus(function(){ 
       if($(this).val() == $(this).attr('defaultValue'))

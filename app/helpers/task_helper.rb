@@ -6,7 +6,7 @@ module TaskHelper
     when :complete:
       tag :input, :type=>"checkbox", :value=>status, :id=>dom_id(task, status), :class=>dom_class(task, status), :checked=>true
     when :active:
-      link_to image_tag("task_in_progress.png", :id=>dom_id(task, status), :class=>dom_class(task, status))
+      link_to image_tag("task_in_progress.gif", :id=>dom_id(task, status), :class=>dom_class(task, status))
     end
   end
   

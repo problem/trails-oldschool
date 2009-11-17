@@ -2,7 +2,7 @@
 
 # Uncomment below to force Rails into production mode when
 # you don't control web/app server and can't set it the proper way
- ENV['RAILS_ENV'] ||= 'production'
+# ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 #RAILS_GEM_VERSION = '2.3.3' unless defined? RAILS_GEM_VERSION
@@ -11,7 +11,7 @@
 require File.join(File.dirname(__FILE__), 'boot')
 
 # LoadProfile support - GO!
-require 'config/load_profile'
+# require 'config/load_profile'
 
 Rails::Initializer.run do |config|
   LoadProfile::perform(:preconfig, config)
