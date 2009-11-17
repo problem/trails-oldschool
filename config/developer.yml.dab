@@ -1,0 +1,7 @@
+# This is the per developer configuration file. The only entry is :username, as
+# it is used to pull up your local.rb and database.yml files. If you want your
+# stuff to be version-controlled, do NOT place it in this file!
+# See also: load_profile.rb
+# If no developer.yml is found, your :username is assumed to be ENV['$USER']
+:developer:
+  :username: dab

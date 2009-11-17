@@ -14,7 +14,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 # require 'config/load_profile'
 
 Rails::Initializer.run do |config|
-  LoadProfile::perform(:preconfig, config)
+  #LoadProfile::perform(:preconfig, config)
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -71,5 +71,5 @@ Rails::Initializer.run do |config|
   # config.gem "haml", :version=>"2.0.2"
   # config.gem "money", :version=>"1.7.1"
 
-  LoadProfile::perform(:config, config)
+  #LoadProfile::perform(:config, config)
 end
