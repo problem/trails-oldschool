@@ -4,11 +4,11 @@
 }
 
 body {
-  background: #333 url(images/bg.jpg) -900px left;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 160%;
   color: #666;
+  background: #333 url(images/bg.jpg) left -900px ;
 }
 
 #header {

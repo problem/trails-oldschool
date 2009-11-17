@@ -1,2 +1,18 @@
-# Not actually used!
-#     Use config/profiles/database-$USER.yml instead
+development:
+  adapter: mysql
+  encoding: utf8
+  database: trails
+  username: dmitry
+  password: Vql64MHI
+
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  timeout: 5000
+
+production:
+  adapter: mysql
+  host: localhost
+  database: trails
+  username: dmitry
+  password: Vql64MHI
