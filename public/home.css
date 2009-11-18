@@ -110,6 +110,7 @@ body {
   margin-bottom: 10px;
   height: 17px;
   border: 1px solid #999;
+  font-size: 11px;
 
 }
 
@@ -118,12 +119,29 @@ body {
   width: 135px;
   height: 17px;
   border: 1px solid #999;
+  float: left;
 }
 
 #header form#loginform div {
   margin: 0px;
   width: 145px;
   float: left;
+}
+
+form input, label {
+	font-size: 11px;
+}
+
+form div.password {
+	position: relative;
+}
+
+label.overlabel {
+	position: absolute;
+	z-index: 1;
+	color: #666;
+	left: 6px;
+	top: 3px;
 }
 
 div#slogan {
@@ -307,10 +325,6 @@ body.signup div#slogan h1 {
 	border: 1px solid #999999;
 	margin-bottom: 10px;
 	height: 20px;
-}
-
-.signup .input-fields input.last {
-	margin-bottom: 0;
 }
 
 #user_display_name, #user_email {

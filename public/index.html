@@ -8,6 +8,7 @@
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <script type="text/javascript" src="javascripts/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="javascripts/jquery.overlabel.js"></script>
 <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
 <script type="text/javascript" src="javascripts/index.js"></script>
 </head>
@@ -26,7 +27,7 @@
 		
       <form action="/session" method="post" id="loginform">
         <input id="session_email" name="session[email]" size="20" type="text" value="Email" />
-        <input id="session_password" name="session[password]" size="20" type="password" rel="Password" />
+        <div class="password"><label for="session_password" class="overlabel">Password</label><input id="session_password" name="session[password]" size="20" type="password" /></div>
         <input type="image" name="commit" src="images/login.png" id="login-btn" />
       </form>
     </div>
