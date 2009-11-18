@@ -46,6 +46,10 @@
   </div>
 
 	<div class="content agreement" id="errorbox"><ul></ul></div>
+	<% if flash[:notice] -%> 
+  <div class="content agreement errorbox"><%= error_messages_for :user %></div> 
+  <% end -%>
+	
 	<div class="content agreement">
   <input type="checkbox" name="agreement-checkbox" />
     <p>	  

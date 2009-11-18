@@ -384,7 +384,23 @@ background: url(images/bg-sign.png) no-repeat left -120px;
 	display: none;
 }
 
-.signup #errorbox  ul {
+.signup .errorbox {
+	background-image: url(images/trred.png);
+}
+
+.signup #errorbox  ul, .errorbox ul {
 	list-style-position: inside;
 }
+
+.signup .errorbox h2{
+	font-size: 14px;
+	color: #fff;
+	margin: 0 0 5px 0;
+}
+
+.signup .errorbox.content p {
+	font-size: 12px;
+	margin: 0 0 5px 0;
+}
+
 /*#user_display_name, #user_email, #*/

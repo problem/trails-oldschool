@@ -4,7 +4,7 @@ module ApplicationHelper
     # @user ||= User.find(session[:user_id])
     @user ||= User.find(:first)
   end
-  
+
   def formatted_duration(seconds)
     if(seconds > 60)
       minutes = seconds / 60
