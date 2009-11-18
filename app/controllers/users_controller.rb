@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       redirect_to :controller => "task_lists"
     else
       flash[:user] = @user
+      flash[:notice] = "Error creating user"
       redirect_to :controller => "users", :action => "new"
     end
   end
