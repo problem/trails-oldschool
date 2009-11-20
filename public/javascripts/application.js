@@ -298,6 +298,20 @@ $S(".task").observe("foo:bar",function(evt){
 	//alert(strip_id(  evt.element()));
 	}  );
 
+//$S(".start_task").observe("click", function(task) {
+//  action(task,"actions","start")
+//});
+
+// Need to improve this simple functions
+$S(".start_task").observe("click", function(){
+    document.title = "*Trails";
+});
+
+$S(".stop_task").observe("click", function(){
+    document.title = "Trails";
+});
+
+
 $S(".start_task").observe("click", action(task,"actions","start"))
 $S(".stop_task").observe("click", action(task,"actions","stop"))
 $S("input.stopped_task").observe("click", action(task,"actions","complete"))
@@ -322,7 +336,7 @@ controller("task_list",
 	  return $("task_list_container_" + this.id); 
 	},
 	edit: function() {
-	      this.task_list_form().show();
+	  this.task_list_form().show();
 	  this.element().hide();
     },
     remove: function(){
