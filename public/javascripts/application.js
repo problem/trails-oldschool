@@ -294,13 +294,28 @@ controller("actions",
   }
 )
 
+
+// Show/hide task_list
+Event.observe(window, 'load', function() {
+  $$("th.title").each(function(element) {element.insert(" <small>-</small>")});
+});
+
+$S('th.title').observe('click', function(event) {
+  var currentTh = $(Event.element(event));
+  trTitleId = currentTh.up().identify();
+  currentList = $(trTitleId).next(2);
+  currentList.toggle();
+  if(currentList.visible()) {
+      $(currentTh).down().update("-");
+  } else {
+      $(currentTh).down().update("+");
+  }
+});
+
+
 $S(".task").observe("foo:bar",function(evt){
 	//alert(strip_id(  evt.element()));
 	}  );
-
-//$S(".start_task").observe("click", function(task) {
-//  action(task,"actions","start")
-//});
 
 // Need to improve this simple functions
 $S(".start_task").observe("click", function(){
@@ -310,7 +325,6 @@ $S(".start_task").observe("click", function(){
 $S(".stop_task").observe("click", function(){
     document.title = "Trails";
 });
-
 
 $S(".start_task").observe("click", action(task,"actions","start"))
 $S(".stop_task").observe("click", action(task,"actions","stop"))
