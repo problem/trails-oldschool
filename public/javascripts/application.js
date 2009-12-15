@@ -304,11 +304,21 @@ $S('th.title').observe('click', function(event) {
   var currentTh = $(Event.element(event));
   trTitleId = currentTh.up().identify();
   currentList = $(trTitleId).next(2);
+  currentTotal = currentTh.up().next('.total');
+  currentTitleTr = currentTh.up();
+  currentEarnings = currentTotal.down('.earnings').innerHTML;
+  currentDuration = currentTotal.down('.duration').innerHTML;
+  newTaskLink = currentTitleTr.down(('.new_task')).innerHTML;
+  addTotalTo = currentTitleTr.down(('.new_task'));
   currentList.toggle();
   if(currentList.visible()) {
       $(currentTh).down().update("-");
+      addTotalTo.down('span').remove();
+      currentTotal.show();
   } else {
       $(currentTh).down().update("+");
+      addTotalTo.update('<span>' + currentEarnings + ' ' + currentDuration + '</span> ' + newTaskLink);
+      currentTotal.hide();
   }
 });
 
