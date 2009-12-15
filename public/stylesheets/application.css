@@ -283,7 +283,7 @@ td.status {
     height: 2px;
     background-color: #99cc99; }
 
-.stopped .external_bars .duration_bar {
+.stopped .external_bars .duration_bar, .complete .external_bars .duration_bar  {
   height: 2px;
   background-color: #666666; }
 
